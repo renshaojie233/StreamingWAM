@@ -1,4 +1,6 @@
-const RELEASE_BASE = "https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1";
+const RELEASE_BASE = location.hostname.endsWith("github.io")
+  ? "videos"
+  : "https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1";
 
 const assetUrl = name => `${RELEASE_BASE}/${name}`;
 const pad = value => String(value).padStart(2, "0");
