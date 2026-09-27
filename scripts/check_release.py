@@ -12,6 +12,11 @@ EXPECTED_HASHES = {
     "assets/libero_plus_full_10030.txt": "32594adaeb21d20b604621f46e75d7e37da65a2fd8e1968f246beed163ef27ca",
     "assets/libero_dataset_stats.json": "a98bee79c78308a6a1ff63165a57c48c31d21d1f52c8b48f0a2b824a30ab8718",
 }
+REQUIRED_RUNTIME_FILES = {
+    "scripts/ds_configs/ds_zero1_config.json",
+    "scripts/ds_configs/ds_zero2_config.json",
+    "scripts/ds_configs/ds_zero2_offload_config.json",
+}
 FORBIDDEN_NAMES = {"source.tar.gz", "PROVENANCE_FASTWAM_SDP.txt"}
 FORBIDDEN_SUFFIXES = {".pyc", ".pyo", ".zip", ".tar", ".gz"}
 TEXT_SUFFIXES = {".py", ".yaml", ".yml", ".md", ".txt", ".toml", ".json", ".sh"}
@@ -65,6 +70,10 @@ def main() -> int:
             print(f"{actual_hash}  {rel}")
             if actual_hash != expected_hash:
                 errors.append(f"hash mismatch: {rel}")
+
+    for rel in sorted(REQUIRED_RUNTIME_FILES):
+        if not (ROOT / rel).is_file():
+            errors.append(f"missing required runtime file: {rel}")
 
     if errors:
         print("\nRelease check failed:", file=sys.stderr)

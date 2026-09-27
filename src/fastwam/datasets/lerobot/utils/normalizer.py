@@ -6,7 +6,6 @@ import numpy as np
 from omegaconf import DictConfig, OmegaConf
 import hashlib
 from pathlib import Path
-from git import Repo
 from fastwam.utils.logging_config import get_logger
 
 from fastwam.utils.pytorch_utils import dict_apply
@@ -202,8 +201,14 @@ def search_dataset_stats_cache_json(cache_dir: str | Path, data_config: DictConf
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     def get_git_hash() -> Optional[str]:
-        repo = Repo(__file__, search_parent_directories=True)
-        return repo.head.commit.hexsha
+        try:
+            from git import Repo
+
+            repo = Repo(__file__, search_parent_directories=True)
+            return repo.head.commit.hexsha
+        except Exception as exc:
+            logger.warning("Git revision unavailable for dataset-stats cache key: %s", exc)
+            return "unknown"
 
     def to_plain(value: Any) -> Any:
         if OmegaConf.is_config(value):
