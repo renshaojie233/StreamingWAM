@@ -39,11 +39,12 @@ ROLLOUT_GROUPS.forEach(({ container, tasks }) => {
   tasks.forEach(number => {
     const [, title, group] = TASKS.find(([taskNumber]) => taskNumber === number);
     const filename = `01-task-demonstrations__task-${number}-${TASK_SLUGS[number]}.mp4`;
+    const version = number === "01" ? "?v=c435a1e6" : "";
     const article = document.createElement("article");
     article.className = "task-card";
     article.innerHTML = `
       <video controls muted playsinline preload="metadata"
-        poster="assets/posters/${filename.replace(".mp4", ".jpg")}" src="${assetUrl(filename)}"></video>
+        poster="assets/posters/${filename.replace(".mp4", ".jpg")}${version}" src="${assetUrl(filename)}${version}"></video>
       <div class="task-meta"><strong>${title}</strong><span>${number} · ${group}</span></div>`;
     taskGrid.appendChild(article);
   });
