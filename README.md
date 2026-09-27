@@ -4,6 +4,8 @@ This repository is the first code release for **StreamingWAM**. It contains the
 training and rolling-inference implementation used for the LIBERO-Plus
 experiments. Real-robot and RoboTwin code are outside the scope of this release.
 
+**[Project page and supplementary videos](https://renshaojie233.github.io/StreamingWAM/)**
+
 StreamingWAM keeps a rolling action buffer and updates it with a token-wise
 staircase noise schedule. The released configuration uses a 16-step clean
 action prefix, a 16-step predicted suffix, one Euler update per replanning call,

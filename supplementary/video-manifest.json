@@ -1,0 +1,356 @@
+[
+  {
+    "source": "03_Additional_Trial/camera_01.mp4",
+    "asset": "03-additional-trial__camera-01.mp4",
+    "bytes": 809272,
+    "sha256": "6b52d39e3532e5d64da1ae77da6842be03a92ce6669fbd1d128e3f1d5f7640ec"
+  },
+  {
+    "source": "03_Additional_Trial/camera_03.mp4",
+    "asset": "03-additional-trial__camera-03.mp4",
+    "bytes": 702884,
+    "sha256": "1ef249c107319c856269984296acd0ec1a646994b8cdf98bae6bf56edd59b655"
+  },
+  {
+    "source": "03_Additional_Trial/camera_02.mp4",
+    "asset": "03-additional-trial__camera-02.mp4",
+    "bytes": 1143412,
+    "sha256": "75e15936aa778806bd28f68f2e54cf861ccb889d3c1564ff842f563793cca374"
+  },
+  {
+    "source": "03_Additional_Trial/camera_04.mp4",
+    "asset": "03-additional-trial__camera-04.mp4",
+    "bytes": 14765116,
+    "sha256": "cae07b81106952a512e915c4a93705e4e926630f9c59bc49a5261805c2170671"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_06_weigh_apple_then_bowl.mp4",
+    "asset": "01-task-demonstrations__task-06-weigh-apple-then-bowl.mp4",
+    "bytes": 4216072,
+    "sha256": "07c50031e75df9ad2d858d04eb6410b80a3f028f3110097f27ec4ef53c8e7923"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_04_open_drawer.mp4",
+    "asset": "01-task-demonstrations__task-04-open-drawer.mp4",
+    "bytes": 5737873,
+    "sha256": "87dabda974fbca318be5a16e595fbeba4cacaeb3406e0ea87c670ee7dd953fa8"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_03_hit_the_mole.mp4",
+    "asset": "01-task-demonstrations__task-03-hit-the-mole.mp4",
+    "bytes": 4076946,
+    "sha256": "f690f73441f36380b213f8493252818adef200c9906adac48f156b73cdaa5e20"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_01_conveyor_apple_to_bowl.mp4",
+    "asset": "01-task-demonstrations__task-01-conveyor-apple-to-bowl.mp4",
+    "bytes": 2591877,
+    "sha256": "361222258a7c995bf5c4c4616e89b63e6d55c756108daed7ceecae69982de34a"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_02_moving_platform_apple_to_bowl.mp4",
+    "asset": "01-task-demonstrations__task-02-moving-platform-apple-to-bowl.mp4",
+    "bytes": 3347982,
+    "sha256": "d7daec0fa3c282edf8ef5a6fd6fbf5183d50f393ce0709589956ad359c82f057"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_05_close_drawer.mp4",
+    "asset": "01-task-demonstrations__task-05-close-drawer.mp4",
+    "bytes": 4070130,
+    "sha256": "ad259711e094aa5c90e2116c905e682d7eae4638a9a7a06ab2a0034442fbf1e0"
+  },
+  {
+    "source": "01_Task_Demonstrations/task_07_stack_blocks.mp4",
+    "asset": "01-task-demonstrations__task-07-stack-blocks.mp4",
+    "bytes": 11200629,
+    "sha256": "299e7e2d9000de8a23bdfcb529b37a78e643ed8d4ae7c65064f1812bf8ebb240"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-01__camera-01.mp4",
+    "bytes": 173354,
+    "sha256": "26d31cc029e66321b602b210d718388f6a87a9083448b28d7b155502c06bd92a"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-01__camera-03.mp4",
+    "bytes": 142252,
+    "sha256": "bb79fe0bcbf3a2840c052f56829fde974adbb394396b091e36b0248d5ca01ba4"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-01__camera-02.mp4",
+    "bytes": 268995,
+    "sha256": "f4db26fa20fb8b8436583120ac1e59679acaf50befde262815f3bca2cf6a1087"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-01__camera-04.mp4",
+    "bytes": 1084297,
+    "sha256": "bfdddd3ae43d0387201c768a89b618a543a36d84924c303e6777984f64edfe56"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-02__camera-01.mp4",
+    "bytes": 289119,
+    "sha256": "e99ad8f1f47b683dd0fc231c984ecbf8debb794f5fecd74e78d21ee41a083186"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-02__camera-03.mp4",
+    "bytes": 206100,
+    "sha256": "6eae1141e4325fa28de6a195467f7fcf4494ce3ca97f68841c35daced9a87afb"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-02__camera-02.mp4",
+    "bytes": 410059,
+    "sha256": "a8009f0767fc9e41642d54cac0ddf9448e967611e097ba8d1cc14fd1d5542cf8"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_C/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-c__trial-02__camera-04.mp4",
+    "bytes": 1551348,
+    "sha256": "0013c1bc793248809c4424514057a533f61209b7fcfa1c76d42fabd37268721e"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-01__camera-01.mp4",
+    "bytes": 196512,
+    "sha256": "9f689edd8bf61def5d7380fbdf91f855a89c66304bff0262f9f2431b96fd0610"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-01__camera-03.mp4",
+    "bytes": 141384,
+    "sha256": "f7b7f8934798cd8b6f1f6dc6da0f78a9964ba4f3938e037ea2142ef750a6fa7f"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-01__camera-02.mp4",
+    "bytes": 272621,
+    "sha256": "f7491cee3faf8879701d83cd17a03fdb863f7fd5ec43bd38c9c73f44b53aa1a6"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-01__camera-04.mp4",
+    "bytes": 1021893,
+    "sha256": "789b2449a8079fc71025a95460db0154bb9800352e89df38b0e9cf80974f4895"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-02__camera-01.mp4",
+    "bytes": 181123,
+    "sha256": "137e82f7ad4bbedb5e5186af66670f1bbd562c5c42721cc7443033ac2eab9827"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-02__camera-03.mp4",
+    "bytes": 132771,
+    "sha256": "c96bfe0037f964acdead856efe3010dffdf62a974ca21d548f38e5665b92f7f3"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-02__camera-02.mp4",
+    "bytes": 250718,
+    "sha256": "5e360e30ac11176a4f7bcb26180406ccd0c7935c8ceef547970befe550b9a80c"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_B/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-b__trial-02__camera-04.mp4",
+    "bytes": 1017629,
+    "sha256": "a558f5a1c5989011393401d70086b3efbc0c868b59f6c240cbb09f19fc029030"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-01__camera-01.mp4",
+    "bytes": 170386,
+    "sha256": "46f045395194f25c22ada8ca0dda866d90322f1f244d0f5fe0ac0464baf429ff"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-01__camera-03.mp4",
+    "bytes": 150552,
+    "sha256": "c45a953d03579d95904fe674199a31feee623394427be56d1784ced93879ce62"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-01__camera-02.mp4",
+    "bytes": 248724,
+    "sha256": "1f70569bb8ab6a39984db6c73d4117674c25e157c037836dd602e110ca20b909"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-01__camera-04.mp4",
+    "bytes": 1042650,
+    "sha256": "ffafc64fc1c714ebbe2d44abfe69373d06d781f42eb06a03c8ba862f6fcef216"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-02__camera-01.mp4",
+    "bytes": 207080,
+    "sha256": "9356f36772c5ed87081ea94e790a71aeae140397ba8bb64d0fbabba54e0da849"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-02__camera-03.mp4",
+    "bytes": 151352,
+    "sha256": "03dc95b093883408f5f75ffc2751fd3f3002594f6876ff0b294ccefe53500df6"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-02__camera-02.mp4",
+    "bytes": 288961,
+    "sha256": "6ea7f05bbf5f0ab97728af828d522e255a3f1160370a85747e1f8e3ca7259ba1"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_01/Model_A/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-01__model-a__trial-02__camera-04.mp4",
+    "bytes": 1094268,
+    "sha256": "31de5b493fd96b80e34d096b668652dafdce1925d5dde40b7fdebd561b896d41"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-01__camera-01.mp4",
+    "bytes": 475182,
+    "sha256": "f535e0d0bc23c8eb6e0638a2d6789bf598b306225a9d856608f4a2e563452d02"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-01__camera-03.mp4",
+    "bytes": 466438,
+    "sha256": "85b86f55718e2b78454b62f566434df404bea3e333688aefbcb751d6707bf12a"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-01__camera-02.mp4",
+    "bytes": 877112,
+    "sha256": "73e6b30927b7a2b11bccb8b095518933ed2f078357d4c28acb5713937066fab1"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-01__camera-04.mp4",
+    "bytes": 3060908,
+    "sha256": "d1b621576edd99c9f7d069a3137f7be43bff9719b7f11a680fafe91bd5b5663a"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-02__camera-01.mp4",
+    "bytes": 411581,
+    "sha256": "f125b2bfd927b4d29cc9724e1187be8457e71c32917d462d0f9859882108bdb5"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-02__camera-03.mp4",
+    "bytes": 353549,
+    "sha256": "9319b0df037894c4ab3041f9552659633b6db4f0ce821abd13a7b3f852fe8d67"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-02__camera-02.mp4",
+    "bytes": 685269,
+    "sha256": "05b9b8a47cecab65c068c9a013fc23947a66c250e579ad1d49619571d1717a44"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_C/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-c__trial-02__camera-04.mp4",
+    "bytes": 2362973,
+    "sha256": "927476f168691e8183089034cfc84f4ce68dcd700a49e3baf16908300ec5bab6"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-01__camera-01.mp4",
+    "bytes": 275386,
+    "sha256": "a882cf9f8322c3e5530027eb335463b35b95cfc08255ad158d959c0dd3dde5f3"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-01__camera-03.mp4",
+    "bytes": 255744,
+    "sha256": "5ed214b69ccf11d8abce7ffdacc134dcdc5b0294a179ebd2e088717dbbc1625a"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-01__camera-02.mp4",
+    "bytes": 418236,
+    "sha256": "a714d438d35f04e43427d7707de8dbbfe5c1050c57ee5cfe22cf10c0b40cb0e2"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4",
+    "bytes": 1676269,
+    "sha256": "18da8f556c5ee21316dd9629fb64a28d7795d01525081f46bcb52fcb229a3c9e"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-02__camera-01.mp4",
+    "bytes": 250710,
+    "sha256": "8780eacedcfcb8c389c8b49fd3fa5a4d249b54d66adb5c2845607e398ce332eb"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-02__camera-03.mp4",
+    "bytes": 206298,
+    "sha256": "8170a81c4179cbdaa194caf54c186b62e778141d3a03e6b94b02d0768afffc27"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-02__camera-02.mp4",
+    "bytes": 311744,
+    "sha256": "d5bbc595e16e2cf917a2f29c34d1274c308a68112e6f45b5c889f1b9b1fd4654"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-b__trial-02__camera-04.mp4",
+    "bytes": 1395541,
+    "sha256": "bf5a9c410f39043b5331d1afed5e1ed3d1195369d07fbaefc6b2c79348762044"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_01/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-01__camera-01.mp4",
+    "bytes": 315558,
+    "sha256": "a85c68624e531de88ddb731f4513b73437c0f8b4214b616af46b28dd32d0d583"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_01/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-01__camera-03.mp4",
+    "bytes": 270308,
+    "sha256": "1ea1314fc7810ca1a7d6f43ae2aad47ce91e8e84cd4b05506dd7db9188e14efe"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_01/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-01__camera-02.mp4",
+    "bytes": 471796,
+    "sha256": "8a48586271987e1dc6595537cbc3b19046ce5a8d9a9d1d1687e314ae2aa1d807"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_01/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-01__camera-04.mp4",
+    "bytes": 1784401,
+    "sha256": "1bccb37add792c9a3c462fdeff073bb40ef282595393093a6d44e5182e2df979"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_02/camera_01.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-02__camera-01.mp4",
+    "bytes": 344788,
+    "sha256": "dc786808b02c172c8707bc4aea22f5e23126ad11550132dd17653cdc78fb1ca8"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_02/camera_03.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-02__camera-03.mp4",
+    "bytes": 316730,
+    "sha256": "29eaacf3f00caafe4486a3b050777c6023a04b6ec6051a2aa3377bd75ce6edfc"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_02/camera_02.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-02__camera-02.mp4",
+    "bytes": 581293,
+    "sha256": "ca79e81f9345e996a600c4bf10b9cc2adb497d01957d28a11a8d0fe5cbf3e1d9"
+  },
+  {
+    "source": "02_Blind_Model_Comparison/Task_02/Model_A/Trial_02/camera_04.mp4",
+    "asset": "02-blind-model-comparison__task-02__model-a__trial-02__camera-04.mp4",
+    "bytes": 2264617,
+    "sha256": "f335cfd006c8ac51ba1a15c3612ff696770d21dee2d280156081954dfa0b1975"
+  }
+]

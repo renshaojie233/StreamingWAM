@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="StreamingWAM: streaming world action modeling for low-latency, continuous robot control.">
+  <meta property="og:title" content="StreamingWAM">
+  <meta property="og:description" content="Streaming world action modeling via chunk-wise staircase flow matching.">
+  <meta property="og:image" content="assets/posters/01-task-demonstrations__task-01-conveyor-apple-to-bowl.jpg">
+  <title>StreamingWAM · Project Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="StreamingWAM home">
+      <span class="brand-mark">S</span>
+      <span>StreamingWAM</span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#method">Method</a>
+      <a href="#videos">Videos</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <a class="header-code" href="https://github.com/renshaojie233/StreamingWAM">View code</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> ICLR 2027 submission</div>
+        <h1>Streaming<span>WAM</span></h1>
+        <p class="subtitle">Streaming World Action Modeling via Chunk-Wise Staircase Flow Matching</p>
+        <p class="lede">A rolling diffusion policy that refines future actions continuously, responds to new observations with one steady-state update, and preserves motion across action-chunk boundaries.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/renshaojie233/StreamingWAM">Code</a>
+          <a class="button secondary" href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/StreamingWAM_supplementary_videos.zip">Download videos</a>
+          <span class="button disabled" aria-disabled="true">Paper · coming soon</span>
+        </div>
+        <dl class="metrics" aria-label="Key results">
+          <div><dt>72.9 ms</dt><dd>simulation TTFA</dd></div>
+          <div><dt>79.4%</dt><dd>LIBERO-Plus</dd></div>
+          <div><dt>168 / 250</dt><dd>real-robot successes</dd></div>
+        </dl>
+      </div>
+      <div class="hero-media">
+        <div class="media-halo"></div>
+        <video controls muted loop playsinline preload="metadata"
+          poster="assets/posters/01-task-demonstrations__task-01-conveyor-apple-to-bowl.jpg"
+          data-release-asset="01-task-demonstrations__task-01-conveyor-apple-to-bowl.mp4"></video>
+        <div class="media-caption"><strong>Dynamic conveyor handover</strong><span>Real-robot evaluation</span></div>
+      </div>
+    </section>
+
+    <section class="paper-strip" aria-label="Project summary">
+      <span>Streaming inference</span><i></i>
+      <span>Single-step replanning</span><i></i>
+      <span>Cross-chunk continuity</span><i></i>
+      <span>Dense visual history</span>
+    </section>
+
+    <section id="method" class="section method-section">
+      <div class="section-heading">
+        <div><p class="section-kicker">Method</p><h2>Keep the plan moving.</h2></div>
+        <p>StreamingWAM amortizes diffusion denoising across control cycles. Instead of discarding the remaining plan after every replan, it rolls a persistent action buffer forward and updates it as new observations arrive.</p>
+      </div>
+      <div class="method-grid">
+        <article><span class="method-index">01</span><h3>Noise ladder</h3><p>Future action blocks occupy staggered noise levels, allowing one denoising update per steady-state planning call.</p></article>
+        <article><span class="method-index">02</span><h3>Clean action prefix</h3><p>Recently executed actions condition the next prediction and reduce discontinuities at action-chunk boundaries.</p></article>
+        <article><span class="method-index">03</span><h3>Dense visual history</h3><p>Recent observations provide temporal context for reacting to motion and distribution shifts.</p></article>
+      </div>
+    </section>
+
+    <section id="videos" class="section video-section">
+      <div class="section-heading compact">
+        <div><p class="section-kicker">Real-robot results</p><h2>Seven task demonstrations</h2></div>
+        <p>Static manipulation and dynamic interception tasks recorded on the real robot. Select any card to play the complete trial.</p>
+      </div>
+      <div id="task-grid" class="task-grid"></div>
+    </section>
+
+    <section id="comparison" class="section comparison-section">
+      <div class="section-heading compact light">
+        <div><p class="section-kicker">Side-by-side viewer</p><h2>Compare three policies</h2></div>
+        <p>Switch task, trial, and camera while keeping all three videos synchronized.</p>
+      </div>
+
+      <div class="comparison-controls" aria-label="Comparison selection">
+        <div><span>Task</span><div id="task-controls" class="segmented"></div></div>
+        <div><span>Trial</span><div id="trial-controls" class="segmented"></div></div>
+        <div><span>View</span><div id="camera-controls" class="segmented"></div></div>
+      </div>
+
+      <div id="comparison-title" class="comparison-title"></div>
+      <div id="comparison-grid" class="comparison-grid"></div>
+      <div class="transport">
+        <button id="play-all" type="button">Play together</button>
+        <button id="pause-all" type="button">Pause</button>
+        <button id="restart-all" type="button">Restart</button>
+        <input id="timeline" type="range" min="0" max="1" step="0.02" value="0" aria-label="Synchronized video timeline">
+        <output id="time-readout">00:00.0 / 00:00.0</output>
+      </div>
+    </section>
+
+    <section id="additional" class="section additional-section">
+      <div class="section-heading compact">
+        <div><p class="section-kicker">Additional result</p><h2>Human-assisted trial</h2></div>
+        <p>The recorded view is paired with the three model-input camera views. The recorded video is privacy protected.</p>
+      </div>
+      <div id="additional-grid" class="additional-grid"></div>
+    </section>
+
+    <section id="resources" class="section resources-section">
+      <div class="resources-copy">
+        <p class="section-kicker">Resources</p>
+        <h2>Code and supplementary material</h2>
+        <p>The first public code release covers LIBERO-Plus training and rolling inference. The video bundle contains all 59 high-resolution MP4 files shown on this page.</p>
+      </div>
+      <div class="resource-links">
+        <a href="https://github.com/renshaojie233/StreamingWAM"><span>GitHub repository</span><strong>Training & inference ↗</strong></a>
+        <a href="https://github.com/renshaojie233/StreamingWAM/releases/tag/supplementary-v1"><span>Supplementary release</span><strong>Browse all assets ↗</strong></a>
+        <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/StreamingWAM_supplementary_videos.zip"><span>Complete video archive</span><strong>Download ZIP ↓</strong></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>StreamingWAM · 2026</span>
+    <span>Video assets are served from the project’s GitHub release.</span>
+  </footer>
+</body>
+</html>
