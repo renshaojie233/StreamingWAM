@@ -79,7 +79,48 @@
 
     <section id="rollouts" class="content-section">
       <h2>Real-robot rollouts</h2>
-      <p class="section-intro">Representative rollouts across static manipulation and dynamic interception tasks.</p>
+      <p class="section-intro">A continuous four-trial sequence is featured first, followed by six representative rollouts across static manipulation and dynamic interception tasks.</p>
+
+      <article class="featured-rollout">
+        <header class="featured-rollout-header">
+          <span>Featured rollout</span>
+          <h3>Four consecutive successes with human interaction</h3>
+          <p>The presentation view is shown at full size; the three synchronized views supplied to the policy are stacked alongside it.</p>
+        </header>
+        <div class="featured-rollout-media">
+          <div class="featured-primary-view">
+            <video id="featured-rollout-main" controls muted playsinline preload="metadata"
+              poster="assets/posters/03-additional-trial__camera-04.jpg"
+              data-release-asset="03-additional-trial__camera-04.mp4"></video>
+            <div class="featured-view-label"><strong>Presentation view</strong><span>Camera 4 · 1416×1000</span></div>
+          </div>
+          <div class="featured-inputs" aria-label="Synchronized policy input views">
+            <div class="featured-input-view">
+              <video class="featured-input-video" muted playsinline preload="metadata"
+                poster="assets/posters/03-additional-trial__camera-01.jpg"
+                data-release-asset="03-additional-trial__camera-01.mp4"></video>
+              <span>Policy input 1</span>
+            </div>
+            <div class="featured-input-view">
+              <video class="featured-input-video" muted playsinline preload="metadata"
+                poster="assets/posters/03-additional-trial__camera-02.jpg"
+                data-release-asset="03-additional-trial__camera-02.mp4"></video>
+              <span>Policy input 2</span>
+            </div>
+            <div class="featured-input-view">
+              <video class="featured-input-video" muted playsinline preload="metadata"
+                poster="assets/posters/03-additional-trial__camera-03.jpg"
+                data-release-asset="03-additional-trial__camera-03.mp4"></video>
+              <span>Policy input 3</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="more-rollouts-heading">
+        <h3>More rollouts</h3>
+        <p>Six additional static and dynamic tasks.</p>
+      </div>
       <div id="task-grid" class="task-grid"></div>
     </section>
 
@@ -100,12 +141,6 @@
         <input id="timeline" type="range" min="0" max="1" step="0.02" value="0" aria-label="Synchronized video timeline">
         <output id="time-readout">00:00.0 / 00:00.0</output>
       </div>
-    </section>
-
-    <section id="additional" class="content-section">
-      <h2>Additional trial</h2>
-      <p class="section-intro">The recorded view and the three camera streams supplied to the policy. The recorded video is privacy protected.</p>
-      <div id="additional-grid" class="additional-grid"></div>
     </section>
 
     <section id="resources" class="content-section resources-section">

@@ -28,7 +28,7 @@ document.querySelectorAll("[data-release-asset]").forEach(video => {
 });
 
 const taskGrid = document.getElementById("task-grid");
-TASKS.forEach(([number, title, group]) => {
+TASKS.slice(1).forEach(([number, title, group]) => {
   const filename = `01-task-demonstrations__task-${number}-${TASK_SLUGS[number]}.mp4`;
   const article = document.createElement("article");
   article.className = "task-card";
@@ -38,6 +38,25 @@ TASKS.forEach(([number, title, group]) => {
     <div class="task-meta"><strong>${title}</strong><span>${number} · ${group}</span></div>`;
   taskGrid.appendChild(article);
 });
+
+const featuredMain = document.getElementById("featured-rollout-main");
+const featuredInputs = [...document.querySelectorAll(".featured-input-video")];
+
+function syncFeaturedInputs(play = false) {
+  const time = featuredMain.currentTime;
+  featuredInputs.forEach(video => {
+    if (Number.isFinite(video.duration) && Math.abs(video.currentTime - time) > .15) {
+      video.currentTime = Math.min(time, video.duration);
+    }
+  });
+  if (play) Promise.allSettled(featuredInputs.map(video => video.play()));
+}
+
+featuredMain.addEventListener("play", () => syncFeaturedInputs(true));
+featuredMain.addEventListener("pause", () => featuredInputs.forEach(video => video.pause()));
+featuredMain.addEventListener("seeking", () => syncFeaturedInputs(false));
+featuredMain.addEventListener("timeupdate", () => syncFeaturedInputs(false));
+featuredMain.addEventListener("ended", () => featuredInputs.forEach(video => video.pause()));
 
 const COMPARISON_TASKS = {
   "01": "Put apple into bowl",
@@ -171,20 +190,3 @@ comparisonVideos[0].video.addEventListener("timeupdate", () => {
   readout.value = `${formatTime(time)} / ${formatTime(duration)}`;
 });
 updateComparison();
-
-const ADDITIONAL = [
-  ["04", "Privacy-protected recorded view", "Recorded video"],
-  ["01", "Model input view 1", "Model input"],
-  ["02", "Model input view 2", "Model input"],
-  ["03", "Model input view 3", "Model input"],
-];
-const additionalGrid = document.getElementById("additional-grid");
-ADDITIONAL.forEach(([camera, label, note]) => {
-  const filename = `03-additional-trial__camera-${camera}.mp4`;
-  const article = document.createElement("article");
-  article.className = "additional-card";
-  article.innerHTML = `
-    <video controls muted playsinline preload="metadata" poster="assets/posters/${filename.replace(".mp4", ".jpg")}" src="${assetUrl(filename)}"></video>
-    <div class="task-meta"><strong>${label}</strong><span>${note}</span></div>`;
-  additionalGrid.appendChild(article);
-});
