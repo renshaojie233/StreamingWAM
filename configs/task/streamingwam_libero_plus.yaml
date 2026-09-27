@@ -14,7 +14,7 @@ model:
   num_history_frames: 5
   action_clean_prefix_steps: 16
   sdp_future_action_train_prob: 0.8
-  sdp_future_action_steps_choices: [1, 2, 4, 8, 10]
+  sdp_future_action_steps_choices: [1, 2, 4, 8]
   sdp_future_num_noise_levels: 32
   sdp_future_random_offset: true
 
@@ -40,4 +40,3 @@ weight_decay: 1.0e-2
 mixed_precision: bf16
 seed: 42
 resume: null
-

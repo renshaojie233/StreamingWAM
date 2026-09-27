@@ -1,8 +1,13 @@
 # LIBERO-Plus reproducibility record
 
-This file records the protocol behind the reported StreamingWAM LIBERO-Plus
-result. It is kept separate from the generic defaults so that future code
-changes do not silently alter the experimental claim.
+This file records the protocol released for StreamingWAM LIBERO-Plus. It is
+kept separate from the generic defaults so that future code changes do not
+silently alter the public training and evaluation recipe.
+
+This is a source-only, four-width public recipe. The reference metrics below
+identify the paper checkpoint for provenance; they are not a byte-for-byte
+regression claim for the released recipe because that checkpoint is not part
+of this release.
 
 ## Training
 
@@ -21,7 +26,7 @@ changes do not silently alter the experimental claim.
 | Future video offsets | `[4,8,12,16]` |
 | Action horizon | 32: 16 clean-prefix + 16 future steps |
 | Staircase probability | 0.8 |
-| Training K | `{1,2,4,8,10}` |
+| Training K | `{1,2,4,8}` |
 | Noise levels | 32, with random offset |
 
 There is no 5% optimization warm-up in this stage. “Warm start” in the paper
@@ -53,4 +58,3 @@ recorded SHA-256 is:
 ```text
 7b321921e18ec4f417cebc1bfdd7aa5e9db8d81d4e0c4711aefb81d7c385aa45
 ```
-

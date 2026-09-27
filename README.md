@@ -12,7 +12,7 @@ and a 10-step sampler only for the episode-initial warm start.
 The code is based on the MIT-licensed
 [FastWAM repository](https://github.com/yuantianyuan01/FastWAM). See
 [NOTICE](NOTICE) for attribution and [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)
-for the exact reported protocol.
+for the released protocol.
 
 ## Release scope
 
@@ -104,8 +104,8 @@ python experiments/libero/eval_libero_task_list_multi_k.py \
 ```
 
 For a robustness sweep, use
-`+EVALUATION.sdp_k_values='[1,2,4,8,10,16]'`. The training distribution contains
-`K={1,2,4,8,10}`; `K=16` is the unseen execution horizon.
+`+EVALUATION.sdp_k_values='[1,2,4,8,16]'`. The released training distribution
+contains `K={1,2,4,8}`; `K=16` is the unseen execution horizon.
 
 To shard the manifest across processes, add
 `+EVALUATION.num_workers=N +EVALUATION.worker_index=i` and assign one GPU to
@@ -126,4 +126,3 @@ bytecode, archives, and common credential patterns.
 
 The repository is released under the MIT License. External datasets, model
 weights, and benchmark assets retain their own licenses and terms.
-

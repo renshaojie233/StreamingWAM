@@ -88,7 +88,7 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 
 def _parse_k_values(raw: Any) -> list[int]:
     if raw is None:
-        return [1, 2, 4, 8, 10, 16]
+        return [1, 2, 4, 8, 16]
     if isinstance(raw, str):
         values = [int(x) for x in raw.replace(",", " ").split()]
     else:
