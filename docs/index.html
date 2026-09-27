@@ -30,28 +30,24 @@
       </figure>
     </header>
 
-    <section class="content-section abstract-section">
-      <h2>Abstract</h2>
-      <p class="abstract">World action models can generate expressive action chunks, but repeatedly restarting the denoising process introduces latency and breaks continuity between successive chunks. StreamingWAM instead maintains a persistent action buffer and advances a staircase of noise levels across control cycles. Each new observation triggers one steady-state update, while a clean action prefix and dense visual history preserve temporal context. This produces low-latency, continuous control without discarding the remaining plan at every replan.</p>
+    <section class="content-section overview-section">
+      <div class="overview-copy">
+        <h2>Abstract</h2>
+        <p class="abstract">World action models can generate expressive action chunks, but repeatedly restarting the denoising process introduces latency and breaks continuity between successive chunks. StreamingWAM instead maintains a persistent action buffer and advances a staircase of noise levels across control cycles. Each new observation triggers one steady-state update, while a clean action prefix and dense visual history preserve temporal context. This produces low-latency, continuous control without discarding the remaining plan at every replan.</p>
+      </div>
+      <figure class="paper-figure overview-figure">
+        <img src="assets/figures/overview-standard-vs-streaming.png" alt="Standard action-chunk redraw compared with StreamingWAM carry-and-refine inference.">
+        <figcaption>Standard policies redraw independent action chunks; StreamingWAM carries and refines a persistent action buffer.</figcaption>
+      </figure>
     </section>
 
     <section id="method" class="content-section">
       <h2>Method</h2>
-      <p class="section-intro">StreamingWAM amortizes action generation over time. Three components turn chunk-wise diffusion into a rolling control process.</p>
-      <div class="method-list">
-        <article>
-          <h3>Staircase noise schedule</h3>
-          <p>Future action blocks occupy staggered noise levels, so each planning call performs one denoising update.</p>
-        </article>
-        <article>
-          <h3>Clean action prefix</h3>
-          <p>Recently executed actions condition the next prediction and reduce discontinuities at chunk boundaries.</p>
-        </article>
-        <article>
-          <h3>Dense visual history</h3>
-          <p>Recent observations provide the temporal context needed to react to moving objects and scene changes.</p>
-        </article>
-      </div>
+      <p class="section-intro">StreamingWAM combines a staircase noise schedule, a clean action prefix, and dense visual history to turn chunk-wise diffusion into a rolling control process.</p>
+      <figure class="paper-figure method-figure">
+        <img src="assets/figures/method-architecture-inference.png" alt="StreamingWAM architecture and comparison between standard and streaming inference.">
+        <figcaption>StreamingWAM architecture and inference. The persistent action buffer is shifted and refined once whenever a new observation arrives.</figcaption>
+      </figure>
     </section>
 
     <section id="results" class="content-section">

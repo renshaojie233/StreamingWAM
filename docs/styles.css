@@ -85,25 +85,18 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   font-weight: 700;
   line-height: 1.25;
 }
-.abstract-section { max-width: 850px; padding-block: 34px; }
-.abstract-section h2 { text-align: center; }
+.overview-section {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  gap: 34px;
+  align-items: center;
+}
 .abstract { margin: 0; text-align: justify; }
 .section-intro { max-width: 760px; margin: 0 0 22px; color: var(--muted); }
-
-.method-list {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 22px;
-}
-.method-list article {
-  min-height: 142px;
-  padding: 17px 18px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-}
-.method-list h3 { margin: 0 0 5px; font-size: 16px; }
-.method-list p { margin: 0; color: var(--muted); font-size: 13px; }
+.paper-figure { margin: 0; }
+.paper-figure img { display: block; width: 100%; height: auto; }
+.overview-figure img { max-height: 470px; object-fit: contain; }
+.method-figure { width: min(100%, 1020px); margin-inline: auto; }
 
 .task-grid {
   display: flex;
@@ -198,8 +191,9 @@ footer {
 }
 
 @media (max-width: 880px) {
-  .method-list { grid-template-columns: 1fr; gap: 10px; }
-  .method-list article { min-height: 0; }
+  .overview-section { grid-template-columns: 1fr; gap: 20px; }
+  .overview-copy { max-width: 760px; }
+  .overview-figure { width: min(620px, 100%); margin-inline: auto; }
   .task-card { flex-basis: calc(50% - 7px); }
   .comparison-controls { grid-template-columns: 1fr; }
   .comparison-grid { grid-template-columns: 1fr; }
