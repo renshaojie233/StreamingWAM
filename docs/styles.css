@@ -98,6 +98,14 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .overview-figure img { max-height: 470px; object-fit: contain; }
 .method-figure { width: min(100%, 1020px); margin-inline: auto; }
 
+.findings-figure { width: min(920px, 100%); margin: 6px auto 30px; }
+.results-subheading { margin: 0 0 12px; font-size: 18px; }
+.benchmark-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.benchmark-panel { min-width: 0; margin: 0; padding: 14px; border: 1px solid var(--line); background: #fff; }
+.benchmark-panel h4 { margin: 0 0 8px; font-size: 15px; }
+.benchmark-media { display: flex; height: 250px; align-items: center; justify-content: center; }
+.benchmark-media img { display: block; width: 100%; max-height: 100%; object-fit: contain; }
+
 .task-grid {
   display: flex;
   flex-wrap: wrap;
@@ -194,6 +202,8 @@ footer {
   .overview-section { grid-template-columns: 1fr; gap: 20px; }
   .overview-copy { max-width: 760px; }
   .overview-figure { width: min(620px, 100%); margin-inline: auto; }
+  .benchmark-grid { grid-template-columns: 1fr; }
+  .benchmark-media { height: auto; max-height: 360px; }
   .task-card { flex-basis: calc(50% - 7px); }
   .comparison-controls { grid-template-columns: 1fr; }
   .comparison-grid { grid-template-columns: 1fr; }

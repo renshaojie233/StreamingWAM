@@ -50,8 +50,31 @@
       </figure>
     </section>
 
-    <section id="results" class="content-section">
-      <h2>Real-robot results</h2>
+    <section id="results" class="content-section results-section">
+      <h2>Results</h2>
+      <p class="section-intro">StreamingWAM reduces steady-state latency, remains stable across execution horizons, and improves continuity at action-chunk boundaries.</p>
+      <figure class="paper-figure findings-figure">
+        <img src="assets/figures/key-findings.png" alt="StreamingWAM has lower latency, is more robust to the execution horizon K, and produces smoother actions at chunk boundaries.">
+        <figcaption>Core findings on LIBERO-Plus: lower per-replan latency, a flatter success curve across execution horizons, and smaller action jumps at chunk boundaries.</figcaption>
+      </figure>
+
+      <h3 class="results-subheading">Benchmark comparisons</h3>
+      <div class="benchmark-grid">
+        <figure class="benchmark-panel">
+          <h4>Simulation</h4>
+          <div class="benchmark-media"><img src="assets/figures/simulation-comparison.png" alt="Simulation success rates on LIBERO, RoboTwin, LIBERO-Plus, and randomized RoboTwin."></div>
+          <figcaption>Matched WAM comparison on in-distribution and out-of-distribution simulation benchmarks.</figcaption>
+        </figure>
+        <figure class="benchmark-panel">
+          <h4>Real robot</h4>
+          <div class="benchmark-media"><img src="assets/figures/real-robot-comparison.png" alt="Per-task real-robot comparison across six policy and execution settings."></div>
+          <figcaption>Successful trials for five manipulation tasks and total presses for whack-a-mole.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="rollouts" class="content-section">
+      <h2>Real-robot rollouts</h2>
       <p class="section-intro">Representative rollouts across static manipulation and dynamic interception tasks.</p>
       <div id="task-grid" class="task-grid"></div>
     </section>
