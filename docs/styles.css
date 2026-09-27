@@ -109,7 +109,11 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .results-group-header p { max-width: 850px; margin: 0; color: var(--muted); font-size: 13px; }
 .results-figure { width: min(1020px, 100%); margin-inline: auto; }
 .results-figure img { width: 100%; }
-.real-results-figure { width: min(1000px, 100%); }
+.real-results-figure {
+  width: min(900px, 92%);
+  margin-top: 20px;
+}
+.real-results-figure figcaption { margin-top: 10px; }
 
 .task-grid {
   display: flex;
@@ -219,6 +223,7 @@ footer {
   .project-links { margin-bottom: 18px; }
   .content-section { padding: 31px 0; }
   .content-section h2 { font-size: 24px; }
+  .real-results-figure { width: 100%; }
   .task-card { flex-basis: 100%; }
   .additional-grid { grid-template-columns: 1fr; }
   .transport { grid-template-columns: repeat(3, 1fr); }
