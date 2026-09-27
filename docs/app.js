@@ -27,16 +27,24 @@ document.querySelectorAll("[data-release-asset]").forEach(video => {
   video.src = assetUrl(video.dataset.releaseAsset);
 });
 
-const taskGrid = document.getElementById("task-grid");
-TASKS.slice(1).forEach(([number, title, group]) => {
-  const filename = `01-task-demonstrations__task-${number}-${TASK_SLUGS[number]}.mp4`;
-  const article = document.createElement("article");
-  article.className = "task-card";
-  article.innerHTML = `
-    <video controls muted playsinline preload="metadata"
-      poster="assets/posters/${filename.replace(".mp4", ".jpg")}" src="${assetUrl(filename)}"></video>
-    <div class="task-meta"><strong>${title}</strong><span>${number} · ${group}</span></div>`;
-  taskGrid.appendChild(article);
+const ROLLOUT_GROUPS = [
+  { container: "static-task-grid", tasks: ["07", "04", "06"] },
+  { container: "dynamic-task-grid", tasks: ["01", "02", "03"] },
+];
+
+ROLLOUT_GROUPS.forEach(({ container, tasks }) => {
+  const taskGrid = document.getElementById(container);
+  tasks.forEach(number => {
+    const [, title, group] = TASKS.find(([taskNumber]) => taskNumber === number);
+    const filename = `01-task-demonstrations__task-${number}-${TASK_SLUGS[number]}.mp4`;
+    const article = document.createElement("article");
+    article.className = "task-card";
+    article.innerHTML = `
+      <video controls muted playsinline preload="metadata"
+        poster="assets/posters/${filename.replace(".mp4", ".jpg")}" src="${assetUrl(filename)}"></video>
+      <div class="task-meta"><strong>${title}</strong><span>${number} · ${group}</span></div>`;
+    taskGrid.appendChild(article);
+  });
 });
 
 const featuredMain = document.getElementById("featured-rollout-main");

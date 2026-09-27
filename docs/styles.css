@@ -186,6 +186,18 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .more-rollouts-heading { margin-bottom: 13px; }
 .more-rollouts-heading h3 { margin: 0 0 2px; font-size: 18px; }
 .more-rollouts-heading p { margin: 0; color: var(--muted); font-size: 12px; }
+.rollout-groups { display: grid; gap: 28px; }
+.rollout-group-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 9px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.rollout-group-header h4 { margin: 0; font-size: 15px; }
+.rollout-group-header span { color: var(--muted); font-size: 10px; }
 
 .comparison-controls {
   display: grid;

@@ -79,7 +79,7 @@
 
     <section id="rollouts" class="content-section">
       <h2>Real-robot rollouts</h2>
-      <p class="section-intro">A continuous four-trial sequence is featured first, followed by six representative rollouts across static manipulation and dynamic interception tasks.</p>
+      <p class="section-intro">A continuous four-trial sequence is featured first, followed by three static and three dynamic real-robot tasks.</p>
 
       <article class="featured-rollout">
         <header class="featured-rollout-header">
@@ -119,9 +119,18 @@
 
       <div class="more-rollouts-heading">
         <h3>More rollouts</h3>
-        <p>Six additional static and dynamic tasks.</p>
+        <p>Six tasks grouped by whether the target remains fixed or changes during execution.</p>
       </div>
-      <div id="task-grid" class="task-grid"></div>
+      <div class="rollout-groups">
+        <section class="rollout-group">
+          <header class="rollout-group-header"><h4>Static tasks</h4><span>Fixed targets</span></header>
+          <div id="static-task-grid" class="task-grid"></div>
+        </section>
+        <section class="rollout-group">
+          <header class="rollout-group-header"><h4>Dynamic tasks</h4><span>Moving targets and time-critical interaction</span></header>
+          <div id="dynamic-task-grid" class="task-grid"></div>
+        </section>
+      </div>
     </section>
 
     <section id="comparison" class="content-section comparison-section">
