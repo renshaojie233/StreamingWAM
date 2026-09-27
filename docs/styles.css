@@ -125,7 +125,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   flex: 0 1 calc(33.333% - 10px);
   min-width: 0;
 }
-.task-card video { aspect-ratio: 16 / 10; object-fit: contain; }
+.task-card video { aspect-ratio: 1416 / 1080; object-fit: cover; }
 .task-meta {
   display: flex;
   justify-content: space-between;
@@ -234,7 +234,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .comparison-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .comparison-card { min-width: 0; border: 1px solid var(--line); background: #fff; }
 .comparison-card.ours { border-color: #7599bd; }
-.comparison-card video { aspect-ratio: 16 / 10; object-fit: contain; }
+.comparison-card video { aspect-ratio: var(--comparison-aspect, 16 / 9); object-fit: cover; }
 .comparison-label { display: flex; justify-content: space-between; align-items: center; padding: 7px 9px; }
 .comparison-label strong { font-size: 13px; }
 .comparison-label span { color: var(--muted); font-size: 9px; text-transform: uppercase; }

@@ -163,6 +163,7 @@ function updateComparison() {
     const version = filename === "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4"
       ? "?v=42cc6b6e"
       : "";
+    video.style.setProperty("--comparison-aspect", state.camera === "04" ? "1280 / 904" : "16 / 9");
     video.addEventListener("loadedmetadata", () => {
       if (loadVersion !== comparisonLoadVersion) return;
       video.currentTime = Math.min(0.01, video.duration || 0.01);
