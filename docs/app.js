@@ -111,7 +111,7 @@ Object.entries(COMPARISON_TASKS).forEach(([task, title]) => {
     article.className = `comparison-card ${method.className}`;
     article.innerHTML = `
       <div class="comparison-label"><strong>${method.label}</strong><span>${method.note}</span></div>
-      <video controls muted playsinline preload="metadata"></video>`;
+      <video controls muted playsinline preload="auto"></video>`;
     grid.appendChild(article);
     comparisonVideos.push({ video: article.querySelector("video"), method, task });
   });
@@ -153,15 +153,26 @@ function updateDuration() {
   }
 }
 
+let comparisonLoadVersion = 0;
+
 function updateComparison() {
+  const loadVersion = ++comparisonLoadVersion;
   comparisonVideos.forEach(({ video, method, task }) => {
     video.pause();
     const filename = comparisonFilename(task, method);
     const version = filename === "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4"
       ? "?v=42cc6b6e"
       : "";
+    video.addEventListener("loadedmetadata", () => {
+      if (loadVersion !== comparisonLoadVersion) return;
+      video.currentTime = Math.min(0.01, video.duration || 0.01);
+    }, { once: true });
     video.src = `${assetUrl(filename)}${version}`;
-    video.poster = posterFilename(task, method);
+    if (state.camera === "04") {
+      video.poster = posterFilename(task, method);
+    } else {
+      video.removeAttribute("poster");
+    }
     video.load();
   });
   duration = 0;
