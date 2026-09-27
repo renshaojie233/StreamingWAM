@@ -26,8 +26,8 @@
   {
     "source": "01_Task_Demonstrations/task_06_weigh_apple_then_bowl.mp4",
     "asset": "01-task-demonstrations__task-06-weigh-apple-then-bowl.mp4",
-    "bytes": 9107111,
-    "sha256": "5117ba803cfd464d9d939361cd244c185ac7279e011da3b374e9b1282b5e17ab"
+    "bytes": 4216072,
+    "sha256": "07c50031e75df9ad2d858d04eb6410b80a3f028f3110097f27ec4ef53c8e7923"
   },
   {
     "source": "01_Task_Demonstrations/task_04_open_drawer.mp4",
@@ -278,8 +278,8 @@
   {
     "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_01/camera_04.mp4",
     "asset": "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4",
-    "bytes": 1676269,
-    "sha256": "18da8f556c5ee21316dd9629fb64a28d7795d01525081f46bcb52fcb229a3c9e"
+    "bytes": 10976049,
+    "sha256": "42cc6b6e79c4a40620943f39fad35c7d685a809558379b11e1b4538b9a06461c"
   },
   {
     "source": "02_Blind_Model_Comparison/Task_02/Model_B/Trial_02/camera_01.mp4",
