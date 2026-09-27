@@ -155,7 +155,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .featured-rollout-header p { margin: 0; color: var(--muted); font-size: 13px; }
 .featured-rollout-media {
   display: grid;
-  grid-template-columns: minmax(0, 2.45fr) minmax(210px, 1fr);
+  grid-template-columns: minmax(0, 2.39fr) minmax(210px, 1fr);
   gap: 10px;
   align-items: start;
 }
@@ -170,7 +170,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   font-size: 12px;
 }
 .featured-view-label span { color: var(--muted); font-size: 10px; }
-.featured-inputs { display: grid; gap: 9px; }
+.featured-inputs { display: grid; gap: 0; }
 .featured-input-view { position: relative; background: #111; }
 .featured-input-view video { aspect-ratio: 16 / 9; object-fit: contain; }
 .featured-input-view span {
