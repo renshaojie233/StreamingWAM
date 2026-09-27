@@ -51,7 +51,7 @@ footer {
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  margin-bottom: 0;
+  margin-bottom: 24px;
 }
 .project-links a,
 .project-links span {
@@ -70,6 +70,8 @@ footer {
 .project-links a:hover { color: var(--blue); border-color: #8fa8c1; background: var(--blue-soft); }
 .project-links span { color: #8b9096; border-color: var(--line); }
 .project-links small { margin-left: 5px; font-size: 10px; }
+.teaser { width: min(960px, 100%); margin: 0 auto; }
+.teaser video { aspect-ratio: 16 / 9; object-fit: cover; }
 figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: left; }
 
 .content-section {
@@ -281,7 +283,7 @@ footer {
   .hero, .content-section, footer { width: min(100% - 26px, var(--page)); }
   .hero { padding: 30px 0 26px; }
   .paper-title br { display: none; }
-  .project-links { margin-bottom: 0; }
+  .project-links { margin-bottom: 18px; }
   .content-section { padding: 31px 0; }
   .content-section h2 { font-size: 24px; }
   .real-results-figure { width: 100%; }
