@@ -39,7 +39,7 @@ ROLLOUT_GROUPS.forEach(({ container, tasks }) => {
   tasks.forEach(number => {
     const [, title, group] = TASKS.find(([taskNumber]) => taskNumber === number);
     const filename = `01-task-demonstrations__task-${number}-${TASK_SLUGS[number]}.mp4`;
-    const version = number === "01" ? "?v=c435a1e6" : "";
+    const version = number === "01" ? "?v=b562aba0" : "";
     const article = document.createElement("article");
     article.className = "task-card";
     article.innerHTML = `
