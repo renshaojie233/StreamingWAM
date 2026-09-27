@@ -52,25 +52,29 @@
 
     <section id="results" class="content-section results-section">
       <h2>Results</h2>
-      <p class="section-intro">StreamingWAM reduces steady-state latency, remains stable across execution horizons, and improves continuity at action-chunk boundaries.</p>
-      <figure class="paper-figure findings-figure">
-        <img src="assets/figures/key-findings.png" alt="StreamingWAM has lower latency, is more robust to the execution horizon K, and produces smoother actions at chunk boundaries.">
-        <figcaption>Core findings on LIBERO-Plus: lower per-replan latency, a flatter success curve across execution horizons, and smaller action jumps at chunk boundaries.</figcaption>
-      </figure>
+      <p class="section-intro">The results are organized into a simulation analysis and a separate real-robot comparison.</p>
 
-      <h3 class="results-subheading">Benchmark comparisons</h3>
-      <div class="benchmark-grid">
-        <figure class="benchmark-panel">
-          <h4>Simulation</h4>
-          <div class="benchmark-media"><img src="assets/figures/simulation-comparison.png" alt="Simulation success rates on LIBERO, RoboTwin, LIBERO-Plus, and randomized RoboTwin."></div>
-          <figcaption>Matched WAM comparison on in-distribution and out-of-distribution simulation benchmarks.</figcaption>
+      <article class="results-group">
+        <header class="results-group-header">
+          <h3>Simulation results and analysis</h3>
+          <p>StreamingWAM improves benchmark success while reducing steady-state latency, remaining stable across execution horizons, and smoothing action-chunk transitions.</p>
+        </header>
+        <figure class="paper-figure results-figure simulation-results-figure">
+          <img src="assets/figures/simulation-results-analysis.png" alt="Four-panel simulation analysis showing benchmark success, latency versus success, robustness across execution horizons, and action continuity at chunk boundaries.">
+          <figcaption>Simulation benchmarks and analysis. The latency and continuity panels use LIBERO-Plus; the vertical dashed line marks the action-chunk boundary.</figcaption>
         </figure>
-        <figure class="benchmark-panel">
-          <h4>Real robot</h4>
-          <div class="benchmark-media"><img src="assets/figures/real-robot-comparison.png" alt="Per-task real-robot comparison across six policy and execution settings."></div>
-          <figcaption>Successful trials for five manipulation tasks and total presses for whack-a-mole.</figcaption>
+      </article>
+
+      <article class="results-group real-results-group">
+        <header class="results-group-header">
+          <h3>Real-robot results</h3>
+          <p>Per-task comparisons cover static manipulation, dynamic interception, and repeated button pressing.</p>
+        </header>
+        <figure class="paper-figure results-figure real-results-figure">
+          <img src="assets/figures/real-robot-comparison.png" alt="Per-task real-robot comparison across six policy and execution settings.">
+          <figcaption>Successful trials for five manipulation tasks and total presses across 50 whack-a-mole sessions.</figcaption>
         </figure>
-      </div>
+      </article>
     </section>
 
     <section id="rollouts" class="content-section">
