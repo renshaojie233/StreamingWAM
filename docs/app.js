@@ -53,16 +53,23 @@ ROLLOUT_GROUPS.forEach(({ container, tasks }) => {
 const featuredMain = document.getElementById("featured-rollout-main");
 const featuredInputs = [...document.querySelectorAll(".featured-input-video")];
 
+function featuredInputTime(video) {
+  const offset = Number(video.dataset.syncOffset || 0);
+  return Math.min(Math.max(featuredMain.currentTime + offset, 0), video.duration);
+}
+
 function syncFeaturedInputs(play = false) {
-  const time = featuredMain.currentTime;
   featuredInputs.forEach(video => {
-    if (Number.isFinite(video.duration) && Math.abs(video.currentTime - time) > .15) {
-      video.currentTime = Math.min(time, video.duration);
+    if (!Number.isFinite(video.duration)) return;
+    const targetTime = featuredInputTime(video);
+    if (Math.abs(video.currentTime - targetTime) > .08) {
+      video.currentTime = targetTime;
     }
   });
   if (play) Promise.allSettled(featuredInputs.map(video => video.play()));
 }
 
+featuredInputs.forEach(video => video.addEventListener("loadedmetadata", () => syncFeaturedInputs(false)));
 featuredMain.addEventListener("play", () => syncFeaturedInputs(true));
 featuredMain.addEventListener("pause", () => featuredInputs.forEach(video => video.pause()));
 featuredMain.addEventListener("seeking", () => syncFeaturedInputs(false));
