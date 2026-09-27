@@ -48,7 +48,7 @@ const METHODS = [
   { label: "π0.5", model: "model-a", className: "", note: "Baseline" },
   { label: "FastWAM-Joint", model: "model-c", className: "", note: "Baseline" },
 ];
-const state = { task: "01", trial: "01", camera: "04" };
+const state = { trial: "01", camera: "04" };
 const comparisonVideos = [];
 
 function makeButtons(containerId, values, labeler, key) {
@@ -66,19 +66,27 @@ function makeButtons(containerId, values, labeler, key) {
   });
 }
 
-makeButtons("task-controls", ["01", "02"], value => value === "01" ? "Apple to bowl" : "Weigh & place", "task");
 makeButtons("trial-controls", ["01", "02"], value => `Trial ${Number(value)}`, "trial");
 makeButtons("camera-controls", ["01", "02", "03", "04"], value => value === "04" ? "Recorded view" : `Input ${Number(value)}`, "camera");
 
-const comparisonGrid = document.getElementById("comparison-grid");
-METHODS.forEach(method => {
-  const article = document.createElement("article");
-  article.className = `comparison-card ${method.className}`;
-  article.innerHTML = `
-    <div class="comparison-label"><strong>${method.label}</strong><span>${method.note}</span></div>
-    <video controls muted playsinline preload="metadata"></video>`;
-  comparisonGrid.appendChild(article);
-  comparisonVideos.push({ video: article.querySelector("video"), method });
+const comparisonGroups = document.getElementById("comparison-groups");
+Object.entries(COMPARISON_TASKS).forEach(([task, title]) => {
+  const section = document.createElement("section");
+  section.className = "comparison-group";
+  section.innerHTML = `
+    <h3 class="comparison-title" data-comparison-title="${task}"></h3>
+    <div class="comparison-grid"></div>`;
+  const grid = section.querySelector(".comparison-grid");
+  METHODS.forEach(method => {
+    const article = document.createElement("article");
+    article.className = `comparison-card ${method.className}`;
+    article.innerHTML = `
+      <div class="comparison-label"><strong>${method.label}</strong><span>${method.note}</span></div>
+      <video controls muted playsinline preload="metadata"></video>`;
+    grid.appendChild(article);
+    comparisonVideos.push({ video: article.querySelector("video"), method, task });
+  });
+  comparisonGroups.appendChild(section);
 });
 
 const timeline = document.getElementById("timeline");
@@ -86,12 +94,12 @@ const readout = document.getElementById("time-readout");
 let duration = 0;
 let dragging = false;
 
-function comparisonFilename(method) {
-  return `02-blind-model-comparison__task-${state.task}__${method.model}__trial-${state.trial}__camera-${state.camera}.mp4`;
+function comparisonFilename(task, method) {
+  return `02-blind-model-comparison__task-${task}__${method.model}__trial-${state.trial}__camera-${state.camera}.mp4`;
 }
 
-function posterFilename(method) {
-  return `assets/posters/02-blind-model-comparison__task-${state.task}__${method.model}__trial-${state.trial}__camera-04.jpg`;
+function posterFilename(task, method) {
+  return `assets/posters/02-blind-model-comparison__task-${task}__${method.model}__trial-${state.trial}__camera-04.jpg`;
 }
 
 function setActiveButtons(containerId, value) {
@@ -117,18 +125,19 @@ function updateDuration() {
 }
 
 function updateComparison() {
-  comparisonVideos.forEach(({ video, method }) => {
+  comparisonVideos.forEach(({ video, method, task }) => {
     video.pause();
-    video.src = assetUrl(comparisonFilename(method));
-    video.poster = posterFilename(method);
+    video.src = assetUrl(comparisonFilename(task, method));
+    video.poster = posterFilename(task, method);
     video.load();
   });
   duration = 0;
   timeline.max = 1;
   timeline.value = 0;
   readout.value = "00:00.0 / 00:00.0";
-  document.getElementById("comparison-title").textContent = `${COMPARISON_TASKS[state.task]} · Trial ${Number(state.trial)}`;
-  setActiveButtons("task-controls", state.task);
+  document.querySelectorAll("[data-comparison-title]").forEach(title => {
+    title.textContent = `${COMPARISON_TASKS[title.dataset.comparisonTitle]} · Trial ${Number(state.trial)}`;
+  });
   setActiveButtons("trial-controls", state.trial);
   setActiveButtons("camera-controls", state.camera);
 }

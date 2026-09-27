@@ -139,8 +139,9 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 
 .comparison-controls {
   display: grid;
-  grid-template-columns: 1.2fr .65fr 1.25fr;
+  grid-template-columns: .7fr 1.3fr;
   gap: 10px;
+  max-width: 650px;
   margin-bottom: 18px;
 }
 .comparison-controls fieldset {
@@ -165,6 +166,8 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .segmented button:hover,
 .transport button:hover { border-color: #8295a8; }
 .segmented button.active { color: #fff; border-color: var(--blue); background: var(--blue); }
+.comparison-groups { display: grid; gap: 26px; }
+.comparison-group + .comparison-group { padding-top: 24px; border-top: 1px solid var(--line); }
 .comparison-title { margin: 0 0 9px; font-size: 16px; font-weight: 600; }
 .comparison-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .comparison-card { min-width: 0; border: 1px solid var(--line); background: #fff; }
@@ -178,7 +181,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   grid-template-columns: auto auto auto minmax(160px, 1fr) auto;
   align-items: center;
   gap: 6px;
-  margin-top: 9px;
+  margin-top: 18px;
 }
 .transport input { width: 100%; accent-color: var(--blue); }
 .transport output {
