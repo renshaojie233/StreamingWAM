@@ -1,0 +1,12 @@
+StreamingWAM LIBERO-Plus release
+
+This project contains modifications and extensions of FastWAM:
+https://github.com/yuantianyuan01/FastWAM
+
+FastWAM is distributed under the MIT License. Its copyright notice and license
+are retained in this repository. StreamingWAM adds the staircase training
+objective, rolling action inference, and the LIBERO-Plus evaluation workflow.
+
+LIBERO, LIBERO-Plus, Wan, and any downloaded datasets or model weights are
+third-party components governed by their respective licenses and terms.
+
