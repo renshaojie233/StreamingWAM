@@ -6,6 +6,7 @@ Run with the bundled Codex Python environment or any Python installation with
 matplotlib and numpy available.
 """
 
+import csv
 from pathlib import Path
 
 import matplotlib
@@ -17,6 +18,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "docs" / "assets" / "figures"
+CONTINUITY_DATA = ROOT / "scripts" / "data" / "simulation_continuity.csv"
 
 BLUE = "#2B6299"
 GRAY = "#8A8F96"
@@ -67,6 +69,23 @@ def add_value_labels(ax, bars, fmt="{:.1f}", dy=1.2):
             fontsize=7.8,
             color=INK,
         )
+
+
+def load_continuity_data():
+    rows = list(csv.DictReader(CONTINUITY_DATA.open()))
+    result = {}
+    for method in ("FastWAM-Joint", "Ours"):
+        selected = sorted(
+            (row for row in rows if row["method"] == method),
+            key=lambda row: int(row["step"]),
+        )
+        result[method] = {
+            "step": np.asarray([int(row["step"]) for row in selected]),
+            "absolute": np.asarray([float(row["absolute_translation_command"]) for row in selected]),
+            "relative": np.asarray([float(row["relative_translation_change"]) for row in selected]),
+            "boundary": np.asarray([bool(int(row["is_replan_boundary"])) for row in selected]),
+        }
+    return result
 
 
 def main():
@@ -142,26 +161,50 @@ def main():
     ax.legend(loc="lower right", frameon=False)
     finish_axis(ax)
 
-    # (d) Change around action-chunk boundaries (offset 0 is the replan step).
-    ax = axes[1, 1]
-    offsets = np.arange(-3, 4)
-    boundary_joint = [0.07449, 0.08155, 0.07195, 0.13794, 0.07298, 0.08154, 0.07181]
-    boundary_ours = [0.06074, 0.06402, 0.06258, 0.06838, 0.06142, 0.06396, 0.06207]
-    ax.plot(offsets, boundary_joint, color=GRAY, marker="o", markersize=5.5,
-            linewidth=1.8, label="FastWAM-Joint")
-    ax.plot(offsets, boundary_ours, color=BLUE, marker="D", markersize=5.2,
-            linewidth=2.2, label="StreamingWAM")
-    ax.axvline(0, color="#B6BAC0", linestyle="--", linewidth=0.9)
-    ax.annotate("replan boundary", xy=(0, 0.13794), xytext=(22, -2),
-                textcoords="offset points", fontsize=7.8, color="#666A70",
-                va="center")
-    ax.set_title("(d) Action continuity at chunk boundaries", loc="left", fontweight="bold")
-    ax.set_xlabel("Control step relative to replan")
-    ax.set_ylabel("Action change (lower is smoother)")
-    ax.set_xticks(offsets)
-    ax.set_ylim(0.05, 0.148)
-    ax.legend(loc="upper left", frameon=False)
-    finish_axis(ax)
+    # (d) Full simulation trajectory. The upper trace shows commanded motion;
+    # the lower trace exposes changes at every K=4 action-chunk boundary.
+    continuity = load_continuity_data()
+    axes[1, 1].remove()
+    nested = axes[1, 1].get_subplotspec().subgridspec(
+        2, 1, height_ratios=[1.03, 1.0], hspace=0.08
+    )
+    top = fig.add_subplot(nested[0])
+    bottom = fig.add_subplot(nested[1], sharex=top)
+    for method, label, color, width in (
+        ("FastWAM-Joint", "FastWAM-Joint", GRAY, 1.55),
+        ("Ours", "StreamingWAM", BLUE, 1.9),
+    ):
+        row = continuity[method]
+        top.plot(row["step"], row["absolute"], color=color, linewidth=width,
+                 label=label, zorder=3)
+        bottom.plot(row["step"], row["relative"], color=color,
+                    linewidth=width * 0.9, zorder=3)
+        seam = row["boundary"]
+        bottom.scatter(
+            row["step"][seam], row["relative"][seam],
+            s=17 if method == "FastWAM-Joint" else 9,
+            marker="o",
+            facecolors="none" if method == "FastWAM-Joint" else color,
+            edgecolors=color,
+            linewidths=0.8 if method == "FastWAM-Joint" else 0.3,
+            zorder=4,
+        )
+    top.set_title("(d) Continuity over a full action trace", loc="left", fontweight="bold")
+    top.set_ylabel("Translation command\nmagnitude")
+    bottom.set_ylabel("Step-to-step\ntranslation change")
+    bottom.set_xlabel("Action index")
+    top.set_ylim(0, 1.38)
+    bottom.set_ylim(0, 0.34)
+    bottom.set_xlim(0, 95)
+    bottom.set_xticks([0, 23, 47, 71, 95])
+    top.set_yticks([0.0, 0.5, 1.0])
+    bottom.set_yticks([0.0, 0.15, 0.30])
+    top.legend(loc="upper center", ncol=2, frameon=False,
+               handlelength=1.7, columnspacing=0.8)
+    top.tick_params(axis="x", labelbottom=False)
+    for ax in (top, bottom):
+        finish_axis(ax)
+        ax.margins(x=0)
 
     OUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(OUT / "simulation-results-analysis.pdf")
