@@ -5,7 +5,7 @@
   --panel: #f7f8fa;
   --blue: #2866a6;
   --blue-soft: #eef4fa;
-  --page: 1100px;
+  --page: 1040px;
 }
 
 * { box-sizing: border-box; }
@@ -155,7 +155,7 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .featured-rollout-header p { margin: 0; color: var(--muted); font-size: 13px; }
 .featured-rollout-media {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(190px, 1fr);
+  grid-template-columns: minmax(0, 2.45fr) minmax(210px, 1fr);
   gap: 10px;
   align-items: start;
 }
