@@ -156,7 +156,11 @@ function updateDuration() {
 function updateComparison() {
   comparisonVideos.forEach(({ video, method, task }) => {
     video.pause();
-    video.src = assetUrl(comparisonFilename(task, method));
+    const filename = comparisonFilename(task, method);
+    const version = filename === "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4"
+      ? "?v=42cc6b6e"
+      : "";
+    video.src = `${assetUrl(filename)}${version}`;
     video.poster = posterFilename(task, method);
     video.load();
   });
