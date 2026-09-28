@@ -4,10 +4,8 @@ This file records the protocol released for StreamingWAM LIBERO-Plus. It is
 kept separate from the generic defaults so that future code changes do not
 silently alter the public training and evaluation recipe.
 
-This is a source-only, four-width public recipe. The reference metrics below
-identify the paper checkpoint for provenance; they are not a byte-for-byte
-regression claim for the released recipe because that checkpoint is not part
-of this release.
+This is a four-width public recipe. The reference metrics below identify the
+released paper checkpoint for provenance.
 
 ## Training
 
@@ -52,9 +50,10 @@ reviewable.
 ## Artifact hashes
 
 Run `python scripts/check_release.py` to verify the committed assets. The
-reported checkpoint is intentionally absent from this source-only release; its
-recorded SHA-256 is:
+LIBERO-trained checkpoint is hosted in the separate
+[StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
+Its recorded SHA-256 is:
 
 ```text
-7b321921e18ec4f417cebc1bfdd7aa5e9db8d81d4e0c4711aefb81d7c385aa45
+35499c8b2ac7bc879c988c9af4f9e9ff9052caccd22d582b7fadd90de185d496
 ```

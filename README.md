@@ -24,8 +24,10 @@ for the released protocol.
   the reported run.
 - Exact paper hyperparameters and a machine-checkable release manifest.
 
-The model checkpoint is not included in this source-only release. Training
-starts from a FastWAM-Joint checkpoint; pass its path through `resume=...`.
+The released LIBERO-trained checkpoint is hosted in the private
+[StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
+Training starts from a FastWAM-Joint checkpoint; pass its path through
+`resume=...`.
 
 ## Installation
 
@@ -80,9 +82,9 @@ bash scripts/train_zero1.sh 4 \
   resume=/path/to/fastwam_joint_step_034720.pt
 ```
 
-The reported checkpoint is `step_040000.pt`. Training was configured for at
-most 60,000 steps; checkpoint selection used the independent 200-episode
-development subset described in the paper.
+The released checkpoint is `streamingwam_libero.pt`. Training was configured
+for at most 60,000 steps; checkpoint selection used the independent
+200-episode development subset described in the paper.
 
 ## Evaluation
 
@@ -92,7 +94,7 @@ included 10,030-episode manifest:
 ```bash
 python experiments/libero/eval_libero_task_list_multi_k.py \
   task=streamingwam_libero_plus \
-  ckpt=/path/to/step_040000.pt \
+  ckpt=/path/to/streamingwam_libero.pt \
   EVALUATION.dataset_stats_path=assets/libero_dataset_stats.json \
   +EVALUATION.task_list_file=assets/libero_plus_full_10030.txt \
   +EVALUATION.sdp_k_values='[4]' \
