@@ -1,12 +1,16 @@
-# StreamingWAM: LIBERO-Plus training and evaluation
+<h1 align="center">StreamingWAM: Streaming World Action Modeling via Chunk-Wise Staircase Flow Matching</h1>
 
-This repository is the first code release for **StreamingWAM**. It contains the
-training and rolling-inference implementation used for the LIBERO-Plus
-experiments. Real-robot and RoboTwin code are outside the scope of this release.
+<p align="center">
+  <a href="https://renshaojie233.github.io/StreamingWAM/"><img src="https://img.shields.io/badge/Project-Page-2563eb?style=flat&amp;logo=githubpages&amp;logoColor=white" alt="Project page"></a>
+  <img src="https://img.shields.io/badge/Paper-Coming_Soon-9ca3af?style=flat&amp;logo=arxiv&amp;logoColor=white" alt="Paper coming soon">
+  <a href="https://huggingface.co/rsj2003/StreamingWAM-LIBERO"><img src="https://img.shields.io/badge/Model-Checkpoint-f59e0b?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Model checkpoint"></a>
+  <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
+</p>
 
-**[Project page and supplementary videos](https://renshaojie233.github.io/StreamingWAM/)** ·
-**[Model checkpoint](https://huggingface.co/rsj2003/StreamingWAM-LIBERO)** ·
-**[Real-world dataset](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld)**
+**StreamingWAM** is a streaming world-action model for responsive closed-loop
+robot control. It maintains a persistent action buffer and continuously refines
+future actions as new observations arrive, using chunk-wise staircase flow
+matching to preserve temporal continuity while reducing observation delay.
 
 ![StreamingWAM architecture and rolling inference](docs/assets/figures/method-architecture-inference.png)
 
@@ -24,6 +28,9 @@ The code is based on the MIT-licensed
 for the released protocol.
 
 ## Release scope
+
+This initial code release focuses on the LIBERO-Plus training and evaluation
+pipeline. Real-robot and RoboTwin code will be released separately.
 
 - StreamingWAM training on the four LIBERO suites used by LIBERO-Plus.
 - Rolling evaluation over an arbitrary task manifest.
