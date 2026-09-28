@@ -41,10 +41,46 @@ footer {
   letter-spacing: -.035em;
 }
 .paper-title {
-  margin: 10px auto 17px;
+  margin: 10px auto 13px;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(21px, 2.7vw, 29px);
   line-height: 1.22;
+}
+.authors {
+  max-width: 920px;
+  margin: 0 auto 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.65;
+}
+.authors a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid #c6ccd3;
+}
+.authors a:hover { color: var(--blue); border-color: var(--blue); }
+.authors sup,
+.affiliations sup,
+.author-notes sup { font-size: .7em; line-height: 0; }
+.affiliations {
+  display: flex;
+  max-width: 900px;
+  margin: 0 auto 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 17px;
+  row-gap: 1px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.author-notes {
+  display: flex;
+  margin: 0 auto 15px;
+  justify-content: center;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 11px;
 }
 .project-links {
   display: flex;
@@ -304,6 +340,9 @@ footer {
   .hero, .content-section, footer { width: min(100% - 26px, var(--page)); }
   .hero { padding: 30px 0 26px; }
   .paper-title br { display: none; }
+  .authors { font-size: 15px; line-height: 1.6; }
+  .affiliations { column-gap: 11px; font-size: 11px; }
+  .author-notes { margin-bottom: 13px; }
   .project-links { margin-bottom: 18px; }
   .content-section { padding: 31px 0; }
   .content-section h2 { font-size: 24px; }
