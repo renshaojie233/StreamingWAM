@@ -4,7 +4,14 @@ This repository is the first code release for **StreamingWAM**. It contains the
 training and rolling-inference implementation used for the LIBERO-Plus
 experiments. Real-robot and RoboTwin code are outside the scope of this release.
 
-**[Project page and supplementary videos](https://renshaojie233.github.io/StreamingWAM/)**
+**[Project page and supplementary videos](https://renshaojie233.github.io/StreamingWAM/)** ·
+**[Model checkpoint](https://huggingface.co/rsj2003/StreamingWAM-LIBERO)** ·
+**[Real-world dataset](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld)**
+
+![StreamingWAM architecture and rolling inference](docs/assets/figures/method-architecture-inference.png)
+
+*StreamingWAM architecture and inference. A persistent action buffer is shifted
+and refined once whenever a new observation arrives.*
 
 StreamingWAM keeps a rolling action buffer and updates it with a token-wise
 staircase noise schedule. The released configuration uses a 16-step clean
@@ -24,12 +31,12 @@ for the released protocol.
   the reported run.
 - Exact paper hyperparameters and a machine-checkable release manifest.
 
-The released LIBERO-trained checkpoint is hosted in the private
+The released LIBERO-trained checkpoint is hosted in the public
 [StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
 Training starts from a FastWAM-Joint checkpoint; pass its path through
 `resume=...`.
 
-The real-world demonstrations are hosted separately in the private
+The real-world demonstrations are hosted separately in the public
 [StreamingWAM-RealWorld dataset repository](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
 It contains 590 trajectories across seven tasks. The apple-to-bowl task has
 50 static and 50 dynamic trajectories, grouped as two conditions of the same
