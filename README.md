@@ -29,6 +29,12 @@ The released LIBERO-trained checkpoint is hosted in the private
 Training starts from a FastWAM-Joint checkpoint; pass its path through
 `resume=...`.
 
+The real-world demonstrations are hosted separately in the private
+[StreamingWAM-RealWorld dataset repository](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
+It contains 590 trajectories across seven tasks. The apple-to-bowl task has
+50 static and 50 dynamic trajectories, grouped as two conditions of the same
+task.
+
 ## Installation
 
 The reported environment used Python 3.10, PyTorch 2.7.1, CUDA 12.8, and
