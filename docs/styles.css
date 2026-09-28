@@ -114,6 +114,25 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   margin-top: 20px;
 }
 .real-results-figure figcaption { margin-top: 10px; }
+.real-analysis-heading {
+  width: min(900px, 92%);
+  margin: 30px auto 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.real-analysis-heading h4 { margin: 0 0 4px; font-size: 17px; line-height: 1.3; }
+.real-analysis-heading p { margin: 0; color: var(--muted); font-size: 12.5px; }
+.real-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: min(1020px, 100%);
+  margin: 0 auto;
+  align-items: start;
+}
+.real-analysis-figure { min-width: 0; }
+.real-analysis-figure img { width: 100%; }
+.real-analysis-figure figcaption { margin-top: 8px; padding: 0 6px; }
 
 .task-grid {
   display: flex;
@@ -272,6 +291,8 @@ footer {
   .overview-section { grid-template-columns: 1fr; gap: 20px; }
   .overview-copy { max-width: 760px; }
   .overview-figure { width: min(620px, 100%); margin-inline: auto; }
+  .real-analysis-heading { width: 100%; }
+  .real-analysis-grid { grid-template-columns: 1fr; gap: 26px; }
   .task-card { flex-basis: calc(50% - 7px); }
   .featured-rollout-media { grid-template-columns: 1fr; }
   .featured-inputs { grid-template-columns: repeat(3, minmax(0, 1fr)); }

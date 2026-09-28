@@ -1,0 +1,5 @@
+method,execution_mode,latency_ms,overall_success_percent,successes,total_trials,success_definition
+fastwam_joint,Async,368.6,34.0,85,250,total successes over five tasks (250 trials)
+fastwam,Async,182.6,29.6,74,250,total successes over five tasks (250 trials)
+pi05,Async,61.5,48.0,120,250,total successes over five tasks (250 trials)
+streamingwam,Async,57.3,67.2,168,250,total successes over five tasks (250 trials)

@@ -53,7 +53,7 @@
 
     <section id="results" class="content-section results-section">
       <h2>Results</h2>
-      <p class="section-intro">The results are organized into a simulation analysis and a separate real-robot comparison.</p>
+      <p class="section-intro">Simulation and real-robot results are presented with matching latency and action-continuity analyses.</p>
 
       <article class="results-group">
         <header class="results-group-header">
@@ -68,13 +68,27 @@
 
       <article class="results-group real-results-group">
         <header class="results-group-header">
-          <h3>Real-robot results</h3>
-          <p>Per-task comparisons cover static manipulation, dynamic interception, and repeated button pressing.</p>
+          <h3>Real-robot results and analysis</h3>
+          <p>Per-task comparisons are followed by measured response latency and action-continuity analysis.</p>
         </header>
         <figure class="paper-figure results-figure real-results-figure">
           <img src="assets/figures/real-robot-results.svg" alt="Per-task real-robot comparison across six policy and execution settings.">
           <figcaption>Successful trials for five manipulation tasks and total presses across 50 whack-a-mole sessions.</figcaption>
         </figure>
+        <div class="real-analysis-heading">
+          <h4>Why does streaming help on the real robot?</h4>
+          <p>The first view connects response time with aggregate success; the second separates overall movement from abrupt changes along aligned measured trajectories.</p>
+        </div>
+        <div class="real-analysis-grid">
+          <figure class="paper-figure real-analysis-figure">
+            <img src="assets/figures/real-robot-latency-analysis.svg" alt="Scatter plot of steady-state latency and overall real-robot success for four asynchronous methods.">
+            <figcaption>StreamingWAM combines the lowest measured steady-state latency with the highest overall success across the five manipulation tasks. All four points use asynchronous execution.</figcaption>
+          </figure>
+          <figure class="paper-figure real-analysis-figure">
+            <img src="assets/figures/real-robot-continuity-analysis.svg" alt="Measured joint displacement and discrete acceleration proxy for FastWAM-Joint Async, FastWAM-Joint RTC, and StreamingWAM.">
+            <figcaption>StreamingWAM stays below both FastWAM-Joint execution modes in the discrete acceleration proxy for most aligned samples. The proxy is indexed by sample order rather than physical time.</figcaption>
+          </figure>
+        </div>
       </article>
     </section>
 
