@@ -876,7 +876,7 @@ M 33 105
 L 105 33 
 M 36 108 
 L 108 36 
-" style="fill: #c98a12; stroke: #c98a12; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #c98a12; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
   </pattern>
   <pattern id="hce4994b672" patternUnits="userSpaceOnUse" x="0" y="0" width="72" height="72">
    <rect x="0" y="0" width="73" height="73" fill="#d0d0d0"/>
@@ -930,7 +930,7 @@ M 33 105
 L 105 33 
 M 36 108 
 L 108 36 
-" style="fill: #777777; stroke: #777777; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
+" style="fill: none; stroke: #777777; stroke-width: 1.0; stroke-linecap: butt; stroke-linejoin: miter"/>
   </pattern>
  </defs>
 </svg>
