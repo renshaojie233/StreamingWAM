@@ -1,6 +1,31 @@
 <h1 align="center">StreamingWAM: Streaming World Action Modeling via Chunk-Wise Staircase Flow Matching</h1>
 
 <p align="center">
+  <a href="https://openreview.net/profile?id=~shaojie_ren1">Shaojie Ren</a><sup>1,2,3,*</sup>,
+  <a href="https://openreview.net/profile?id=~Jingwen_Sun2">Jingwen Sun</a><sup>4,*</sup>,
+  <a href="https://openreview.net/profile?id=~Zezhi_Liu1">Zezhi Liu</a><sup>5</sup>,
+  <a href="https://openreview.net/profile?id=~Hongjin_Chen2">Hongjin Chen</a><sup>6</sup>,
+  <a href="https://openreview.net/profile?id=~Xin_Jin8">Xin Jin</a><sup>7</sup>,
+  <a href="https://openreview.net/profile?id=~Wei_Zou2">Wei Zou</a><sup>3,†</sup>,
+  <a href="https://openreview.net/profile?id=~Zhibo_Chen1">Zhibo Chen</a><sup>4,†</sup>
+</p>
+
+<p align="center">
+  <sup>1</sup> University of Chinese Academy of Sciences &nbsp;&nbsp;
+  <sup>2</sup> Beijing Zhongguancun Academy &nbsp;&nbsp;
+  <sup>3</sup> Institute of Automation, Chinese Academy of Sciences<br>
+  <sup>4</sup> University of Science and Technology of China &nbsp;&nbsp;
+  <sup>5</sup> Nankai University &nbsp;&nbsp;
+  <sup>6</sup> Harbin Institute of Technology &nbsp;&nbsp;
+  <sup>7</sup> Eastern Institute of Technology, Ningbo
+</p>
+
+<p align="center">
+  <sup>*</sup> Equal contribution. &nbsp;&nbsp;
+  <sup>†</sup> Corresponding authors.
+</p>
+
+<p align="center">
   <a href="https://renshaojie233.github.io/StreamingWAM/"><img src="https://img.shields.io/badge/Project-Page-2563eb?style=flat&amp;logo=githubpages&amp;logoColor=white" alt="Project page"></a>
   <img src="https://img.shields.io/badge/Paper-Coming_Soon-9ca3af?style=flat&amp;logo=arxiv&amp;logoColor=white" alt="Paper coming soon">
   <a href="https://huggingface.co/rsj2003/StreamingWAM-LIBERO"><img src="https://img.shields.io/badge/Model-Checkpoint-f59e0b?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Model checkpoint"></a>
