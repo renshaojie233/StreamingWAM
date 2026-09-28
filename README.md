@@ -101,13 +101,29 @@ for at most 60,000 steps; checkpoint selection used the independent
 
 ## Evaluation
 
+Download the released checkpoint and verify both its SHA-256 digest and state
+dict structure:
+
+```bash
+python scripts/download_checkpoint.py
+python scripts/check_checkpoint.py \
+  checkpoints/streamingwam-libero/streamingwam_libero.pt
+```
+
+After installing LIBERO and LIBERO-Plus, run one rollout as an end-to-end smoke
+test:
+
+```bash
+bash scripts/smoke_test_libero.sh
+```
+
 This command reproduces the reported `K=4` rolling-inference setting on the
 included 10,030-episode manifest:
 
 ```bash
 python experiments/libero/eval_libero_task_list_multi_k.py \
   task=streamingwam_libero_plus \
-  ckpt=/path/to/streamingwam_libero.pt \
+  ckpt=checkpoints/streamingwam-libero/streamingwam_libero.pt \
   EVALUATION.dataset_stats_path=assets/libero_dataset_stats.json \
   +EVALUATION.task_list_file=assets/libero_plus_full_10030.txt \
   +EVALUATION.sdp_k_values='[4]' \
