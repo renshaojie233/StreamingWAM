@@ -9,7 +9,7 @@
   <meta property="og:image" content="assets/posters/01-task-demonstrations__task-01-conveyor-apple-to-bowl.jpg">
   <title>StreamingWAM</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=authors-v1">
+  <link rel="stylesheet" href="styles.css?v=anticipation-v1">
   <script defer src="app.js?v=featured-sync-v1"></script>
 </head>
 <body>
@@ -167,6 +167,60 @@
           <header class="rollout-group-header"><h4>Dynamic tasks</h4><span>Moving targets and time-critical interaction</span></header>
           <div id="dynamic-task-grid" class="task-grid"></div>
         </section>
+      </div>
+    </section>
+
+    <section id="anticipation" class="content-section anticipation-section">
+      <h2>Anticipating a moving target before contact</h2>
+      <p class="section-intro">Four predicted future frames from the conveyor task, selected while the apple is still moving and before the gripper makes contact. Temporal history lets StreamingWAM extrapolate the apple's motion; the single-frame baseline largely freezes it.</p>
+
+      <div class="anticipation-grid">
+        <article class="anticipation-card baseline">
+          <header class="anticipation-card-header">
+            <div><strong>FastWAM-Joint</strong><span>Single-frame context</span></div>
+            <span class="method-tag">Baseline</span>
+          </header>
+          <video autoplay muted loop playsinline preload="metadata"
+            poster="assets/anticipation/fastwam-joint/frame-1.png"
+            src="assets/anticipation/fastwam-joint/prediction-loop.mp4"
+            aria-label="FastWAM-Joint predicted future frames for the moving apple"></video>
+          <div class="anticipation-frame-strip" aria-label="FastWAM-Joint predicted frames">
+            <a href="assets/anticipation/fastwam-joint/raw-1.png" aria-label="Open uncropped FastWAM-Joint prediction at plus 0.53 seconds"><img src="assets/anticipation/fastwam-joint/frame-1.png" alt="FastWAM-Joint camera 3 prediction at plus 0.53 seconds"><span>+0.53 s</span></a>
+            <a href="assets/anticipation/fastwam-joint/raw-2.png" aria-label="Open uncropped FastWAM-Joint prediction at plus 0.80 seconds"><img src="assets/anticipation/fastwam-joint/frame-2.png" alt="FastWAM-Joint camera 3 prediction at plus 0.80 seconds"><span>+0.80 s</span></a>
+            <a href="assets/anticipation/fastwam-joint/raw-3.png" aria-label="Open uncropped FastWAM-Joint prediction at plus 1.07 seconds"><img src="assets/anticipation/fastwam-joint/frame-3.png" alt="FastWAM-Joint camera 3 prediction at plus 1.07 seconds"><span>+1.07 s</span></a>
+            <a href="assets/anticipation/fastwam-joint/raw-4.png" aria-label="Open uncropped FastWAM-Joint prediction at plus 1.33 seconds"><img src="assets/anticipation/fastwam-joint/frame-4.png" alt="FastWAM-Joint camera 3 prediction at plus 1.33 seconds"><span>+1.33 s</span></a>
+          </div>
+        </article>
+
+        <article class="anticipation-card ours">
+          <header class="anticipation-card-header">
+            <div><strong>StreamingWAM</strong><span>Five-frame temporal history</span></div>
+            <span class="method-tag">Ours</span>
+          </header>
+          <video autoplay muted loop playsinline preload="metadata"
+            poster="assets/anticipation/streamingwam/frame-1.png"
+            src="assets/anticipation/streamingwam/prediction-loop.mp4"
+            aria-label="StreamingWAM predicted future frames for the moving apple"></video>
+          <div class="anticipation-frame-strip" aria-label="StreamingWAM predicted frames">
+            <a href="assets/anticipation/streamingwam/raw-1.png" aria-label="Open uncropped StreamingWAM prediction at plus 0.47 seconds"><img src="assets/anticipation/streamingwam/frame-1.png" alt="StreamingWAM camera 3 prediction at plus 0.47 seconds"><span>+0.47 s</span></a>
+            <a href="assets/anticipation/streamingwam/raw-2.png" aria-label="Open uncropped StreamingWAM prediction at plus 0.73 seconds"><img src="assets/anticipation/streamingwam/frame-2.png" alt="StreamingWAM camera 3 prediction at plus 0.73 seconds"><span>+0.73 s</span></a>
+            <a href="assets/anticipation/streamingwam/raw-3.png" aria-label="Open uncropped StreamingWAM prediction at plus 1.00 seconds"><img src="assets/anticipation/streamingwam/frame-3.png" alt="StreamingWAM camera 3 prediction at plus 1.00 seconds"><span>+1.00 s</span></a>
+            <a href="assets/anticipation/streamingwam/raw-4.png" aria-label="Open uncropped StreamingWAM prediction at plus 1.27 seconds"><img src="assets/anticipation/streamingwam/frame-4.png" alt="StreamingWAM camera 3 prediction at plus 1.27 seconds"><span>+1.27 s</span></a>
+          </div>
+        </article>
+      </div>
+
+      <div class="anticipation-evidence">
+        <table>
+          <thead><tr><th>Method</th><th>Predicted displacement</th><th>Observed displacement</th><th>Direction alignment</th></tr></thead>
+          <tbody>
+            <tr><th>FastWAM-Joint</th><td>1.38 px</td><td>6.93 px</td><td>0.497</td></tr>
+            <tr class="ours"><th>StreamingWAM</th><td>9.66 px</td><td>5.93 px</td><td>0.995</td></tr>
+          </tbody>
+        </table>
+        <p>External view 2 (<code>camera_3</code>) is shown; click any frame to open the exact uncropped three-camera model output. Apple centers are measured automatically from the largest saturated-red component. Both video heads were replayed offline with 10 denoising steps and seed 42.</p>
+        <p class="anticipation-caveat">The examples are stage-matched independent real-robot trials, not paired observations; they provide qualitative anticipation evidence rather than a controlled history-only ablation. No hardware action was sent during replay.</p>
+        <a class="anticipation-cta" href="#comparison">Watch the closed-loop policy comparison below ↓</a>
       </div>
     </section>
 
