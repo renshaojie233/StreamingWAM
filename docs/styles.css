@@ -316,26 +316,8 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .anticipation-evidence th:first-child { text-align: left; }
 .anticipation-evidence tbody th { font-weight: 600; }
 .anticipation-evidence tbody tr.ours { background: #f7fbff; }
-.anticipation-evidence p { margin: 10px 0 0; color: var(--muted); font-size: 11px; }
-.anticipation-evidence code { color: #4c535a; font-size: 10px; }
-.anticipation-evidence .anticipation-caveat { margin-top: 4px; }
 .anticipation-cta { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 600; text-decoration: none; }
 .anticipation-cta:hover { text-decoration: underline; }
-.anticipation-full-replay {
-  margin-top: 16px;
-  padding: 11px 12px 13px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-}
-.anticipation-full-replay summary { color: var(--blue); cursor: pointer; font-size: 13px; font-weight: 600; }
-.anticipation-full-replay > p { margin: 7px 0 12px; color: var(--muted); font-size: 11px; }
-.anticipation-full-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.anticipation-full-grid article { min-width: 0; padding: 9px; border: 1px solid var(--line); background: #fff; }
-.anticipation-full-grid article.ours { border-color: #7599bd; }
-.anticipation-full-grid header { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; }
-.anticipation-full-grid header strong { font-size: 13px; }
-.anticipation-full-grid header span { color: var(--muted); font-size: 9px; }
-.anticipation-full-grid video { width: 100%; max-height: 520px; object-fit: contain; }
 
 .comparison-controls {
   display: grid;
@@ -416,7 +398,6 @@ footer {
   .featured-rollout-media { grid-template-columns: 1fr; }
   .featured-inputs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .anticipation-grid { grid-template-columns: 1fr; }
-  .anticipation-full-grid { grid-template-columns: 1fr; }
   .comparison-controls { grid-template-columns: 1fr; }
   .comparison-grid { grid-template-columns: 1fr; }
 }
@@ -449,3 +430,11 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Qualitative prediction analysis is part of the real-robot result block. */
+.real-results-group .anticipation-section {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.real-results-group .anticipation-heading { margin: 0 0 14px; }

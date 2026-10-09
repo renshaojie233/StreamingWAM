@@ -78,31 +78,23 @@ featuredMain.addEventListener("ended", () => featuredInputs.forEach(video => vid
 
 const ANTICIPATION_VIEWS = {
   all: {
-    label: "All three model views",
     frame: (method, index) => `assets/anticipation/${method}/raw-${index}.png`,
     loop: method => `assets/anticipation/${method}/prediction-loop-all.mp4`,
-    full: method => `assets/anticipation/full/${method}-rollout-sampled-plans.mp4`,
     aspect: "7 / 12",
   },
   camera1: {
-    label: "Exterior view 1 (camera_1)",
     frame: (method, index) => `assets/anticipation/${method}/frame-camera1-${index}.png`,
     loop: method => `assets/anticipation/${method}/prediction-loop-camera1.mp4`,
-    full: method => `assets/anticipation/full/${method}-rollout-camera1.mp4`,
     aspect: "7 / 4",
   },
   camera3: {
-    label: "Exterior view 2 (camera_3)",
     frame: (method, index) => `assets/anticipation/${method}/frame-${index}.png`,
     loop: method => `assets/anticipation/${method}/prediction-loop.mp4`,
-    full: method => `assets/anticipation/full/${method}-rollout-camera3.mp4`,
     aspect: "7 / 4",
   },
   camera2: {
-    label: "Wrist view (camera_2)",
     frame: (method, index) => `assets/anticipation/${method}/frame-camera2-${index}.png`,
     loop: method => `assets/anticipation/${method}/prediction-loop-camera2.mp4`,
-    full: method => `assets/anticipation/full/${method}-rollout-camera2.mp4`,
     aspect: "7 / 4",
   },
 };
@@ -123,18 +115,11 @@ function updateAnticipationView(viewKey) {
     image.src = view.frame(image.dataset.method, image.dataset.frame);
     image.style.aspectRatio = view.aspect;
   });
-  document.querySelectorAll("[data-anticipation-full-video]").forEach(video => {
-    video.pause();
-    video.src = view.full(video.dataset.method);
-    video.style.aspectRatio = view.aspect;
-    video.load();
-  });
   document.querySelectorAll("#anticipation-view-controls button").forEach(button => {
     const active = button.dataset.view === viewKey;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", String(active));
   });
-  document.getElementById("anticipation-view-name").textContent = view.label;
 }
 
 document.querySelectorAll("#anticipation-view-controls button").forEach(button => {
