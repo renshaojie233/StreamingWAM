@@ -132,7 +132,7 @@ const COMPARISON_TASKS = {
   "02": "Weigh apple, then put into bowl",
 };
 const COMPARISON_ANALYSES = {
-  "01": `<strong>Analysis.</strong> Recent observations reveal the apple's motion. Together with the WAM's predictive ability and low-latency replanning, this helps StreamingWAM update the grasp plan as the target moves. The <a href="#anticipation">prediction example above</a> provides qualitative supporting evidence.`,
+  "01": `<strong>Analysis.</strong> Recent observations reveal the apple's motion. Together with the WAM's predictive ability and low-latency replanning, this helps StreamingWAM update the grasp plan as the target moves. The <a href="#anticipation">supporting prediction analysis below</a> provides qualitative evidence for this interpretation.`,
   "02": `<strong>Analysis.</strong> Recent observations and executed-action history provide short-term context about task progress, which may help the policy determine whether weighing is complete and when to move the apple into the bowl. This interpretation is consistent with the improvement, but has not been isolated by a task-specific ablation.`,
 };
 const METHODS = [
