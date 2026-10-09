@@ -43,7 +43,7 @@ ROLLOUT_GROUPS.forEach(({ container, tasks }) => {
     const article = document.createElement("article");
     article.className = "task-card";
     article.innerHTML = `
-      <video controls muted playsinline preload="metadata"
+      <video controls autoplay muted loop playsinline preload="metadata"
         poster="assets/posters/${filename.replace(".mp4", ".jpg")}${version}" src="${assetUrl(filename)}${version}"></video>
       <div class="task-meta"><strong>${title}</strong><span>${number} · ${group}</span></div>`;
     taskGrid.appendChild(article);
@@ -131,6 +131,10 @@ const COMPARISON_TASKS = {
   "01": "Put apple into bowl",
   "02": "Weigh apple, then put into bowl",
 };
+const COMPARISON_ANALYSES = {
+  "01": `<strong>Analysis.</strong> Recent observations reveal the apple's motion. Together with the WAM's predictive ability and low-latency replanning, this helps StreamingWAM update the grasp plan as the target moves. The <a href="#anticipation">prediction example above</a> provides qualitative supporting evidence.`,
+  "02": `<strong>Analysis.</strong> Recent observations and executed-action history provide short-term context about task progress, which may help the policy determine whether weighing is complete and when to move the apple into the bowl. This interpretation is consistent with the improvement, but has not been isolated by a task-specific ablation.`,
+};
 const METHODS = [
   { label: "StreamingWAM", model: "model-b", className: "ours", note: "Ours" },
   { label: "π0.5", model: "model-a", className: "", note: "Baseline" },
@@ -163,14 +167,15 @@ Object.entries(COMPARISON_TASKS).forEach(([task, title]) => {
   section.className = "comparison-group";
   section.innerHTML = `
     <h3 class="comparison-title" data-comparison-title="${task}"></h3>
-    <div class="comparison-grid"></div>`;
+    <div class="comparison-grid"></div>
+    <p class="comparison-analysis">${COMPARISON_ANALYSES[task]}</p>`;
   const grid = section.querySelector(".comparison-grid");
   METHODS.forEach(method => {
     const article = document.createElement("article");
     article.className = `comparison-card ${method.className}`;
     article.innerHTML = `
       <div class="comparison-label"><strong>${method.label}</strong><span>${method.note}</span></div>
-      <video controls muted playsinline preload="auto"></video>`;
+      <video controls autoplay muted loop playsinline preload="auto"></video>`;
     grid.appendChild(article);
     comparisonVideos.push({ video: article.querySelector("video"), method, task });
   });
@@ -226,6 +231,7 @@ function updateComparison() {
     video.addEventListener("loadedmetadata", () => {
       if (loadVersion !== comparisonLoadVersion) return;
       video.currentTime = Math.min(0.01, video.duration || 0.01);
+      video.play().catch(() => {});
     }, { once: true });
     video.src = `${assetUrl(filename)}${version}`;
     if (state.camera === "04") {
@@ -275,3 +281,18 @@ comparisonVideos[0].video.addEventListener("timeupdate", () => {
   readout.value = `${formatTime(time)} / ${formatTime(duration)}`;
 });
 updateComparison();
+
+// Start videos shortly before they enter the viewport, and pause them after
+// they leave it. This keeps every section click-free without decoding every
+// video on the page at the same time.
+const autoplayObserver = new IntersectionObserver(entries => {
+  entries.forEach(({ target: video, isIntersecting }) => {
+    if (isIntersecting) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  });
+}, { threshold: 0.08, rootMargin: "120px 0px" });
+
+document.querySelectorAll("video").forEach(video => autoplayObserver.observe(video));

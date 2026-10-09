@@ -358,6 +358,16 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 .comparison-label { display: flex; justify-content: space-between; align-items: center; padding: 7px 9px; }
 .comparison-label strong { font-size: 13px; }
 .comparison-label span { color: var(--muted); font-size: 9px; text-transform: uppercase; }
+.comparison-analysis {
+  max-width: 920px;
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.comparison-analysis strong { color: var(--text); font-weight: 600; }
+.comparison-analysis a { font-weight: 600; text-decoration: none; }
+.comparison-analysis a:hover { text-decoration: underline; }
 .transport {
   display: grid;
   grid-template-columns: auto auto auto minmax(160px, 1fr) auto;
