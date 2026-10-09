@@ -129,6 +129,18 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 }
 .abstract { margin: 0; text-align: justify; }
 .section-intro { max-width: 760px; margin: 0 0 22px; color: var(--muted); }
+.video-speed-note {
+  width: fit-content;
+  max-width: 760px;
+  margin: -8px 0 22px;
+  padding: 7px 11px;
+  border-left: 3px solid #88a8c8;
+  color: var(--muted);
+  background: #f6f8fa;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.video-speed-note strong { color: var(--text); font-weight: 650; }
 .paper-figure { margin: 0; }
 .paper-figure img { display: block; width: 100%; height: auto; }
 .overview-figure img { max-height: 470px; object-fit: contain; }
