@@ -127,9 +127,9 @@ bash scripts/train_zero1.sh 4 \
   resume=/path/to/fastwam_joint_step_034720.pt
 ```
 
-The released checkpoint is `streamingwam_libero.pt`. Training was configured
-for at most 60,000 steps; checkpoint selection used the independent
-200-episode development subset described in the paper.
+The released checkpoint is `streamingwam_libero.pt`, corresponding to the
+reported 40,000-step checkpoint from a schedule configured for at most 60,000
+steps.
 
 ## Evaluation
 
