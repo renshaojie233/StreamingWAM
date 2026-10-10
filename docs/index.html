@@ -59,8 +59,8 @@
         <p class="abstract">World Action Models (WAMs), often built upon pretrained video-generation world models, have emerged as a promising framework for general-purpose and open-ended robot control. However, their real-world deployment often suffers from discontinuous and jerky execution. Existing methods typically address this issue by either improving inference efficiency or enhancing action continuity across prediction chunks, without jointly addressing both challenges. To bridge this gap, we propose StreamingWAM, a streaming-diffusion framework for WAM-based robot control. StreamingWAM combines a noise ladder for chunk-wise action prediction, a prefix rollout module for cross-chunk continuity, and dense video-history memory for temporally consistent conditioning. Experiments on LIBERO, LIBERO-Plus, RoboTwin 2.0, and real-world robotic tasks demonstrate that StreamingWAM improves action continuity across static and dynamic settings, achieving competitive performance with the lowest steady-state replanning latency among the evaluated WAMs using the same backbone. The method also produces smoother action transitions and faster steady-state replanning, while the streaming staircase reduces sensitivity to the execution horizon <i>K</i>.</p>
       </div>
       <figure class="paper-figure overview-figure">
-        <img src="assets/figures/overview-standard-vs-streaming.png" alt="Standard action-chunk redraw compared with StreamingWAM carry-and-refine inference.">
-        <figcaption>Standard policies redraw independent action chunks; StreamingWAM carries and refines a persistent action buffer.</figcaption>
+        <img src="assets/figures/overview-experiments.png?v=paper-fig1-20261010" alt="StreamingWAM results across LIBERO, LIBERO-Plus, RoboTwin 2.0, and real-world tasks, together with latency, execution-horizon robustness, and action-continuity analyses.">
+        <figcaption>Simulation and real-world results from the current paper overview.</figcaption>
       </figure>
     </section>
 
