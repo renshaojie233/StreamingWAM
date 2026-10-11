@@ -115,13 +115,31 @@ python scripts/preprocess_action_dit_backbone.py \
 
 ## Training
 
-Precompute the instruction embeddings, then launch the exact four-GPU
-fine-tuning configuration. A `.pt` path passed to `resume` loads model weights
-only and starts a fresh optimizer and scheduler at step zero.
+Precompute the instruction embeddings, then launch the complete two-stage
+training protocol with one command:
 
 ```bash
 python scripts/precompute_text_embeds.py task=streamingwam_libero_plus
 
+python scripts/train_libero_plus_two_stage.py --nproc-per-node 4
+```
+
+The launcher first trains the ordinary shared-timestep FastWAM-Joint model for
+34,720 optimization steps. It then transfers the resulting model weights to
+the StreamingWAM configuration and trains the streaming objective for another
+40,000 steps. The stage-two optimizer and 60,000-step cosine scheduler start
+fresh, with no learning-rate warm-up. The intermediate Joint checkpoint is
+retained automatically for recovery and inspection; users do not need to find
+or pass it manually.
+
+Use `--dry-run` to inspect both generated launch commands without starting a
+job. Additional Hydra overrides may be appended after the launcher options.
+
+To run only the second stage from an existing Joint checkpoint, use the
+lower-level command below. A `.pt` path passed to `resume` loads model weights
+only and starts a fresh optimizer and scheduler at step zero.
+
+```bash
 bash scripts/train_zero1.sh 4 \
   task=streamingwam_libero_plus \
   resume=/path/to/fastwam_joint_step_034720.pt

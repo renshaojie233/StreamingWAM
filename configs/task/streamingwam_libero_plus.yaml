@@ -28,6 +28,8 @@ data:
     action_clean_prefix_steps: ${model.action_clean_prefix_steps}
 
 lr_scheduler_type: cosine
+lr_scheduler_total_steps: 60000
+lr_warmup_ratio: 0.0
 learning_rate: 1.0e-4
 num_epochs: 100
 max_steps: 60000

@@ -113,11 +113,44 @@ class Wan22Trainer:
         self.train_loader = self._build_loader(self.train_dataset, worker_init_fn=worker_init_fn)
         total_train_steps = self._estimate_total_train_steps()
         self.max_steps = total_train_steps
-        warmup_steps = int(total_train_steps * 0.05)
+        scheduler_total_steps_cfg = getattr(cfg, "lr_scheduler_total_steps", None)
+        scheduler_total_steps = (
+            total_train_steps
+            if scheduler_total_steps_cfg is None
+            else int(scheduler_total_steps_cfg)
+        )
+        if scheduler_total_steps < total_train_steps:
+            raise ValueError(
+                "`lr_scheduler_total_steps` must be greater than or equal to the "
+                f"number of optimization steps ({total_train_steps}), got "
+                f"{scheduler_total_steps}."
+            )
+        warmup_steps_cfg = getattr(cfg, "lr_warmup_steps", None)
+        if warmup_steps_cfg is None:
+            warmup_ratio = float(getattr(cfg, "lr_warmup_ratio", 0.05))
+            if not 0.0 <= warmup_ratio < 1.0:
+                raise ValueError(
+                    "`lr_warmup_ratio` must be in [0, 1), "
+                    f"got {warmup_ratio}."
+                )
+            warmup_steps = int(scheduler_total_steps * warmup_ratio)
+        else:
+            warmup_steps = int(warmup_steps_cfg)
+            if warmup_steps < 0:
+                raise ValueError(
+                    f"`lr_warmup_steps` must be non-negative, got {warmup_steps}."
+                )
         self.scheduler = self._build_scheduler(
             scheduler_type=cfg.lr_scheduler_type,
-            total_train_steps=total_train_steps,
+            total_train_steps=scheduler_total_steps,
             warmup_steps=warmup_steps,
+        )
+        logger.info(
+            "LR schedule: type=%s optimization_steps=%d scheduler_horizon=%d warmup_steps=%d",
+            cfg.lr_scheduler_type,
+            total_train_steps,
+            scheduler_total_steps,
+            warmup_steps,
         )
         self.global_step = 0
         self.epoch = 0
