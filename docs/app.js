@@ -224,9 +224,11 @@ function updateComparison() {
   comparisonVideos.forEach(({ video, method, task }) => {
     video.pause();
     const filename = comparisonFilename(task, method);
-    const version = filename === "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4"
-      ? "?v=42cc6b6e"
-      : "";
+    const version = filename === "02-blind-model-comparison__task-01__model-b__trial-01__camera-04.mp4"
+      ? "?v=a99c3f51"
+      : filename === "02-blind-model-comparison__task-02__model-b__trial-01__camera-04.mp4"
+        ? "?v=42cc6b6e"
+        : "";
     video.style.setProperty("--comparison-aspect", state.camera === "04" ? "1280 / 904" : "16 / 9");
     video.addEventListener("loadedmetadata", () => {
       if (loadVersion !== comparisonLoadVersion) return;
@@ -235,7 +237,10 @@ function updateComparison() {
     }, { once: true });
     video.src = `${assetUrl(filename)}${version}`;
     if (state.camera === "04") {
-      video.poster = posterFilename(task, method);
+      const posterVersion = filename === "02-blind-model-comparison__task-01__model-b__trial-01__camera-04.mp4"
+        ? "?v=a99c3f51"
+        : "";
+      video.poster = `${posterFilename(task, method)}${posterVersion}`;
     } else {
       video.removeAttribute("poster");
     }
