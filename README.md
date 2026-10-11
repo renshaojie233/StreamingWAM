@@ -65,8 +65,8 @@ pipeline. Real-robot and RoboTwin code will be released separately.
 
 The released LIBERO-trained checkpoint is hosted in the public
 [StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
-Training starts from a FastWAM-Joint checkpoint; pass its path through
-`resume=...`.
+The recommended launcher trains the shared FastWAM-Joint initialization and
+transfers its weights into the selected stage-two branch automatically.
 
 The real-world demonstrations are hosted separately in the public
 [StreamingWAM-RealWorld dataset repository](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
@@ -131,6 +131,17 @@ the StreamingWAM configuration and trains the streaming objective for another
 fresh, with no learning-rate warm-up. The intermediate Joint checkpoint is
 retained automatically for recovery and inspection; users do not need to find
 or pass it manually.
+
+To reproduce the paper's equal-budget comparison, run both stage-two branches
+from that same checkpoint:
+
+```bash
+python scripts/train_libero_plus_two_stage.py --nproc-per-node 4 --second-stage both
+```
+
+This adds a FastWAM-Joint continuation with the same 40,000 optimization steps,
+global batch size of 64, and 60,000-step cosine schedule used by the
+StreamingWAM branch. Use `--second-stage joint` to run only that continuation.
 
 Use `--dry-run` to inspect both generated launch commands without starting a
 job. Additional Hydra overrides may be appended after the launcher options.

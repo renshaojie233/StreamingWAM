@@ -9,6 +9,13 @@ released paper checkpoint for provenance.
 
 ## Training
 
+The one-command launcher first trains FastWAM-Joint for 34,720 optimization
+steps with global batch 80. Both reported stage-two branches start from that
+same weights-only checkpoint and receive another 40,000 optimization steps
+with global batch 64. Run `python scripts/train_libero_plus_two_stage.py
+--nproc-per-node 4 --second-stage both` to generate the StreamingWAM branch and
+the equal-budget FastWAM-Joint continuation.
+
 | Item | Value |
 | --- | --- |
 | Initialization | FastWAM-Joint `step_034720.pt`, weights only |

@@ -22,6 +22,7 @@ ACCELERATE_CONFIG = REPO_ROOT / "scripts/accelerate_configs/accelerate_zero1_ds.
 TRAIN_SCRIPT = REPO_ROOT / "scripts/train.py"
 JOINT_TASK = "fastwam_joint_libero_plus_stage1"
 STREAMING_TASK = "streamingwam_libero_plus"
+JOINT_CONTINUATION_TASK = "fastwam_joint_libero_plus_stage2"
 JOINT_STEPS = 34_720
 STREAMING_STEPS = 40_000
 STREAMING_SCHEDULER_STEPS = 60_000
@@ -59,7 +60,7 @@ def build_stage_commands(
     streaming_steps: int = STREAMING_STEPS,
     streaming_scheduler_steps: int = STREAMING_SCHEDULER_STEPS,
     extra_overrides: Sequence[str] = (),
-) -> tuple[list[str], list[str], Path]:
+) -> tuple[list[str], list[str], list[str], Path]:
     if nproc_per_node <= 0:
         raise ValueError("`nproc_per_node` must be positive.")
     if joint_steps <= 0 or streaming_steps <= 0:
@@ -72,6 +73,7 @@ def build_stage_commands(
 
     joint_dir = run_dir / "stage1_joint"
     streaming_dir = run_dir / "stage2_streaming"
+    joint_continuation_dir = run_dir / "stage2_joint_continuation"
     joint_checkpoint = (
         joint_dir
         / "checkpoints"
@@ -90,7 +92,7 @@ def build_stage_commands(
             *extra_overrides,
         ],
     )
-    stage2 = _launch_command(
+    streaming_stage = _launch_command(
         nproc_per_node=nproc_per_node,
         accelerate_config=accelerate_config,
         task=STREAMING_TASK,
@@ -103,7 +105,20 @@ def build_stage_commands(
             *extra_overrides,
         ],
     )
-    return stage1, stage2, joint_checkpoint
+    joint_continuation_stage = _launch_command(
+        nproc_per_node=nproc_per_node,
+        accelerate_config=accelerate_config,
+        task=JOINT_CONTINUATION_TASK,
+        output_dir=joint_continuation_dir,
+        overrides=[
+            f"resume={joint_checkpoint}",
+            f"max_steps={streaming_steps}",
+            f"lr_scheduler_total_steps={streaming_scheduler_steps}",
+            "lr_warmup_ratio=0.0",
+            *extra_overrides,
+        ],
+    )
+    return stage1, streaming_stage, joint_continuation_stage, joint_checkpoint
 
 
 def run_two_stage(
@@ -114,11 +129,14 @@ def run_two_stage(
     joint_steps: int = JOINT_STEPS,
     streaming_steps: int = STREAMING_STEPS,
     streaming_scheduler_steps: int = STREAMING_SCHEDULER_STEPS,
+    second_stage: str = "streaming",
     extra_overrides: Sequence[str] = (),
     dry_run: bool = False,
     runner: Callable[..., subprocess.CompletedProcess] = subprocess.run,
-) -> tuple[list[str], list[str]]:
-    stage1, stage2, joint_checkpoint = build_stage_commands(
+) -> tuple[list[str], list[list[str]]]:
+    if second_stage not in {"streaming", "joint", "both"}:
+        raise ValueError("`second_stage` must be one of: streaming, joint, both.")
+    stage1, streaming_stage, joint_stage, joint_checkpoint = build_stage_commands(
         nproc_per_node=nproc_per_node,
         run_dir=run_dir,
         accelerate_config=accelerate_config,
@@ -127,12 +145,22 @@ def run_two_stage(
         streaming_scheduler_steps=streaming_scheduler_steps,
         extra_overrides=extra_overrides,
     )
-    print("[stage 1/2] FastWAM-Joint")
+    selected = {
+        "streaming": [("StreamingWAM", streaming_stage)],
+        "joint": [("FastWAM-Joint continuation", joint_stage)],
+        "both": [
+            ("StreamingWAM", streaming_stage),
+            ("FastWAM-Joint continuation", joint_stage),
+        ],
+    }[second_stage]
+    total = 1 + len(selected)
+    print(f"[stage 1/{total}] FastWAM-Joint shared initialization")
     print(shlex.join(stage1))
-    print("[stage 2/2] StreamingWAM")
-    print(shlex.join(stage2))
+    for index, (name, command) in enumerate(selected, start=2):
+        print(f"[stage {index}/{total}] {name}")
+        print(shlex.join(command))
     if dry_run:
-        return stage1, stage2
+        return stage1, [command for _, command in selected]
 
     run_dir.mkdir(parents=True, exist_ok=True)
     runner(stage1, cwd=REPO_ROOT, check=True)
@@ -141,8 +169,9 @@ def run_two_stage(
             "Joint training completed but the expected stage-boundary checkpoint "
             f"was not found: {joint_checkpoint}"
         )
-    runner(stage2, cwd=REPO_ROOT, check=True)
-    return stage1, stage2
+    for _, command in selected:
+        runner(command, cwd=REPO_ROOT, check=True)
+    return stage1, [command for _, command in selected]
 
 
 def parse_args() -> argparse.Namespace:
@@ -160,6 +189,15 @@ def parse_args() -> argparse.Namespace:
         "--streaming-scheduler-steps",
         type=int,
         default=STREAMING_SCHEDULER_STEPS,
+    )
+    parser.add_argument(
+        "--second-stage",
+        choices=("streaming", "joint", "both"),
+        default="streaming",
+        help=(
+            "Stage-two branch to run. Use 'both' to reproduce the paper's "
+            "equal-budget Joint-versus-StreamingWAM comparison."
+        ),
     )
     parser.add_argument(
         "--run-dir",
@@ -196,6 +234,7 @@ def main() -> None:
         joint_steps=args.joint_steps,
         streaming_steps=args.streaming_steps,
         streaming_scheduler_steps=args.streaming_scheduler_steps,
+        second_stage=args.second_stage,
         extra_overrides=args.overrides,
         dry_run=args.dry_run,
     )
