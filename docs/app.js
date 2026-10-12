@@ -186,6 +186,7 @@ const timeline = document.getElementById("timeline");
 const readout = document.getElementById("time-readout");
 let duration = 0;
 let dragging = false;
+let comparisonLeader = null;
 
 function comparisonFilename(task, method) {
   return `02-blind-model-comparison__task-${task}__${method.model}__trial-${state.trial}__camera-${state.camera}.mp4`;
@@ -211,7 +212,10 @@ function formatTime(seconds) {
 function updateDuration() {
   const durations = comparisonVideos.map(item => item.video.duration).filter(Number.isFinite);
   if (durations.length === comparisonVideos.length) {
-    duration = Math.min(...durations);
+    comparisonLeader = comparisonVideos.reduce((longest, item) =>
+      item.video.duration > longest.video.duration ? item : longest
+    ).video;
+    duration = comparisonLeader.duration;
     timeline.max = duration;
     readout.value = `${formatTime(0)} / ${formatTime(duration)}`;
   }
@@ -247,6 +251,7 @@ function updateComparison() {
     video.load();
   });
   duration = 0;
+  comparisonLeader = null;
   timeline.max = 1;
   timeline.value = 0;
   readout.value = "00:00.0 / 00:00.0";
@@ -259,9 +264,17 @@ function updateComparison() {
 
 comparisonVideos.forEach(({ video }) => video.addEventListener("loadedmetadata", updateDuration));
 
+function seekComparisonVideos(time) {
+  comparisonVideos.forEach(({ video }) => {
+    if (!Number.isFinite(video.duration)) return;
+    const lastFrame = Math.max(0, video.duration - 0.05);
+    video.currentTime = Math.min(time, lastFrame);
+  });
+}
+
 document.getElementById("play-all").addEventListener("click", async () => {
   const time = Math.min(Number(timeline.value), duration || Infinity);
-  comparisonVideos.forEach(({ video }) => { video.currentTime = time; });
+  seekComparisonVideos(time);
   await Promise.allSettled(comparisonVideos.map(({ video }) => video.play()));
 });
 document.getElementById("pause-all").addEventListener("click", () => comparisonVideos.forEach(({ video }) => video.pause()));
@@ -274,16 +287,16 @@ timeline.addEventListener("pointerdown", () => { dragging = true; });
 timeline.addEventListener("pointerup", () => { dragging = false; });
 timeline.addEventListener("input", () => {
   const time = Number(timeline.value);
-  comparisonVideos.forEach(({ video }) => { video.currentTime = time; });
+  seekComparisonVideos(time);
   readout.value = `${formatTime(time)} / ${formatTime(duration)}`;
 });
-comparisonVideos[0].video.addEventListener("timeupdate", () => {
-  const time = comparisonVideos[0].video.currentTime;
-  if (!dragging) timeline.value = Math.min(time, duration || time);
-  comparisonVideos.slice(1).forEach(({ video }) => {
-    if (!video.paused && Math.abs(video.currentTime - time) > .18) video.currentTime = time;
+comparisonVideos.forEach(({ video }) => {
+  video.addEventListener("timeupdate", () => {
+    if (video !== comparisonLeader) return;
+    const time = video.currentTime;
+    if (!dragging) timeline.value = Math.min(time, duration || time);
+    readout.value = `${formatTime(time)} / ${formatTime(duration)}`;
   });
-  readout.value = `${formatTime(time)} / ${formatTime(duration)}`;
 });
 updateComparison();
 
