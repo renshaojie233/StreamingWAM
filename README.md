@@ -27,7 +27,7 @@
 
 <p align="center">
   <a href="https://renshaojie233.github.io/StreamingWAM/"><img src="https://img.shields.io/badge/Project-Page-2563eb?style=flat&amp;logo=githubpages&amp;logoColor=white" alt="Project page"></a>
-  <img src="https://img.shields.io/badge/Paper-Coming_Soon-9ca3af?style=flat&amp;logo=arxiv&amp;logoColor=white" alt="Paper coming soon">
+  <a href="https://arxiv.org/abs/2610.15585"><img src="https://img.shields.io/badge/Paper-arXiv%3A2610.15585-b31b1b?style=flat&amp;logo=arxiv&amp;logoColor=white" alt="arXiv paper"></a>
   <a href="https://huggingface.co/rsj2003/StreamingWAM-LIBERO"><img src="https://img.shields.io/badge/Model-Checkpoint-f59e0b?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Model checkpoint"></a>
   <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
 </p>
