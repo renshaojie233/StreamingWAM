@@ -32,6 +32,10 @@
   <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
 </p>
 
+Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
+See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
+for robot demonstrations, comparisons, and results.
+
 **StreamingWAM** is a streaming world-action model for responsive closed-loop
 robot control. It maintains a persistent action buffer and continuously refines
 future actions as new observations arrive, using chunk-wise staircase flow
