@@ -1,0 +1,62 @@
+from __future__ import annotations
+
+import hashlib
+
+
+CHECKPOINT_NAME = "step_030000.pt"
+CHECKPOINT_SHA256 = "ed68b39a9d7025188e6216a9336a3e265893d360b0c02b91f31629c317d1f66a"
+# SHA-256 of the exact resolved formal-training config retained for provenance.
+TRAINING_CONFIG_SHA256 = "86e2f62a8ca8a26b46b3e8677aa3387466a051521b53a6a5390dfe7b1da454ad"
+STATS_SHA256 = "e9809ddb35074157098074f3f80506775de7875c02a5e896ac66f05ddadaf997"
+TEXT_EMBED_SHA256 = {
+    "0afc834a65b092f22e7ce8a85a0650c5afce265a3191c3502342d69d2709daed.t5_len128.wan22ti2v5b.pt":
+        "7d247f854fe65048493160b29adafbf44f0082c7971d9ed01d7fb238f5752e9b",
+    "6a981a185f2934bd6fcc7e01fcba347e983a93bdaa76b0d6b674f2060023c868.t5_len128.wan22ti2v5b.pt":
+        "2fcf2b53de82f42da862bcdb0b5da9ea5f95ba719c1d81052bdec219410b1211",
+    "7dfb25a962d42ee3fe32114114b1473de1ed41f2713a7ae488e02d47d0b81972.t5_len128.wan22ti2v5b.pt":
+        "6f0b16eb1e7a2f2be78f6682d63ee7c057f0aa6ef93e28751db50a6d6f391eb8",
+    "9d9ab230581194085ebea315309b7ac4970379e809a845574cd224f9431d7b1b.t5_len128.wan22ti2v5b.pt":
+        "871e39b2db18ca15adf4f0a0a254afb5be2661edcff44a23625d5df715bec925",
+    "a544a2da0fa25b8d4b13c2a1428cf7c35f4b127479e384f86d76b3931f12767a.t5_len128.wan22ti2v5b.pt":
+        "c4c3d361670f189a4839e9e8f4ee2f00d446665e5a98cc8deb7461f118419828",
+    "c7ae2b895f5532207cb5169fe6d05efc26d839c85e4683805abf6a49db311d97.t5_len128.wan22ti2v5b.pt":
+        "dba1138c7f6c42de91db2144404947cddaeb768befa21a76a95dea0728081387",
+    "eb0fd2d5c05a97a6340910769e3f110a02e38431422addf126a436b8d641325b.t5_len128.wan22ti2v5b.pt":
+        "1bbad23d8a3e765c5ece1ffec872cf997c770bf3cbd5fc52c66513d8be859dbc",
+}
+
+PROMPT_TEMPLATE = "A video recorded from a robot's point of view executing the following instruction: {}"
+CAMERA_ORDER = ("camera_1", "camera_3", "camera_2")
+PER_CAMERA_HEIGHT = 128
+PER_CAMERA_WIDTH = 224
+IMAGE_HISTORY_FRAMES = 5
+IMAGE_HISTORY_SHAPE = (3, IMAGE_HISTORY_FRAMES, 384, 224)
+MODEL_VIDEO_FRAMES = 9
+
+ACTION_DIM = 8
+ACTION_PREFIX_STEPS = 16
+FULL_ACTION_HORIZON = 32
+FUTURE_ACTION_HORIZON = 16
+CONTROL_HZ = 15.0
+ACTION_TO_DELTA_RAD = 0.2
+SDP_NOISE_LEVELS = 32
+TRAINED_REPLAN_K = (1, 2, 4, 8, 10)
+WARM_START_DENOISE_STEPS = 10
+ROLLING_DENOISE_SUBSTEPS = 1
+
+RESET_JOINTS_RAD = (
+    -0.04618961364030838,
+    0.20931066572666168,
+    0.07004740834236145,
+    -1.730425238609314,
+    -0.038530632853507996,
+    1.940898060798645,
+    -0.10471456497907639,
+)
+RESET_GRIPPER = 1.0
+
+
+def prompt_cache_name(task: str) -> str:
+    prompt = PROMPT_TEMPLATE.format(task)
+    digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()
+    return f"{digest}.t5_len128.wan22ti2v5b.pt"

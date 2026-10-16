@@ -54,14 +54,16 @@ for the released protocol.
 
 ## Release scope
 
-This initial code release focuses on the LIBERO-Plus training and evaluation
-pipeline. Real-robot and RoboTwin code will be released separately.
+This release contains the LIBERO-Plus training and evaluation pipeline plus a
+clean model-side real-robot reference implementation.
 
 - StreamingWAM training on the four LIBERO suites used by LIBERO-Plus.
 - Rolling evaluation over an arbitrary task manifest.
 - The 10,030-episode LIBERO-Plus manifest and normalization statistics used in
   the reported run.
 - Exact paper hyperparameters and a machine-checkable release manifest.
+- Plain 15 Hz StreamingWAM real-robot rolling inference with no latency-shift
+  checkpoint, lead-tick submission, plan blending, or trajectory smoothing.
 
 The released LIBERO-trained checkpoint is hosted in the public
 [StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
@@ -73,6 +75,12 @@ The real-world demonstrations are hosted separately in the public
 It contains 590 trajectories across seven tasks. The apple-to-bowl task has
 50 static and 50 dynamic trajectories, grouped as two conditions of the same
 task.
+
+The final real-world StreamingWAM checkpoint, normalization statistics, and
+cached prompt embeddings are hosted in the public
+[realworld-v1 release](https://github.com/renshaojie233/StreamingWAM/releases/tag/realworld-v1).
+See [real_robot/README.md](real_robot/README.md) for the exact observation,
+action, and rolling-execution contracts.
 
 ## Installation
 
