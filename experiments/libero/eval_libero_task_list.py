@@ -17,6 +17,11 @@ project_root = Path(__file__).resolve().parents[2]
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+from experiments.libero.prompt_utils import (
+    existing_result_ok as _existing_result_ok,
+    prepare_prompt_output,
+)
+
 from eval_libero_single import (  # noqa: E402
     FastWAMProcessor,
     NumpyEncoder,
@@ -64,16 +69,6 @@ def _shard_tasks(tasks: list[tuple[str, int]], worker_index: int, num_workers: i
     return [task for i, task in enumerate(tasks) if i % num_workers == worker_index]
 
 
-def _existing_result_ok(path: Path) -> bool:
-    if not path.exists():
-        return False
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return False
-    return "error" not in payload
-
-
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
@@ -90,6 +85,9 @@ def eval_task_list_worker(cfg: DictConfig):
     if cfg.ckpt is None:
         raise ValueError("cfg.ckpt must not be None.")
     _validate_visualize_future_video_cfg(cfg)
+    prompt_protocol = prepare_prompt_output(
+        Path(cfg.EVALUATION.output_dir), cfg.EVALUATION.get("prompt_protocol", "clean")
+    )
 
     task_list_file = cfg.EVALUATION.get("task_list_file")
     if task_list_file is None:
@@ -145,7 +143,7 @@ def eval_task_list_worker(cfg: DictConfig):
 
         suite_output_dir = output_root / suite_name
         output_file = suite_output_dir / f"gpu{cfg.gpu_id}_task{task_id}_results.json"
-        if skip_existing and _existing_result_ok(output_file):
+        if skip_existing and _existing_result_ok(output_file, prompt_protocol):
             skipped.append({"task_suite": suite_name, "task_id": int(task_id)})
             logging.info(
                 "Worker %s/%s skipping existing result %s (%s/%s).",
@@ -190,6 +188,7 @@ def eval_task_list_worker(cfg: DictConfig):
                 "successes": 0,
                 "total_episodes": int(cfg.EVALUATION.num_trials),
                 "gpu_id": int(cfg.gpu_id),
+                "prompt_protocol": prompt_protocol,
                 "worker_index": worker_index,
                 "num_workers": num_workers,
                 "success_episodes": [],
@@ -252,6 +251,7 @@ def eval_task_list_worker(cfg: DictConfig):
                 "task_suite": suite_name,
                 "task_id": int(task_id),
                 "gpu_id": int(cfg.gpu_id),
+                "prompt_protocol": prompt_protocol,
                 "worker_index": worker_index,
                 "num_workers": num_workers,
                 "successes": 0,
@@ -265,6 +265,7 @@ def eval_task_list_worker(cfg: DictConfig):
             logging.exception("Worker %s/%s failed %s task_id=%s.", worker_index, num_workers, suite_name, task_id)
 
         summary = {
+            "prompt_protocol": prompt_protocol,
             "worker_index": worker_index,
             "num_workers": num_workers,
             "gpu_id": int(cfg.gpu_id),

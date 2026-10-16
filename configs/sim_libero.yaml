@@ -19,6 +19,9 @@ EVALUATION:
   num_trials: 50
   output_dir: ./evaluate_results/libero/${hydra:runtime.choices.task}/${now:%Y%m%d_%H%M%S}
 
+  # clean removes LIBERO-Plus metadata suffixes; legacy preserves raw instructions.
+  prompt_protocol: clean
+
   # Runtime behavior
   env_num: 1
   num_steps_wait: 30

@@ -47,8 +47,13 @@ evaluation, not a learning-rate schedule.
 | Replanning / execution horizon | `K=4` |
 | Steady-state denoising | one Euler update |
 | Episode-initial warm start | 10 denoising steps |
-| Successes | 7,960 / 10,030 |
-| Success rate | 79.3619142572% |
+| Legacy raw instructions | 7,960 / 10,030 (79.3619142572%) |
+| Corrected clean instructions | 8,237 / 10,030 (82.1236291127%) |
+
+These two results refer to the reference checkpoint with SHA-256 `7b321c0c…`,
+which differs from the existing public download listed below. See the
+[prompt correction record](evaluation/README.md) for full checkpoint identities,
+per-task results, and commands for both protocols.
 
 The evaluator writes one result JSON per task and a worker summary. The task
 manifest and normalization statistics are committed to make their identity
@@ -59,7 +64,8 @@ reviewable.
 Run `python scripts/check_release.py` to verify the committed assets. The
 LIBERO-trained checkpoint is hosted in the separate
 [StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
-Its recorded SHA-256 is:
+The existing download has SHA-256 below. It must not be confused with the
+reference checkpoint used for the two scores above:
 
 ```text
 35499c8b2ac7bc879c988c9af4f9e9ff9052caccd22d582b7fadd90de185d496

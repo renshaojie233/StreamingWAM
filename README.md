@@ -56,6 +56,17 @@ The code is based on the MIT-licensed
 [NOTICE](NOTICE) for attribution and [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)
 for the released protocol.
 
+## Evaluation update — 2026-10-17
+
+We corrected LIBERO-Plus instruction handling to remove trailing benchmark
+metadata while preserving language perturbations. With the reference
+checkpoint, the full 10,030-task result is **82.12% (8,237 successes)**, compared
+with the historical **79.36% (7,960 successes)** under raw instructions.
+Both `clean` and `legacy` evaluation modes are available; training is unchanged.
+See the [results, checkpoint identities, and versioned instructions](docs/evaluation/README.md).
+The reference checkpoint differs from the existing Hugging Face download;
+please check that record before attempting to reproduce these scores.
+
 ## Release scope
 
 This release contains the LIBERO-Plus training and evaluation pipeline plus a
@@ -190,8 +201,10 @@ test:
 bash scripts/smoke_test_libero.sh
 ```
 
-This command reproduces the reported `K=4` rolling-inference setting on the
-included 10,030-episode manifest:
+This command runs the `K=4` rolling-inference setting on the included
+10,030-episode manifest, using the corrected instruction protocol. See the
+[checkpoint identity note](docs/evaluation/README.md#checkpoint-identity) for
+the checkpoint associated with the reported scores:
 
 ```bash
 python experiments/libero/eval_libero_task_list_multi_k.py \
@@ -200,6 +213,8 @@ python experiments/libero/eval_libero_task_list_multi_k.py \
   EVALUATION.dataset_stats_path=assets/libero_dataset_stats.json \
   +EVALUATION.task_list_file=assets/libero_plus_full_10030.txt \
   +EVALUATION.sdp_k_values='[4]' \
+  EVALUATION.prompt_protocol=clean \
+  EVALUATION.output_dir=evaluate_results/prompt_clean \
   EVALUATION.num_trials=1 \
   EVALUATION.action_horizon=32 \
   EVALUATION.num_inference_steps=1 \
@@ -208,6 +223,13 @@ python experiments/libero/eval_libero_task_list_multi_k.py \
   +EVALUATION.sdp_warm_start_inference_steps=10 \
   +EVALUATION.save_rollout_video=false
 ```
+
+To retain the original raw-instruction behavior, use
+`EVALUATION.prompt_protocol=legacy` and a separate output directory such as
+`EVALUATION.output_dir=evaluate_results/prompt_legacy`. The
+[legacy release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v1)
+and [corrected release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v2)
+are both preserved.
 
 For a robustness sweep, use
 `+EVALUATION.sdp_k_values='[1,2,4,8,16]'`. The released training distribution

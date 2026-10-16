@@ -26,6 +26,7 @@ project_root = Path(__file__).resolve().parents[2]
 if str(project_root) not in sys.path:
     sys.path.insert(0, str(project_root))
 
+from experiments.libero.prompt_utils import instruction_for_model, prepare_prompt_output
 from experiments.libero.libero_utils import (
     LIBERO_ENV_RESOLUTION,
     get_libero_dummy_action,
@@ -843,12 +844,18 @@ def run_single_task(
     model_device: str,
 ) -> dict:
     env, task_description = get_libero_env(task, LIBERO_ENV_RESOLUTION, cfg.get("seed"))
+    prompt_protocol = cfg.EVALUATION.get("prompt_protocol", "clean")
+    model_task_description = instruction_for_model(task_description, prompt_protocol)
     visualize_future_video = bool(cfg.EVALUATION.get("visualize_future_video", False))
     results = {
         "successes": 0,
         "failure_episodes": [],
         "success_episodes": [],
-        "task_description": task_description,
+        "task_description": model_task_description,
+        "task_description_raw": task_description,
+        "task_description_model": model_task_description,
+        "prompt_metadata_suffix_removed": model_task_description != task_description,
+        "prompt_protocol": prompt_protocol,
     }
     if visualize_future_video:
         results["episode_future_video_psnr"] = []
@@ -858,7 +865,7 @@ def run_single_task(
         success, replay_images, predicted_future_video_clips, episode_mean_psnr = run_single_episode(
             env=env,
             initial_state=initial_states[trial_idx],
-            task_description=task_description,
+            task_description=model_task_description,
             model=model,
             processor=processor,
             cfg=cfg,
@@ -935,6 +942,7 @@ def eval_single_process(cfg: DictConfig):
     if cfg.ckpt is None:
         raise ValueError("cfg.ckpt must not be None.")
     _validate_visualize_future_video_cfg(cfg)
+    prepare_prompt_output(Path(cfg.EVALUATION.output_dir), cfg.EVALUATION.get("prompt_protocol", "clean"))
 
     env_num = int(cfg.EVALUATION.get("env_num", 1))
     if env_num != 1:
