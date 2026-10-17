@@ -1,11 +1,7 @@
 from __future__ import annotations
 
 import collections
-import hashlib
 from pathlib import Path
-import sys
-import tarfile
-import tempfile
 import time
 import unittest
 
@@ -22,54 +18,6 @@ from real_robot.streamingwam_deploy.preprocess import model_image
 
 
 class ReferenceTests(unittest.TestCase):
-    def test_release_downloader_reassembles_and_verifies(self) -> None:
-        from real_robot import download_assets
-
-        def digest(data: bytes) -> str:
-            return hashlib.sha256(data).hexdigest()
-
-        with tempfile.TemporaryDirectory() as temporary:
-            root = Path(temporary)
-            source = root / "source"
-            output = root / "output"
-            source.mkdir()
-            parts = {"weight.part-000": b"abc", "weight.part-001": b"def"}
-            for name, data in parts.items():
-                (source / name).write_bytes(data)
-            runtime = source / "runtime.tar.gz"
-            stats = root / "stats.json"
-            stats.write_text("{}", encoding="utf-8")
-            with tarfile.open(runtime, "w:gz") as archive:
-                archive.add(stats, arcname="train_split_zscore_stats.json")
-
-            original = (
-                download_assets.RELEASE_BASE,
-                download_assets.CHECKPOINT_SHA256,
-                download_assets.RUNTIME_ARCHIVE,
-                download_assets.RUNTIME_ARCHIVE_SHA256,
-                download_assets.PART_SHA256,
-                sys.argv,
-            )
-            try:
-                download_assets.RELEASE_BASE = source.as_uri()
-                download_assets.CHECKPOINT_SHA256 = digest(b"abcdef")
-                download_assets.RUNTIME_ARCHIVE = runtime.name
-                download_assets.RUNTIME_ARCHIVE_SHA256 = download_assets.sha256(runtime)
-                download_assets.PART_SHA256 = {name: digest(data) for name, data in parts.items()}
-                sys.argv = ["download_assets.py", "--output", str(output)]
-                download_assets.main()
-            finally:
-                (
-                    download_assets.RELEASE_BASE,
-                    download_assets.CHECKPOINT_SHA256,
-                    download_assets.RUNTIME_ARCHIVE,
-                    download_assets.RUNTIME_ARCHIVE_SHA256,
-                    download_assets.PART_SHA256,
-                    sys.argv,
-                ) = original
-            self.assertEqual((output / "step_030000.pt").read_bytes(), b"abcdef")
-            self.assertEqual((output / "train_split_zscore_stats.json").read_text(), "{}")
-
     def test_three_camera_order_and_shape(self) -> None:
         def image(value: int) -> np.ndarray:
             return np.full((20, 30, 3), value, dtype=np.uint8)

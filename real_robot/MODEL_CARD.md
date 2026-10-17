@@ -1,25 +1,46 @@
 ---
 license: mit
-frameworks:
-  - pytorch
+library_name: pytorch
+tags:
+  - robotics
+  - streamingwam
+  - real-world
 tasks:
   - robotics
 ---
 
 # StreamingWAM real-world checkpoint
 
-The `realworld-v1` GitHub release contains the final 30k StreamingWAM
-checkpoint used for the seven-task Franka real-robot evaluation.
+This repository contains the StreamingWAM checkpoint used for the seven-task
+Franka real-robot evaluation. It is separate from the
+[LIBERO simulation checkpoint](https://huggingface.co/rsj2003/StreamingWAM-LIBERO)
+and the [real-world demonstration dataset](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
 
 ## Files
 
-- `step_030000.pt`: final model weights;
-- `train_split_zscore_stats.json`: state/action z-score statistics;
-- `text_embeds_cache/`: cached embeddings for the seven task prompts;
-- `SHA256SUMS`: file integrity manifest.
+- `streamingwam_realworld.pt`: complete model weights (one file);
+- `streamingwam-realworld-runtime-assets.tar.gz`: normalization statistics and cached embeddings for the seven task prompts;
+- `streamingwam_realworld_model.yaml`: model-only deployment configuration;
+- `checkpoint_info.json` and `SHA256SUMS`: artifact metadata and integrity checks.
+
+The runtime archive contains `train_split_zscore_stats.json` and
+`text_embeds_cache/`. No training logs or optimizer artifacts are added.
 
 The matching implementation and model-only deployment configuration are in
 the public [StreamingWAM repository](https://github.com/renshaojie233/StreamingWAM/tree/main/real_robot).
+
+## Download and use
+
+From the [StreamingWAM code repository](https://github.com/renshaojie233/StreamingWAM):
+
+```bash
+python real_robot/download_assets.py --output checkpoints/streamingwam-realworld
+```
+
+The downloader verifies SHA-256 checksums and installs the checkpoint locally
+as `step_030000.pt` for compatibility with the existing runtime. See the
+[real-robot setup guide](https://github.com/renshaojie233/StreamingWAM/tree/main/real_robot)
+for observation preprocessing, shadow-mode inference, and hardware integration.
 
 ## Contract
 
@@ -40,7 +61,7 @@ No transition blending or trajectory smoothing is part of the model artifact.
 
 ## Integrity
 
-`step_030000.pt` is 12,041,739,641 bytes and has SHA-256:
+`streamingwam_realworld.pt` is 12,041,739,641 bytes and has SHA-256:
 
 ```text
 ed68b39a9d7025188e6216a9336a3e265893d360b0c02b91f31629c317d1f66a

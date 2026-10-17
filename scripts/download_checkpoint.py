@@ -13,7 +13,7 @@ from check_checkpoint import check_file
 
 REPO_ID = "rsj2003/StreamingWAM-LIBERO"
 FILENAME = "streamingwam_libero.pt"
-REVISION = "0b5a17cc2b81bd91ed15b3fe3e3be7a9ad13ba48"
+REVISION = "01bd9366af1bac17c85d6f7b9af78a036372488c"
 
 
 def main() -> int:

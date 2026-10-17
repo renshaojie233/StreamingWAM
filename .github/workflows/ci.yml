@@ -13,6 +13,6 @@ jobs:
         with:
           python-version: "3.10"
       - run: python scripts/check_release.py
-      - run: python -m unittest -v tests/test_two_stage_training.py tests/test_libero_prompts.py
+      - run: python -m unittest -v tests/test_two_stage_training.py tests/test_libero_prompts.py tests/test_model_downloads.py
       - run: python -m compileall -q src experiments scripts tests real_robot
 

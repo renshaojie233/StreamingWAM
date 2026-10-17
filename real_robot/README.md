@@ -26,11 +26,12 @@ reference only projects the continuous gripper command to its physical
 
 ## Model assets
 
-The final 30k real-world checkpoint and its runtime assets are hosted in the
-public [realworld-v1 GitHub release](https://github.com/renshaojie233/StreamingWAM/releases/tag/realworld-v1).
-The 12.04 GB checkpoint is split into seven release assets because GitHub
-requires each individual release file to be smaller than 2 GiB. The download
-script reassembles it and verifies both the parts and final checkpoint:
+The real-world checkpoint and its runtime assets are hosted in the public
+[StreamingWAM-RealWorld model repository](https://huggingface.co/rsj2003/StreamingWAM-RealWorld).
+The 12.04 GB checkpoint is a single file, `streamingwam_realworld.pt`.
+The download script verifies its SHA-256 and installs it locally as
+`step_030000.pt` for compatibility with the runtime. The model parameters are
+unchanged from the earlier GitHub release.
 
 | File | SHA-256 |
 | --- | --- |

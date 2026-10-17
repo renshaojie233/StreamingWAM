@@ -59,13 +59,16 @@ reference checkpoint SHA-256:
 7b321c0c85c6167fda5eb21f7e1fe6abe745f9b77be20eef0144b97ae2d6aa45
 ```
 
-The existing Hugging Face download at revision
-`0b5a17cc2b81bd91ed15b3fe3e3be7a9ad13ba48` has SHA-256
-`35499c8b2ac7bc879c988c9af4f9e9ff9052caccd22d582b7fadd90de185d496`.
-It is a different parameter checkpoint, not just a renamed file. The scores
-above must not be attributed to that download. To reproduce these scores,
-use the reference checkpoint identified above. The original download is
-preserved for compatibility.
+The current [Hugging Face checkpoint](https://huggingface.co/rsj2003/StreamingWAM-LIBERO)
+at revision `01bd9366af1bac17c85d6f7b9af78a036372488c` matches this reference
+hash. The download script pins this revision and verifies the file before use.
+
+The earlier upload at revision `0b5a17cc2b81bd91ed15b3fe3e3be7a9ad13ba48`
+had SHA-256 `35499c8b2ac7bc879c988c9af4f9e9ff9052caccd22d582b7fadd90de185d496`.
+It contains different parameters and is retained in the model repository's
+revision history. Neither score above should be attributed to that earlier
+upload. Evaluator versions and checkpoint versions are independent: use the
+verified reference checkpoint with either `clean` or `legacy` instructions.
 
 ## Selecting a protocol
 

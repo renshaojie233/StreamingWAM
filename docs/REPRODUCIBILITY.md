@@ -51,7 +51,7 @@ evaluation, not a learning-rate schedule.
 | Corrected clean instructions | 8,237 / 10,030 (82.1236291127%) |
 
 These two results refer to the reference checkpoint with SHA-256 `7b321c0c…`,
-which differs from the existing public download listed below. See the
+now available from the public download listed below. See the
 [prompt correction record](evaluation/README.md) for full checkpoint identities,
 per-task results, and commands for both protocols.
 
@@ -64,8 +64,8 @@ reviewable.
 Run `python scripts/check_release.py` to verify the committed assets. The
 LIBERO-trained checkpoint is hosted in the separate
 [StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
-The existing download has SHA-256 below. It must not be confused with the
-reference checkpoint used for the two scores above:
+The downloader pins revision `01bd9366af1bac17c85d6f7b9af78a036372488c`,
+whose checkpoint matches the reference used for both scores above:
 
 ```text
 7b321c0c85c6167fda5eb21f7e1fe6abe745f9b77be20eef0144b97ae2d6aa45
