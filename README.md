@@ -88,6 +88,10 @@ transfers its weights into the selected stage-two branch automatically.
 
 The real-world demonstrations are hosted separately in the public
 [StreamingWAM-RealWorld dataset repository](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
+The exact formal 7-task/15 Hz conversion and validation scripts are included
+in [`data_processing/realworld_7task_15hz/`](data_processing/realworld_7task_15hz/).
+The public dataset is a 590-trajectory publication subset; the conversion
+README records the distinction from the complete 1,083-episode training source.
 It contains 590 trajectories across seven tasks. The apple-to-bowl task has
 50 static and 50 dynamic trajectories, grouped as two conditions of the same
 task.
