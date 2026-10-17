@@ -68,5 +68,5 @@ The existing download has SHA-256 below. It must not be confused with the
 reference checkpoint used for the two scores above:
 
 ```text
-35499c8b2ac7bc879c988c9af4f9e9ff9052caccd22d582b7fadd90de185d496
+7b321c0c85c6167fda5eb21f7e1fe6abe745f9b77be20eef0144b97ae2d6aa45
 ```
