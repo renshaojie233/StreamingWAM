@@ -33,6 +33,16 @@
   <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
 </p>
 
+<p align="center">
+  <video
+    src="https://renshaojie233.github.io/StreamingWAM/videos/03-additional-trial__camera-04.mp4"
+    poster="https://renshaojie233.github.io/StreamingWAM/assets/posters/03-additional-trial__camera-04.jpg"
+    controls autoplay muted loop playsinline preload="metadata" width="92%">
+  </video>
+</p>
+
+<p align="center"><em>Real-robot demonstration (50 s, original 1× speed).</em> · <a href="https://renshaojie233.github.io/StreamingWAM/videos/03-additional-trial__camera-04.mp4">Open the video directly</a></p>
+
 Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
 See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
 for robot demonstrations, comparisons, and results.
