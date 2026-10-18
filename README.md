@@ -34,12 +34,13 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">
-    <img src="docs/assets/streamingwam-camera04-readme-fast.webp" alt="Real-robot demonstration" width="92%">
-  </a>
+  <video
+    src="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4"
+    controls playsinline preload="metadata" width="92%">
+  </video>
 </p>
 
-<p align="center"><em>Real-robot demonstration (50 s, 15 fps preview at 1× speed; starts automatically).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open the original MP4</a></p>
+<p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">Open the composite MP4</a> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open camera 4 only</a></p>
 
 Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
 See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
