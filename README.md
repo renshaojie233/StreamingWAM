@@ -35,11 +35,11 @@
 
 <p align="center">
   <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">
-    <img src="docs/assets/streamingwam-camera04-readme.webp" alt="Real-robot demonstration" width="92%">
+    <img src="docs/assets/streamingwam-camera04-readme-hq.webp" alt="Real-robot demonstration" width="92%">
   </a>
 </p>
 
-<p align="center"><em>Real-robot demonstration (50 s, original 1× speed, 15 fps preview; starts automatically).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open the original MP4</a></p>
+<p align="center"><em>Real-robot demonstration (50 s, original resolution and 15 fps at 1× speed; starts automatically).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open the original MP4</a></p>
 
 Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
 See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
