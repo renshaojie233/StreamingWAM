@@ -49,7 +49,7 @@ Official implementation of **StreamingWAM**, a world-action model for responsive
 
 https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
-<p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">Open the composite MP4</a> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open camera 4 only</a></p>
+<p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em></p>
 
 ### Anticipating motion
 
