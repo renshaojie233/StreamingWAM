@@ -39,7 +39,7 @@ https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
 **Qualitative motion anticipation**
 
-<img src="docs/assets/anticipation/prediction-comparison-readme.gif" alt="Four-frame prediction comparison: FastWAM-Joint in the top row and StreamingWAM in the bottom row; each row shows exterior view 1, exterior view 2, and wrist view from left to right" width="100%">
+<img src="docs/assets/anticipation/prediction-comparison-rows-readme.gif" alt="Four-frame prediction comparison: FastWAM-Joint in the top row and StreamingWAM in the bottom row; each row shows exterior view 1, exterior view 2, and wrist view from left to right" width="100%">
 
 In these stage-matched examples from separate trials, StreamingWAM predicts the apple moving along the conveyor, while FastWAM-Joint predicts little displacement. This qualitative comparison is consistent with temporal visual history helping the WAM anticipate target motion. [More details](https://renshaojie233.github.io/StreamingWAM/#anticipation).
 
