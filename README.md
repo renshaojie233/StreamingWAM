@@ -37,6 +37,21 @@ https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
 <p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">Open the composite MP4</a> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open camera 4 only</a></p>
 
+**Qualitative motion anticipation**
+
+<table>
+  <tr>
+    <th align="center">FastWAM-Joint · single-frame input</th>
+    <th align="center">StreamingWAM · temporal history</th>
+  </tr>
+  <tr>
+    <td><img src="docs/assets/anticipation/fastwam-joint/prediction-readme.gif" alt="Four predicted frames from FastWAM-Joint showing little apple displacement" width="320"></td>
+    <td><img src="docs/assets/anticipation/streamingwam/prediction-readme.gif" alt="Four predicted frames from StreamingWAM showing apple motion along the conveyor" width="320"></td>
+  </tr>
+</table>
+
+In these stage-matched examples from separate trials, StreamingWAM predicts the apple moving along the conveyor, while FastWAM-Joint predicts little displacement. This qualitative comparison is consistent with temporal visual history helping the WAM anticipate target motion. [More details](https://renshaojie233.github.io/StreamingWAM/#anticipation).
+
 Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
 See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
 for robot demonstrations, comparisons, and results.
