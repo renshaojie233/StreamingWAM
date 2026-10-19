@@ -41,12 +41,12 @@ https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
 <table>
   <tr>
-    <th align="center">FastWAM-Joint · single-frame input</th>
-    <th align="center">StreamingWAM · temporal history</th>
+    <th align="center">FastWAM-Joint<br><sub>Single-frame input</sub></th>
+    <th align="center">StreamingWAM<br><sub>Temporal history</sub></th>
   </tr>
   <tr>
-    <td><img src="docs/assets/anticipation/fastwam-joint/prediction-readme.gif" alt="Four predicted frames from FastWAM-Joint showing little apple displacement" width="320"></td>
-    <td><img src="docs/assets/anticipation/streamingwam/prediction-readme.gif" alt="Four predicted frames from StreamingWAM showing apple motion along the conveyor" width="320"></td>
+    <td><img src="docs/assets/anticipation/fastwam-joint/prediction-readme.gif" alt="Four predicted frames from FastWAM-Joint showing little apple displacement" width="250"></td>
+    <td><img src="docs/assets/anticipation/streamingwam/prediction-readme.gif" alt="Four predicted frames from StreamingWAM showing apple motion along the conveyor" width="250"></td>
   </tr>
 </table>
 
