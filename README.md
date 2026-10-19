@@ -33,11 +33,7 @@
   <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
 </p>
 
-<p align="center">
-  <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">
-    <img src="docs/assets/featured-inputs-poster.jpg" alt="Click to play the synchronized four-view real-robot demonstration" width="92%">
-  </a>
-</p>
+https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
 <p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">Open the composite MP4</a> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open camera 4 only</a></p>
 
