@@ -33,89 +33,73 @@
   <a href="https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld"><img src="https://img.shields.io/badge/Dataset-Real--World-16a34a?style=flat&amp;logo=huggingface&amp;logoColor=white" alt="Real-world dataset"></a>
 </p>
 
+Official implementation of **StreamingWAM**, a world-action model for responsive robot control. It keeps a rolling action buffer and refines future actions as new observations arrive, preserving continuity across updates.
+
+[Overview](#overview) · [Models and data](#models-and-data) · [Installation](#installation) · [Training](#training) · [Evaluation](#evaluation)
+
+## Demonstrations
+
 https://github.com/user-attachments/assets/ae8c53cc-0697-497a-948e-c96a5676f848
 
 <p align="center"><em>Real-robot demonstration with the main view on the left and the three model-input views stacked on the right (50 s, 15 fps, 1× speed).</em> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-featured-inputs.mp4">Open the composite MP4</a> · <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/03-additional-trial__camera-04.mp4">Open camera 4 only</a></p>
 
-**Qualitative motion anticipation**
+### Anticipating motion
 
 <img src="docs/assets/anticipation/prediction-comparison-rows-readme.gif" alt="Four-frame prediction comparison: FastWAM-Joint in the top row and StreamingWAM in the bottom row; each row shows exterior view 1, exterior view 2, and wrist view from left to right" width="100%">
 
 In these stage-matched examples from separate trials, StreamingWAM predicts the apple moving along the conveyor, while FastWAM-Joint predicts little displacement. This qualitative comparison is consistent with temporal visual history helping the WAM anticipate target motion. [More details](https://renshaojie233.github.io/StreamingWAM/#anticipation).
 
-Official implementation of [StreamingWAM (Ren et al., arXiv:2610.15585)](https://arxiv.org/abs/2610.15585).
-See the [StreamingWAM project page](https://renshaojie233.github.io/StreamingWAM/)
-for robot demonstrations, comparisons, and results.
-
-**StreamingWAM** is a streaming world-action model for responsive closed-loop
-robot control. It maintains a persistent action buffer and continuously refines
-future actions as new observations arrive, using chunk-wise staircase flow
-matching to preserve temporal continuity while reducing observation delay.
+## Overview
 
 ![StreamingWAM architecture and rolling inference](docs/assets/figures/method-architecture-inference.png)
 
-*StreamingWAM architecture and inference. A persistent action buffer is shifted
-and refined once whenever a new observation arrives.*
+The action buffer shifts forward as the robot executes actions. A staircase noise schedule lets the model refine the remaining actions with each new observation.
 
-StreamingWAM keeps a rolling action buffer and updates it with a token-wise
-staircase noise schedule. The released configuration uses a 16-step clean
-action prefix, a 16-step predicted suffix, one Euler update per replanning call,
-and a 10-step sampler only for the episode-initial warm start.
+The released configuration uses:
 
-The code is based on the MIT-licensed
-[FastWAM repository](https://github.com/yuantianyuan01/FastWAM). See
-[NOTICE](NOTICE) for attribution and [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)
-for the released protocol.
+- **Context:** a 16-step clean action prefix and temporal visual history.
+- **Prediction:** a 16-step future action suffix, refined with one Euler update per replanning call.
+- **Initialization:** a 10-step sampler for the episode-initial warm start.
 
-## Evaluation update — 2026-10-17
+See [the released protocol](docs/REPRODUCIBILITY.md) for hyperparameters and execution details.
 
-We corrected LIBERO-Plus instruction handling to remove trailing benchmark
-metadata while preserving language perturbations. With the reference
-checkpoint, the full 10,030-task result is **82.12% (8,237 successes)**, compared
-with the historical **79.36% (7,960 successes)** under raw instructions.
-Both `clean` and `legacy` evaluation modes are available; training is unchanged.
-See the [results, checkpoint identities, and versioned instructions](docs/evaluation/README.md).
-The Hugging Face download is now aligned with the verified reference
-checkpoint used for both results.
+## Latest update
 
-## Release scope
+**October 17, 2026 — LIBERO-Plus evaluation fix.** We removed trailing benchmark metadata from instructions while preserving language perturbations. Training is unchanged, and both evaluation modes remain available.
 
-This release contains the LIBERO-Plus training and evaluation pipeline plus a
-clean model-side real-robot reference implementation.
+| Instruction protocol | Success rate | Successful episodes |
+| --- | ---: | ---: |
+| `clean` — corrected | **82.12%** | **8,237 / 10,030** |
+| `legacy` — original raw instructions | 79.36% | 7,960 / 10,030 |
 
-- StreamingWAM training on the four LIBERO suites used by LIBERO-Plus.
-- Rolling evaluation over an arbitrary task manifest.
-- The 10,030-episode LIBERO-Plus manifest and normalization statistics used in
-  the reported run.
-- Exact paper hyperparameters and a machine-checkable release manifest.
-- Plain 15 Hz StreamingWAM real-robot rolling inference with no latency-shift
-  checkpoint, lead-tick submission, plan blending, or trajectory smoothing.
+The Hugging Face download is aligned with the verified reference checkpoint used for both results. [Results, checkpoint identities, and versioned instructions →](docs/evaluation/README.md)
 
-The released LIBERO-trained checkpoint is hosted in the public
-[StreamingWAM-LIBERO model repository](https://huggingface.co/rsj2003/StreamingWAM-LIBERO).
-The recommended launcher trains the shared FastWAM-Joint initialization and
-transfers its weights into the selected stage-two branch automatically.
+## Models and data
 
-The real-world demonstrations are hosted separately in the public
-[StreamingWAM-RealWorld dataset repository](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld).
-The exact formal 7-task/15 Hz conversion and validation scripts are included
-in [`data_processing/realworld_7task_15hz/`](data_processing/realworld_7task_15hz/).
-The public dataset is a 590-trajectory publication subset; the conversion
-README records the distinction from the complete 1,083-episode training source.
-It contains 590 trajectories across seven tasks. The apple-to-bowl task has
-50 static and 50 dynamic trajectories, grouped as two conditions of the same
-task.
+The current release includes training on the four LIBERO suites, LIBERO-Plus evaluation, and a model-side real-robot reference implementation.
 
-The final real-world StreamingWAM checkpoint, normalization statistics, and
-cached prompt embeddings are hosted in the public
-[StreamingWAM-RealWorld model repository](https://huggingface.co/rsj2003/StreamingWAM-RealWorld).
-See [real_robot/README.md](real_robot/README.md) for the exact observation,
-action, and rolling-execution contracts.
+| Resource | Download | Usage |
+| --- | --- | --- |
+| LIBERO checkpoint | [Hugging Face](https://huggingface.co/rsj2003/StreamingWAM-LIBERO) | [Evaluation](#evaluation) |
+| Real-robot checkpoint, statistics, and prompt embeddings | [Hugging Face](https://huggingface.co/rsj2003/StreamingWAM-RealWorld) | [Robot inference](real_robot/README.md) |
+| Real-robot demonstrations | [Hugging Face](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld) | [Data conversion and validation](data_processing/realworld_7task_15hz/) |
+
+The public dataset contains **590 trajectories across seven tasks**. The apple-to-bowl task includes 50 static and 50 dynamic trajectories. This is a publication subset of the 1,083-episode training source; the [conversion README](data_processing/realworld_7task_15hz/) explains the mapping.
+
+<details>
+<summary>What else is included?</summary>
+
+- Rolling evaluation over arbitrary task manifests, including the full 10,030-episode LIBERO-Plus manifest and normalization statistics.
+- Paper hyperparameters and a machine-checkable release manifest.
+- Plain 15 Hz real-robot rolling inference, with no latency-shift checkpoint, lead-tick submission, plan blending, or trajectory smoothing.
+
+</details>
 
 ## Installation
 
-The reported environment used Python 3.10, PyTorch 2.7.1, CUDA 12.8, and
-MuJoCo 3.3.2.
+### 1. Create the environment
+
+The reported environment uses Python 3.10, PyTorch 2.7.1, CUDA 12.8, and MuJoCo 3.3.2.
 
 ```bash
 conda create -n streamingwam python=3.10 -y
@@ -127,10 +111,9 @@ pip install -e .
 pip install mujoco==3.3.2
 ```
 
-Install [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) and the
-LIBERO-Plus task definitions in the same environment. The preprocessed LIBERO
-data expected by the default configuration follow the layout published with
-[FastWAM](https://huggingface.co/datasets/yuanty/LIBERO-fastwam):
+### 2. Install the benchmarks and prepare data
+
+Install [LIBERO](https://github.com/Lifelong-Robot-Learning/LIBERO) and the LIBERO-Plus task definitions in the same environment. For training, the default configuration expects the preprocessed data layout from [FastWAM](https://huggingface.co/datasets/yuanty/LIBERO-fastwam):
 
 ```text
 data/libero_mujoco3.3.2/
@@ -140,8 +123,11 @@ data/libero_mujoco3.3.2/
 └── libero_spatial_no_noops_lerobot/
 ```
 
-Set the Wan model cache and create the ActionDiT initialization before
-training:
+## Training
+
+### 1. Prepare the initialization
+
+Set the Wan model cache and create the ActionDiT initialization:
 
 ```bash
 export DIFFSYNTH_MODEL_BASE_PATH="$PWD/checkpoints"
@@ -151,10 +137,9 @@ python scripts/preprocess_action_dit_backbone.py \
   --device cuda --dtype bfloat16
 ```
 
-## Training
+### 2. Start two-stage training
 
-Precompute the instruction embeddings, then launch the complete two-stage
-training protocol with one command:
+Precompute the instruction embeddings, then run the launcher. It handles the transition between stages and retains the intermediate Joint checkpoint automatically.
 
 ```bash
 python scripts/precompute_text_embeds.py task=streamingwam_libero_plus
@@ -162,31 +147,32 @@ python scripts/precompute_text_embeds.py task=streamingwam_libero_plus
 python scripts/train_libero_plus_two_stage.py --nproc-per-node 4
 ```
 
-The launcher first trains the ordinary shared-timestep FastWAM-Joint model for
-34,720 optimization steps. It then transfers the resulting model weights to
-the StreamingWAM configuration and trains the streaming objective for another
-40,000 steps. The stage-two optimizer and 60,000-step cosine scheduler start
-fresh, with no learning-rate warm-up. The intermediate Joint checkpoint is
-retained automatically for recovery and inspection; users do not need to find
-or pass it manually.
+| Stage | Training objective | Optimization steps |
+| --- | --- | ---: |
+| 1 | Standard shared-timestep FastWAM-Joint | 34,720 |
+| 2 | StreamingWAM | 40,000 |
 
-To reproduce the paper's equal-budget comparison, run both stage-two branches
-from that same checkpoint:
+Stage 2 loads the Joint weights and starts a fresh optimizer and 60,000-step cosine schedule, without learning-rate warm-up. The released `streamingwam_libero.pt` is the 40,000-step checkpoint from that schedule.
+
+<details>
+<summary>Train the Joint comparison branch</summary>
+
+To reproduce the equal-budget training setup, run both stage-two branches from the same Joint checkpoint:
 
 ```bash
 python scripts/train_libero_plus_two_stage.py --nproc-per-node 4 --second-stage both
 ```
 
-This adds a FastWAM-Joint continuation with the same 40,000 optimization steps,
-global batch size of 64, and 60,000-step cosine schedule used by the
-StreamingWAM branch. Use `--second-stage joint` to run only that continuation.
+Both branches use 40,000 optimization steps, a global batch size of 64, and a 60,000-step cosine schedule. Use `--second-stage joint` to run only the Joint continuation.
 
-Use `--dry-run` to inspect both generated launch commands without starting a
-job. Additional Hydra overrides may be appended after the launcher options.
+</details>
 
-To run only the second stage from an existing Joint checkpoint, use the
-lower-level command below. A `.pt` path passed to `resume` loads model weights
-only and starts a fresh optimizer and scheduler at step zero.
+<details>
+<summary>Start from an existing Joint checkpoint or inspect the launch commands</summary>
+
+Use `--dry-run` with the two-stage launcher to inspect the generated commands without starting a job. Additional Hydra overrides can follow the launcher options.
+
+To run only the second stage from an existing checkpoint:
 
 ```bash
 bash scripts/train_zero1.sh 4 \
@@ -194,14 +180,15 @@ bash scripts/train_zero1.sh 4 \
   resume=/path/to/fastwam_joint_step_034720.pt
 ```
 
-The released checkpoint is `streamingwam_libero.pt`, corresponding to the
-reported 40,000-step checkpoint from a schedule configured for at most 60,000
-steps.
+Passing a `.pt` path to `resume` loads model weights only. The optimizer and scheduler start fresh at step zero.
+
+</details>
 
 ## Evaluation
 
-Download the released checkpoint and verify both its SHA-256 digest and state
-dict structure:
+### 1. Download and verify the checkpoint
+
+The check validates the SHA-256 digest and state dict structure.
 
 ```bash
 python scripts/download_checkpoint.py
@@ -209,17 +196,17 @@ python scripts/check_checkpoint.py \
   checkpoints/streamingwam-libero/streamingwam_libero.pt
 ```
 
-After installing LIBERO and LIBERO-Plus, run one rollout as an end-to-end smoke
-test:
+### 2. Test one rollout
+
+After installing LIBERO and LIBERO-Plus, run the end-to-end smoke test:
 
 ```bash
 bash scripts/smoke_test_libero.sh
 ```
 
-This command runs the `K=4` rolling-inference setting on the included
-10,030-episode manifest, using the corrected instruction protocol. See the
-[checkpoint identity note](docs/evaluation/README.md#checkpoint-identity) for
-the checkpoint associated with the reported scores:
+### 3. Run the full evaluation
+
+The following command evaluates `K=4` on the included 10,030-episode manifest with the corrected instruction protocol. See the [checkpoint identity note](docs/evaluation/README.md#checkpoint-identity) for the weights associated with the reported scores.
 
 ```bash
 python experiments/libero/eval_libero_task_list_multi_k.py \
@@ -239,33 +226,28 @@ python experiments/libero/eval_libero_task_list_multi_k.py \
   +EVALUATION.save_rollout_video=false
 ```
 
-To retain the original raw-instruction behavior, use
-`EVALUATION.prompt_protocol=legacy` and a separate output directory such as
-`EVALUATION.output_dir=evaluate_results/prompt_legacy`. The
-[legacy release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v1)
-and [corrected release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v2)
-are both preserved.
+<details>
+<summary>Legacy instructions, execution-horizon sweeps, and parallel evaluation</summary>
 
-For a robustness sweep, use
-`+EVALUATION.sdp_k_values='[1,2,4,8,16]'`. The released training distribution
-contains `K={1,2,4,8}`; `K=16` is the unseen execution horizon.
+**Legacy instructions.** Set `EVALUATION.prompt_protocol=legacy` and use a separate output directory, such as `EVALUATION.output_dir=evaluate_results/prompt_legacy`. Both the [legacy release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v1) and the [corrected release](https://github.com/renshaojie233/StreamingWAM/tree/liberoplus-eval-v2) are preserved.
 
-To shard the manifest across processes, add
-`+EVALUATION.num_workers=N +EVALUATION.worker_index=i` and assign one GPU to
-each process with `gpu_id=i`. Each process loads the checkpoint once and writes
-its own summary.
+**Execution-horizon sweep.** Set `+EVALUATION.sdp_k_values='[1,2,4,8,16]'`. The released training distribution is `K={1,2,4,8}`; `K=16` is unseen during training.
 
-## Validation
+**Parallel evaluation.** Add `+EVALUATION.num_workers=N +EVALUATION.worker_index=i` and assign one GPU per process with `gpu_id=i`. Each process loads the checkpoint once and writes its own summary.
+
+</details>
+
+## Repository checks
 
 ```bash
 python scripts/check_release.py
 python -m compileall -q src experiments scripts
 ```
 
-The release check rejects private absolute paths, backup files, generated
-bytecode, archives, and common credential patterns.
+The release check flags private absolute paths, backup files, generated bytecode, archives, and common credential patterns.
 
-## License
+## Acknowledgments and license
 
-The repository is released under the MIT License. External datasets, model
-weights, and benchmark assets retain their own licenses and terms.
+This implementation builds on the MIT-licensed [FastWAM repository](https://github.com/yuantianyuan01/FastWAM). See [NOTICE](NOTICE) for attribution.
+
+Our code is released under the MIT License. External datasets, model weights, and benchmark assets retain their own licenses and terms.
