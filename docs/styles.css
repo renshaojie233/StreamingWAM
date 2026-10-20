@@ -41,16 +41,22 @@ video { display: block; width: 100%; background: #111; }
   margin-inline: auto;
 }
 .page-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   flex: 0 0 auto;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 750;
-  letter-spacing: -.7px;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: -.6px;
   text-decoration: none;
   white-space: nowrap;
 }
-.page-brand span { color: var(--blue); }
+.brand-mark { width: 32px; height: 29px; color: var(--blue); }
+.brand-wordmark { display: inline-flex; align-items: baseline; }
+.brand-streaming { font-weight: 600; font-style: italic; }
+.brand-wam { margin-left: 1px; color: var(--blue); font-weight: 800; letter-spacing: -.8px; }
 .page-nav-links {
   display: flex;
   align-items: center;
