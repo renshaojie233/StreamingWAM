@@ -45,10 +45,17 @@
         no_session: true,
       });
       const pixel = new Image();
+      pixel.hidden = true;
+      pixel.alt = '';
+      pixel.setAttribute('aria-hidden', 'true');
       const bot = new URL(url).searchParams.get('b');
       script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-sent';
-      pixel.onload = () => { script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-received'; };
-      pixel.onerror = () => { script.dataset.analyticsStatus = 'delivery-failed'; };
+      pixel.onload = () => {
+        script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-received';
+        pixel.remove();
+      };
+      pixel.onerror = () => { script.dataset.analyticsStatus = 'delivery-failed'; pixel.remove(); };
+      document.body.appendChild(pixel);
       pixel.src = url;
     };
     document.addEventListener('visibilitychange', countPageview);
