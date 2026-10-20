@@ -15,7 +15,7 @@
 
   window.goatcounter = {
     path: '/StreamingWAM/',
-    title: 'StreamingWAM project page',
+    title: 'Deduplicated visits (8-hour window)',
     referrer,
   };
 
@@ -24,5 +24,22 @@
   script.async = true;
   script.dataset.goatcounter = endpoint;
   script.referrerPolicy = 'no-referrer';
+  script.addEventListener('load', () => {
+    // Keep the standard deduplicated visit and count each visible page load separately.
+    let counted = false;
+    const countPageview = () => {
+      if (counted || document.visibilityState !== 'visible') return;
+      counted = true;
+      document.removeEventListener('visibilitychange', countPageview);
+      window.goatcounter.count({
+        path: 'pageviews',
+        title: 'Page views (PV, every load)',
+        event: true,
+        no_session: true,
+      });
+    };
+    document.addEventListener('visibilitychange', countPageview);
+    countPageview();
+  });
   document.head.appendChild(script);
 })();
