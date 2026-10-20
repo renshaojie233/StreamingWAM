@@ -1,10 +1,9 @@
 (() => {
   'use strict';
 
-  const endpoint = document.currentScript?.dataset.analyticsEndpoint;
-  // Enable only after the private dashboard has been configured and verified.
-  if (!endpoint || location.hostname !== 'renshaojie233.github.io' ||
-      location.pathname !== '/StreamingWAM/' && location.pathname !== '/StreamingWAM/index.html') return;
+  const website = document.currentScript?.dataset.websiteId;
+  if (!website || location.hostname !== 'renshaojie233.github.io' ||
+      !['/StreamingWAM/', '/StreamingWAM/index.html'].includes(location.pathname)) return;
   if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
 
   let referrer = '';
@@ -13,53 +12,45 @@
     if (source.origin !== location.origin) referrer = source.origin;
   } catch { /* Direct visits have no referrer. */ }
 
-  window.goatcounter = {
-    path: '/StreamingWAM/',
-    title: 'Deduplicated visits (8-hour window)',
+  // Keep one canonical page and omit query strings and detailed referral URLs.
+  const payload = {
+    website,
+    hostname: location.hostname,
+    url: '/StreamingWAM/',
+    title: 'StreamingWAM project page',
     referrer,
   };
-
   const script = document.createElement('script');
-  script.src = 'https://gc.zgo.at/count.js';
+  script.src = 'https://cloud.umami.is/script.js';
   script.async = true;
-  script.dataset.goatcounter = endpoint;
+  script.dataset.websiteId = website;
+  script.dataset.autoTrack = 'false';
+  script.dataset.doNotTrack = 'true';
   script.dataset.analyticsStatus = 'loading';
   script.referrerPolicy = 'no-referrer';
   script.addEventListener('load', () => {
-    script.dataset.analyticsStatus = 'ready';
-    // Keep the standard deduplicated visit and count each visible page load separately.
+    if (typeof window.umami?.track !== 'function') {
+      script.dataset.analyticsStatus = 'unavailable';
+      return;
+    }
+    // Umami records every page load and deduplicates visitors on the server.
     let counted = false;
     const countPageview = () => {
       if (counted || document.visibilityState !== 'visible') return;
       counted = true;
       document.removeEventListener('visibilitychange', countPageview);
-      const filtered = window.goatcounter.filter();
-      if (filtered) {
-        script.dataset.analyticsStatus = 'excluded';
-        return;
-      }
-      const url = window.goatcounter.url({
-        path: 'pageviews',
-        title: 'Page views (PV, every load)',
-        event: true,
-        no_session: true,
-      });
-      const pixel = new Image();
-      pixel.hidden = true;
-      pixel.alt = '';
-      pixel.setAttribute('aria-hidden', 'true');
-      const bot = new URL(url).searchParams.get('b');
-      script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-sent';
-      pixel.onload = () => {
-        script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-received';
-        pixel.remove();
-      };
-      pixel.onerror = () => { script.dataset.analyticsStatus = 'delivery-failed'; pixel.remove(); };
-      document.body.appendChild(pixel);
-      pixel.src = url;
+      window.umami.track({ ...payload });
+      script.dataset.analyticsStatus = 'pageview-sent';
     };
     document.addEventListener('visibilitychange', countPageview);
     countPageview();
+
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest?.('a[data-analytics-event]');
+      const name = link?.dataset.analyticsEvent;
+      if (!name || !/^click-[a-z-]+$/.test(name)) return;
+      window.umami.track({ ...payload, name });
+    }, true);
   });
   script.addEventListener('error', () => { script.dataset.analyticsStatus = 'unavailable'; });
   document.head.appendChild(script);
