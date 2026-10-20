@@ -33,13 +33,23 @@
       if (counted || document.visibilityState !== 'visible') return;
       counted = true;
       document.removeEventListener('visibilitychange', countPageview);
-      window.goatcounter.count({
+      const filtered = window.goatcounter.filter();
+      if (filtered) {
+        script.dataset.analyticsStatus = 'excluded';
+        return;
+      }
+      const url = window.goatcounter.url({
         path: 'pageviews',
         title: 'Page views (PV, every load)',
         event: true,
         no_session: true,
       });
-      script.dataset.analyticsStatus = 'pageview-sent';
+      const pixel = new Image();
+      const bot = new URL(url).searchParams.get('b');
+      script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-sent';
+      pixel.onload = () => { script.dataset.analyticsStatus = bot && bot !== '0' ? 'automated-visit' : 'pageview-received'; };
+      pixel.onerror = () => { script.dataset.analyticsStatus = 'delivery-failed'; };
+      pixel.src = url;
     };
     document.addEventListener('visibilitychange', countPageview);
     countPageview();
