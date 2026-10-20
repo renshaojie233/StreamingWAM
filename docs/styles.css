@@ -53,10 +53,10 @@ video { display: block; width: 100%; background: #111; }
   text-decoration: none;
   white-space: nowrap;
 }
-.brand-mark { width: 32px; height: 29px; color: var(--blue); }
+.brand-mark { width: 43px; height: 29px; }
 .brand-wordmark { display: inline-flex; align-items: baseline; }
-.brand-streaming { font-weight: 600; font-style: italic; }
-.brand-wam { margin-left: 1px; color: var(--blue); font-weight: 800; letter-spacing: -.8px; }
+.brand-streaming { color: var(--blue); font-weight: 650; font-style: italic; }
+.brand-wam { margin-left: 1px; color: var(--ink); font-weight: 700; letter-spacing: -.8px; }
 .page-nav-links {
   display: flex;
   align-items: center;
