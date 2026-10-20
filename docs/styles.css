@@ -34,7 +34,7 @@ video { display: block; width: 100%; background: #111; }
 .page-nav-inner {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 26px;
   width: min(var(--page), calc(100% - 40px));
   margin-inline: auto;
   overflow-x: auto;
@@ -42,13 +42,14 @@ video { display: block; width: 100%; background: #111; }
 }
 .page-nav-inner::-webkit-scrollbar { display: none; }
 .page-nav a:first-child { margin-inline-start: auto; }
+.page-nav a:last-child { margin-inline-end: auto; }
 .page-nav a {
   display: block;
   flex: 0 0 auto;
   padding: 12px 0 10px;
   border-bottom: 2px solid transparent;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
@@ -61,7 +62,7 @@ video { display: block; width: 100%; background: #111; }
 }
 @media (max-width: 600px) {
   .page-nav-inner { width: calc(100% - 26px); gap: 18px; }
-  .page-nav a { font-size: 13px; }
+  .page-nav a { font-size: 14px; }
 }
 
 .hero,
