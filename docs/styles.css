@@ -26,34 +26,40 @@ video { display: block; width: 100%; background: #111; }
   position: sticky;
   top: 0;
   z-index: 50;
-  overflow-x: auto;
-  background: #fff;
-  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .96);
+  border-bottom: 1px solid #eceef1;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .page-nav-inner {
   display: flex;
   align-items: center;
-  gap: 24px;
-  width: max-content;
+  gap: 22px;
+  width: min(var(--page), calc(100% - 40px));
   margin-inline: auto;
-  padding: 0 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.page-nav-inner::-webkit-scrollbar { display: none; }
 .page-nav a {
   display: block;
-  padding: 13px 0;
+  flex: 0 0 auto;
+  padding: 12px 0 10px;
+  border-bottom: 2px solid transparent;
   color: var(--muted);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
+  transition: color .15s ease, border-color .15s ease;
 }
-.page-nav a:hover { color: var(--blue); }
+.page-nav a:hover { color: var(--blue); border-bottom-color: var(--blue); }
 .page-nav a:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
 #top, #abstract, #method, #results, #rollouts, #comparison, #anticipation, #resources {
   scroll-margin-top: 68px;
 }
 @media (max-width: 600px) {
-  .page-nav-inner { gap: 18px; padding-inline: 13px; }
+  .page-nav-inner { width: calc(100% - 26px); gap: 18px; }
   .page-nav a { font-size: 13px; }
 }
 
