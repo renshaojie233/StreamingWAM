@@ -41,6 +41,7 @@ video { display: block; width: 100%; background: #111; }
   scrollbar-width: none;
 }
 .page-nav-inner::-webkit-scrollbar { display: none; }
+.page-nav a:first-child { margin-inline-start: auto; }
 .page-nav a {
   display: block;
   flex: 0 0 auto;
