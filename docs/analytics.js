@@ -23,8 +23,10 @@
   script.src = 'https://gc.zgo.at/count.js';
   script.async = true;
   script.dataset.goatcounter = endpoint;
+  script.dataset.analyticsStatus = 'loading';
   script.referrerPolicy = 'no-referrer';
   script.addEventListener('load', () => {
+    script.dataset.analyticsStatus = 'ready';
     // Keep the standard deduplicated visit and count each visible page load separately.
     let counted = false;
     const countPageview = () => {
@@ -37,9 +39,11 @@
         event: true,
         no_session: true,
       });
+      script.dataset.analyticsStatus = 'pageview-sent';
     };
     document.addEventListener('visibilitychange', countPageview);
     countPageview();
   });
+  script.addEventListener('error', () => { script.dataset.analyticsStatus = 'unavailable'; });
   document.head.appendChild(script);
 })();
