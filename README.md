@@ -1,7 +1,3 @@
-<p align="center">
-  <a href="#demonstrations">Demo</a> · <a href="#overview">Overview</a> · <a href="#latest-update">News</a> · <a href="#models-and-data">Models &amp; Data</a> · <a href="#installation">Setup</a> · <a href="#training">Train</a> · <a href="#evaluation">Eval</a> · <a href="#repository-checks">Checks</a> · <a href="#acknowledgments-and-license">License</a>
-</p>
-
 <h1 align="center">StreamingWAM: Streaming World Action Modeling via Chunk-Wise Staircase Flow Matching</h1>
 
 <p align="center">
@@ -38,6 +34,14 @@
 </p>
 
 Official implementation of **StreamingWAM**, a world-action model for responsive robot control. It keeps a rolling action buffer and refines future actions as new observations arrive, preserving continuity across updates.
+
+### 🧭 Contents
+
+| Explore the project | Run the code | Reference |
+| :--- | :--- | :--- |
+| [🎬 Demonstrations](#demonstrations) | [⚙️ Installation](#installation) | [📰 Latest update](#latest-update) |
+| [🧩 Overview](#overview) | [🚀 Training](#training) | [✅ Repository checks](#repository-checks) |
+| [📦 Models and data](#models-and-data) | [📊 Evaluation](#evaluation) | [📄 Acknowledgments and license](#acknowledgments-and-license) |
 
 <a id="demonstrations"></a>
 

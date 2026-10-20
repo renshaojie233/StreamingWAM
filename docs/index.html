@@ -139,10 +139,22 @@
 }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=playback-note-v1">
+  <link rel="stylesheet" href="styles.css?v=top-navigation-v1">
   <script defer src="app.js?v=full-playback-v1"></script>
 </head>
 <body>
+  <nav class="page-nav" aria-label="Page sections">
+    <div class="page-nav-inner">
+      <a href="#top">Home</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#rollouts">Demos</a>
+      <a href="#comparison">Comparisons</a>
+      <a href="#anticipation">Predictions</a>
+      <a href="#resources">Resources</a>
+    </div>
+  </nav>
   <main id="top">
     <header class="hero">
       <h1>StreamingWAM</h1>
@@ -184,7 +196,7 @@
       </figure>
     </header>
 
-    <section class="content-section overview-section">
+    <section id="abstract" class="content-section overview-section">
       <div class="overview-copy">
         <h2>Abstract</h2>
         <p class="abstract">World Action Models (WAMs), often built upon pretrained video-generation world models, have emerged as a promising framework for general-purpose and open-ended robot control. However, their real-world deployment often suffers from discontinuous and jerky execution. Existing methods typically address this issue by either improving inference efficiency or enhancing action continuity across prediction chunks, without jointly addressing both challenges. To bridge this gap, we propose StreamingWAM, a streaming-diffusion framework for WAM-based robot control. StreamingWAM combines a noise ladder for chunk-wise action prediction, a prefix rollout module for cross-chunk continuity, and dense video-history memory for temporally consistent conditioning. Experiments on LIBERO, LIBERO-Plus, RoboTwin 2.0, and real-world robotic tasks demonstrate that StreamingWAM improves action continuity across static and dynamic settings, achieving competitive performance with the lowest steady-state replanning latency among the evaluated WAMs using the same backbone. The method also produces smoother action transitions and faster steady-state replanning, while the streaming staircase reduces sensitivity to the execution horizon <i>K</i>.</p>

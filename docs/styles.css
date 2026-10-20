@@ -22,6 +22,41 @@ a { color: var(--blue); }
 button, input { font: inherit; }
 video { display: block; width: 100%; background: #111; }
 
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  overflow-x: auto;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+.page-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: max-content;
+  margin-inline: auto;
+  padding: 0 20px;
+}
+.page-nav a {
+  display: block;
+  padding: 13px 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.page-nav a:hover { color: var(--blue); }
+.page-nav a:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+#top, #abstract, #method, #results, #rollouts, #comparison, #anticipation, #resources {
+  scroll-margin-top: 68px;
+}
+@media (max-width: 600px) {
+  .page-nav-inner { gap: 18px; padding-inline: 13px; }
+  .page-nav a { font-size: 13px; }
+}
+
 .hero,
 .content-section,
 footer {
