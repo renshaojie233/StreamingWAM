@@ -208,8 +208,6 @@ footer {
   object-fit: cover;
 }
 .hero-promo-video figcaption { margin: 7px 0 0; }
-.teaser { width: min(960px, 100%); margin: 0 auto; }
-.teaser video { aspect-ratio: 16 / 9; object-fit: cover; }
 figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: left; }
 
 .content-section {
