@@ -159,34 +159,33 @@ footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 4px 14px;
   margin-bottom: 24px;
 }
 .project-links a,
 .project-links span {
   display: inline-flex;
-  min-height: 34px;
-  padding: 6px 14px;
+  min-height: 32px;
+  padding: 5px 9px;
   align-items: center;
   justify-content: center;
-  border: 1px solid #bdc5ce;
-  border-radius: 18px;
-  color: var(--ink);
-  background: #fff;
+  border: 0;
+  border-radius: 8px;
+  color: var(--muted);
+  background: transparent;
   text-decoration: none;
   font-size: 13px;
 }
 .project-links a {
   gap: 7px;
   font-weight: 600;
-  box-shadow: 0 2px 7px rgba(28, 52, 78, .06);
-  transition: color .15s ease, border-color .15s ease, background .15s ease, transform .15s ease;
+  transition: color .15s ease, background .15s ease;
 }
-.project-links a:hover { transform: translateY(-1px); }
+.project-links a:hover { color: var(--blue); background: var(--blue-soft); }
 .project-links svg,
 .resource-link svg {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   flex: 0 0 auto;
   fill: none;
   stroke: currentColor;
@@ -194,25 +193,21 @@ footer {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.project-links a:hover { color: var(--blue); border-color: #8fa8c1; background: var(--blue-soft); }
-.project-links span { color: #8b9096; border-color: var(--line); }
+.project-links svg.icon-github { fill: currentColor; stroke: none; }
+.project-links span { color: #8b9096; }
 .project-links small { margin-left: 5px; font-size: 10px; }
 .hero-promo-video {
-  width: min(920px, 100%);
+  width: min(960px, 100%);
   margin: 0 auto 22px;
-  padding: 10px;
-  border: 1px solid #e1e7ee;
-  border-radius: 14px;
-  background: #f7f9fb;
-  box-shadow: 0 10px 28px rgba(38, 65, 92, .08);
+  padding: 0;
   text-align: left;
 }
 .hero-promo-video video {
   aspect-ratio: 16 / 9;
-  border-radius: 9px;
-  object-fit: contain;
+  border-radius: 0;
+  object-fit: cover;
 }
-.hero-promo-video figcaption { margin: 7px 2px 0; }
+.hero-promo-video figcaption { margin: 7px 0 0; }
 .teaser { width: min(960px, 100%); margin: 0 auto; }
 .teaser video { aspect-ratio: 16 / 9; object-fit: cover; }
 figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: left; }
