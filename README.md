@@ -36,6 +36,11 @@
 
 Official implementation of **StreamingWAM**, a world-action model for responsive robot control. It keeps a rolling action buffer and refines future actions as new observations arrive, preserving continuity across updates.
 
+<p align="center">
+  <a href="https://github.com/renshaojie233/StreamingWAM/releases/download/supplementary-v1/streamingwam-final-bilingual-v29-center-caption-removed.mp4"><strong>🎬 Watch the bilingual project overview</strong></a><br>
+  <sub>Chinese and English subtitles · original-speed narration</sub>
+</p>
+
 ### 🧭 Contents
 
 | Explore the project | Run the code | Reference |
