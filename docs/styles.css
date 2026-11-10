@@ -241,18 +241,9 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
   line-height: 1.45;
 }
 .video-speed-note strong { color: var(--text); font-weight: 650; }
-.perturbation-views { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
-.perturbation-views button {
-  padding: 7px 12px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--muted);
-  background: #fff;
-  cursor: pointer;
-}
-.perturbation-views button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
-.perturbation-views button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 .perturbation-media { margin: 0; }
+.perturbation-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+.perturbation-inputs { display: grid; gap: 0; min-width: 0; }
 .perturbation-media video { aspect-ratio: 16 / 9; object-fit: contain; }
 .perturbation-analysis { margin: 16px 0 0; color: var(--muted); }
 .perturbation-analysis strong { color: var(--ink); }
@@ -556,6 +547,9 @@ footer {
   .task-card { flex-basis: 100%; }
   .featured-rollout { padding: 12px; }
   .featured-inputs { grid-template-columns: 1fr; }
+  .perturbation-grid { grid-template-columns: 1fr; gap: 6px; }
+  .perturbation-inputs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .perturbation-inputs .featured-input-view span { font-size: 8px; left: 3px; bottom: 3px; padding: 1px 3px; }
   .anticipation-view-toolbar { display: block; }
   .anticipation-view-toolbar > span { display: block; margin-bottom: 6px; }
   .anticipation-evidence { overflow-x: auto; }

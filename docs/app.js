@@ -301,18 +301,24 @@ comparisonVideos.forEach(({ video }) => {
 updateComparison();
 
 const perturbationVideo = document.getElementById("perturbation-video");
-document.querySelectorAll("[data-perturbation-camera]").forEach(button => {
-  button.addEventListener("click", () => {
-    const camera = button.dataset.perturbationCamera;
-    perturbationVideo.pause();
-    perturbationVideo.src = `assets/perturbation/conveyor-reversal-camera-${camera}.mp4`;
-    perturbationVideo.poster = `assets/perturbation/conveyor-reversal-camera-${camera}.jpg`;
-    perturbationVideo.load();
-    perturbationVideo.play().catch(() => {});
-    document.querySelectorAll("[data-perturbation-camera]").forEach(item => {
-      item.setAttribute("aria-pressed", String(item === button));
-    });
+const perturbationInputs = [...document.querySelectorAll(".perturbation-input-video")];
+function syncPerturbationInputs() {
+  perturbationInputs.forEach(video => {
+    if (!Number.isFinite(video.duration)) return;
+    const target = Math.min(perturbationVideo.currentTime, Math.max(0, video.duration - 1 / 30));
+    if (Math.abs(video.currentTime - target) > 0.10) video.currentTime = target;
+    video.playbackRate = perturbationVideo.playbackRate;
+    // Keep shorter camera recordings on their last frame until the main view loops.
+    if (!perturbationVideo.paused && perturbationVideo.currentTime < video.duration - 1 / 30) {
+      if (video.paused) video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
   });
+}
+perturbationInputs.forEach(video => video.addEventListener("loadedmetadata", syncPerturbationInputs));
+["play", "pause", "seeking", "seeked", "timeupdate", "ratechange", "ended"].forEach(event => {
+  perturbationVideo.addEventListener(event, syncPerturbationInputs);
 });
 
 // Start videos shortly before they enter the viewport, and pause them after
@@ -328,4 +334,4 @@ const autoplayObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08, rootMargin: "120px 0px" });
 
-document.querySelectorAll("video").forEach(video => autoplayObserver.observe(video));
+document.querySelectorAll("video:not(.perturbation-input-video)").forEach(video => autoplayObserver.observe(video));
