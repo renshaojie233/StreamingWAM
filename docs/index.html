@@ -139,8 +139,8 @@
 }
   </script>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=streaming-wordmark-v2">
-  <script defer src="app.js?v=full-playback-v1"></script>
+  <link rel="stylesheet" href="styles.css?v=perturbation-demo-v1">
+  <script defer src="app.js?v=perturbation-demo-v1"></script>
   <script defer src="analytics.js?v=umami-1" data-website-id="d2dcd952-17c8-4dd2-a75d-48d382a18c3f"></script>
 </head>
 <body>
@@ -170,6 +170,7 @@
         <a href="#rollouts">Demos</a>
         <a href="#comparison">Comparisons</a>
         <a href="#anticipation">Predictions</a>
+        <a href="#perturbation">Adaptation</a>
         <a href="#resources">Resources</a>
       </div>
     </div>
@@ -417,6 +418,25 @@
           </table>
         </div>
       </section>
+    </section>
+
+    <section id="perturbation" class="content-section perturbation-section">
+      <h2>Anticipation and adaptation to a conveyor reversal</h2>
+      <p class="section-intro">The conveyor changes direction as StreamingWAM approaches the moving apple. The robot adjusts its reach and completes the grasp-and-place task.</p>
+      <div class="perturbation-views" role="group" aria-label="Conveyor reversal camera view">
+        <button type="button" data-perturbation-camera="4" aria-pressed="true">Presentation view</button>
+        <button type="button" data-perturbation-camera="1" aria-pressed="false">Camera 1</button>
+        <button type="button" data-perturbation-camera="3" aria-pressed="false">Camera 3</button>
+        <button type="button" data-perturbation-camera="2" aria-pressed="false">Wrist camera</button>
+      </div>
+      <figure class="perturbation-media">
+        <video id="perturbation-video" controls autoplay muted loop playsinline preload="metadata"
+          src="assets/perturbation/conveyor-reversal-camera-4.mp4"
+          poster="assets/perturbation/conveyor-reversal-camera-4.jpg"
+          aria-label="StreamingWAM adjusting its grasp after the conveyor reverses direction"></video>
+        <figcaption>One successful rollout · Original 1× playback · Select a camera to replay the same trial from another view.</figcaption>
+      </figure>
+      <p class="perturbation-analysis"><strong>Analysis.</strong> Before the reversal, the robot reaches ahead of the moving apple, consistent with anticipatory interception. After the direction change, the reach briefly follows the previous motion trend before adjusting to the new target motion. The apparent carry-over of the previous plan does not prevent successful recovery in this trial.</p>
     </section>
 
     <section id="resources" class="content-section resources-section">

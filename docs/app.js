@@ -300,6 +300,21 @@ comparisonVideos.forEach(({ video }) => {
 });
 updateComparison();
 
+const perturbationVideo = document.getElementById("perturbation-video");
+document.querySelectorAll("[data-perturbation-camera]").forEach(button => {
+  button.addEventListener("click", () => {
+    const camera = button.dataset.perturbationCamera;
+    perturbationVideo.pause();
+    perturbationVideo.src = `assets/perturbation/conveyor-reversal-camera-${camera}.mp4`;
+    perturbationVideo.poster = `assets/perturbation/conveyor-reversal-camera-${camera}.jpg`;
+    perturbationVideo.load();
+    perturbationVideo.play().catch(() => {});
+    document.querySelectorAll("[data-perturbation-camera]").forEach(item => {
+      item.setAttribute("aria-pressed", String(item === button));
+    });
+  });
+});
+
 // Start videos shortly before they enter the viewport, and pause them after
 // they leave it. This keeps every section click-free without decoding every
 // video on the page at the same time.
