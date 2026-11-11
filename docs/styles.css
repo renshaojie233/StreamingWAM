@@ -242,9 +242,10 @@ figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; text-align: 
 }
 .video-speed-note strong { color: var(--text); font-weight: 650; }
 .perturbation-media { margin: 0; }
-.perturbation-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); gap: 10px; align-items: start; }
+.perturbation-grid { display: grid; grid-template-columns: minmax(0, 2.3895fr) minmax(210px, 1fr); gap: 10px; align-items: start; }
 .perturbation-inputs { display: grid; gap: 0; min-width: 0; }
 .perturbation-media video { aspect-ratio: 16 / 9; object-fit: contain; }
+#perturbation-video { aspect-ratio: 1416 / 1000; }
 .perturbation-analysis { margin: 16px 0 0; color: var(--muted); }
 .perturbation-analysis strong { color: var(--ink); }
 .paper-figure { margin: 0; }
