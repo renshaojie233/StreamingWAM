@@ -306,7 +306,7 @@ function syncPerturbationInputs() {
   perturbationInputs.forEach(video => {
     if (!Number.isFinite(video.duration)) return;
     const target = Math.min(perturbationVideo.currentTime, Math.max(0, video.duration - 1 / 30));
-    if (Math.abs(video.currentTime - target) > 0.10) video.currentTime = target;
+    if (Math.abs(video.currentTime - target) > 0.075) video.currentTime = target;
     video.playbackRate = perturbationVideo.playbackRate;
     // Keep shorter camera recordings on their last frame until the main view loops.
     if (!perturbationVideo.paused && perturbationVideo.currentTime < video.duration - 1 / 30) {
@@ -317,6 +317,15 @@ function syncPerturbationInputs() {
   });
 }
 perturbationInputs.forEach(video => video.addEventListener("loadedmetadata", syncPerturbationInputs));
+// Check alignment on each presented main-view frame, including after buffering.
+if (perturbationVideo.requestVideoFrameCallback) {
+  const syncFrame = () => {
+    syncPerturbationInputs();
+    perturbationVideo.requestVideoFrameCallback(syncFrame);
+  };
+  perturbationVideo.requestVideoFrameCallback(syncFrame);
+}
+
 ["play", "pause", "seeking", "seeked", "timeupdate", "ratechange", "ended"].forEach(event => {
   perturbationVideo.addEventListener(event, syncPerturbationInputs);
 });
