@@ -1,0 +1,30 @@
+{
+  "spatial": {
+    "repo": "IPEC-COMMUNITY/libero_spatial_no_noops_1.0.0_lerobot",
+    "revision": "bf14d6258218d12c2e3c1a3b9922e163cdf6455d",
+    "episodes": 432,
+    "frames": 52970,
+    "layout": "v2.1"
+  },
+  "object": {
+    "repo": "IPEC-COMMUNITY/libero_object_no_noops_1.0.0_lerobot",
+    "revision": "15657dac2ad1c01b4e94bf54ab0493b46a8d63f9",
+    "episodes": 454,
+    "frames": 66984,
+    "layout": "v2.1"
+  },
+  "goal": {
+    "repo": "IPEC-COMMUNITY/libero_goal_no_noops_1.0.0_lerobot",
+    "revision": "222cf888ed360fad0a5f983748c1cc40743d43e7",
+    "episodes": 428,
+    "frames": 52042,
+    "layout": "v2.1"
+  },
+  "10": {
+    "repo": "IPEC-COMMUNITY/libero_10_no_noops_1.0.0_lerobot",
+    "revision": "e1a223d30b896c1613f270a2bfc63d382b3de7e1",
+    "episodes": 379,
+    "frames": 101469,
+    "layout": "v2.1"
+  }
+}

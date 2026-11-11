@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+checkpoints/
+runs/
+outputs/
+.venv/
+
+# Release dependencies, licenses and archived results are intentional assets.
+!requirements*.txt
+!licenses/*.txt
+!results/
+!results/**

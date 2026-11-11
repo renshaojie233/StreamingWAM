@@ -1,0 +1,101 @@
+{
+  "datasets": {
+    "vla_data": {
+      "action_video_freq_ratio": 2,
+      "data_mix": "libero_all",
+      "data_root_dir": "unused-for-evaluation",
+      "dataset_py": "lerobot_datasets",
+      "delete_pause_frame": false,
+      "per_device_batch_size": 4,
+      "video_backend": "torchvision_av",
+      "video_delta_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  "framework": {
+    "action_model": {
+      "action_dim": 8,
+      "action_horizon": 8,
+      "action_model_type": "DiT-B",
+      "add_pos_embed": true,
+      "diffusion_model_cfg": {
+        "cross_attention_dim": 2048,
+        "dropout": 0.2,
+        "final_dropout": true,
+        "interleave_self_attention": true,
+        "norm_type": "ada_norm",
+        "num_layers": 16,
+        "output_dim": 2560,
+        "positional_embeddings": null
+      },
+      "future_action_window_size": 7,
+      "hidden_size": 2560,
+      "max_seq_len": 1024,
+      "noise_beta_alpha": 1.5,
+      "noise_beta_beta": 1.0,
+      "noise_s": 0.999,
+      "num_inference_timesteps": 4,
+      "num_timestep_buckets": 1000,
+      "past_action_window_size": 0,
+      "state_dim": 16
+    },
+    "cosmos25": {
+      "base_model": "${oc.env:COSMOS_MODEL_PATH}",
+      "conditional_frame_timestep": 0.0001,
+      "extract_layer": 17,
+      "flow_matching": {
+        "high_sigma_min": null,
+        "high_sigma_ratio": null,
+        "time_distribution": "uniform"
+      },
+      "future_loss_type": "flow_matching",
+      "future_num_inference_steps": 1,
+      "training": "joint",
+      "vl_hidden_dim": 2048
+    },
+    "name": "DiT4DiT"
+  },
+  "output_dir": "./playground/Checkpoints_libero/dit4dit_libero",
+  "run_id": "dit4dit_libero",
+  "run_root_dir": "./playground/Checkpoints_libero",
+  "seed": 42,
+  "trainer": {
+    "eval_interval": 100,
+    "freeze_modules": "backbone_interface.extractor.text_encoder,backbone_interface.extractor.vae",
+    "gradient_accumulation_steps": 1,
+    "gradient_clipping": 1.0,
+    "is_resume": false,
+    "learning_rate": {
+      "action_model": 0.0001,
+      "backbone_interface": 0.0001,
+      "base": 3e-05
+    },
+    "logging_frequency": 10,
+    "lr_scheduler_type": "cosine_with_min_lr",
+    "max_train_steps": 160000,
+    "num_warmup_steps": 10000,
+    "optimizer": {
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eps": 1e-08,
+      "weight_decay": 1e-08
+    },
+    "repeated_diffusion_steps": 4,
+    "save_interval": 80000,
+    "scheduler_specific_kwargs": {
+      "min_lr": 5e-07
+    },
+    "pretrained_checkpoint": null
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "model_repo": "rsj2003/StreamingWAM-DiT4DiT-LIBERO",
+  "model_revision": "v1",
+  "upstream": {
+    "code": "https://github.com/Mondo-Robotics/DiT4DiT",
+    "revision": "66a6f3a12e2c8740157c1e478795952c040d31dd",
+    "model": "mondo-robotics/dit4dit-model",
+    "checkpoint": "dit4dit_libero/final_model/pytorch_model.pt",
+    "sha256": "10cdc70029d84519942157ff741fe570a78f161be3fda6ff1e87286b4c7faa29",
+    "video_backbone": "nvidia/Cosmos-Predict2.5-2B",
+    "video_backbone_revision": "diffusers/base/post-trained",
+    "diffusers_revision": "3996788b602eaae4da41a1d45726b62e662b73cf"
+  },
+  "training": {
+    "additional_optimizer_steps": 10000,
+    "global_batch_size": 64,
+    "schedule_steps": 20000,
+    "seed": 42,
+    "future_actions": 8,
+    "equal_floating_point_compute": false
+  },
+  "evaluation": {
+    "expected_episodes": 10030,
+    "manifest_sha256": "e593f5226f2f56f10d54bd0b55fb0bc05e9780d55caef1900982f291d1587464",
+    "state_manifest_sha256": "9d825aa89a4c0ae34bea517f0a53a1e14a8f6916d0216e47882ad62611cf0629",
+    "seed": 7,
+    "execution_steps": 4,
+    "prompt_protocol": "raw task.language including benchmark suffixes",
+    "control_hz": 20,
+    "settling_steps": 5,
+    "max_steps": 700
+  },
+  "checkpoints": {
+    "joint": {
+      "file": "joint/pytorch_model.pt",
+      "bytes": 21283251892,
+      "sha256": "d03fac2a5291a2e2bb518febd4f0ba7c2cafe943ecb8739f1d9f716d832c3b86",
+      "successful_episodes": 7109,
+      "total_episodes": 10030,
+      "success_rate_percent": 70.87736789631107,
+      "sidecars": {
+        "config.json": "3a23b790bfc0e349d2f93444a2537f9b84c378c52751989d1a0811e47bf8ce57",
+        "dataset_statistics.json": "231ed66bcbaa15daa9087b7d256e730ee184cc6cb50a971c6dee7b4eb12c626a",
+        "inference_config.json": "3f404a913815f64bfbbffe1f2a475960a93a58fab6735fda0466d3365555ec4a",
+        "training_metadata.json": "1a18541ae40fff177b5d60c40455453dcb7e4d6340257cf335ff9e69db59c940"
+      }
+    },
+    "streaming": {
+      "file": "streaming/pytorch_model.pt",
+      "bytes": 21283251892,
+      "sha256": "4c34f38f7922dae693b8a3b50735875c0dc81e77d058e46038c694509476dc34",
+      "successful_episodes": 7660,
+      "total_episodes": 10030,
+      "success_rate_percent": 76.37088733798603,
+      "sidecars": {
+        "config.json": "7de7888f2546f92f9801fc6f938d97189d1e42c1579ebbb2863a40b4ea973994",
+        "dataset_statistics.json": "231ed66bcbaa15daa9087b7d256e730ee184cc6cb50a971c6dee7b4eb12c626a",
+        "inference_config.json": "80c52325b1f4e183cd88b93b6d43dd47871627a7323005a43d3501852246af35",
+        "training_metadata.json": "1e8b5f2134eed411d727f908e4afc4067ad2b4b656ca879588ed1b68be6a63fe"
+      }
+    }
+  }
+}

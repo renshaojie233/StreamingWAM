@@ -71,7 +71,7 @@ In these stage-matched examples from separate trials, StreamingWAM predicts the 
 
 The action buffer shifts forward as the robot executes actions. A staircase noise schedule lets the model refine the remaining actions with each new observation.
 
-The released configuration uses:
+The FastWAM-based release uses:
 
 - **Context:** a 16-step clean action prefix and temporal visual history.
 - **Prediction:** a 16-step future action suffix, refined with one Euler update per replanning call.
@@ -82,6 +82,8 @@ See [the released protocol](docs/REPRODUCIBILITY.md) for hyperparameters and exe
 <a id="latest-update"></a>
 
 ## 📰 Latest update
+
+**November 12, 2026 — DiT4DiT adaptation.** StreamingWAM now also supports [DiT4DiT](https://github.com/Mondo-Robotics/DiT4DiT), with a Cosmos-Predict2.5-2B video backbone. With the same 10K additional training updates and batch size 64, LIBERO-Plus success increases from **70.88%** (Joint continuation) to **76.37%** (streaming), under the same raw-instruction protocol. [Code, configs and both checkpoints →](extensions/dit4dit/)
 
 **October 17, 2026 — LIBERO-Plus evaluation fix.** We removed trailing benchmark metadata from instructions while preserving language perturbations. Training is unchanged, and both evaluation modes remain available.
 
@@ -96,10 +98,11 @@ The Hugging Face download is aligned with the verified reference checkpoint used
 
 ## 📦 Models and data
 
-The current release includes training on the four LIBERO suites, LIBERO-Plus evaluation, and a model-side real-robot reference implementation.
+The current release includes FastWAM and DiT4DiT training on the four LIBERO suites, LIBERO-Plus evaluation, and a FastWAM-based real-robot reference implementation.
 
 | Resource | Download | Usage |
 | --- | --- | --- |
+| DiT4DiT Joint continuation and Streaming checkpoints | [Hugging Face](https://huggingface.co/rsj2003/StreamingWAM-DiT4DiT-LIBERO) | [DiT4DiT setup, training and evaluation](extensions/dit4dit/) |
 | LIBERO checkpoint | [Hugging Face](https://huggingface.co/rsj2003/StreamingWAM-LIBERO) | [Evaluation](#evaluation) |
 | Real-robot checkpoint, statistics, and prompt embeddings | [Hugging Face](https://huggingface.co/rsj2003/StreamingWAM-RealWorld) | [Robot inference](real_robot/README.md) |
 | Real-robot demonstrations | [Hugging Face](https://huggingface.co/datasets/rsj2003/StreamingWAM-RealWorld) | [Data conversion and validation](data_processing/realworld_7task_15hz/) |
@@ -118,6 +121,8 @@ The public dataset contains **590 trajectories across seven tasks**. The apple-t
 <a id="installation"></a>
 
 ## ⚙️ Installation
+
+The instructions below are for the FastWAM-based model. For Cosmos-based DiT4DiT, use the [separate environment and entrypoints](extensions/dit4dit/).
 
 ### 1. Create the environment
 

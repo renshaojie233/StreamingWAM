@@ -1,0 +1,116 @@
+{
+  "protocol": "raw task.language, seed 7, H8/K4, +10K updates / batch64",
+  "total": 10030,
+  "methods": {
+    "joint": {
+      "successes": 7109,
+      "success_rate_percent": 70.87736789631107,
+      "suite": {
+        "libero_10": {
+          "successful": 1520,
+          "total": 2519
+        },
+        "libero_goal": {
+          "successful": 1681,
+          "total": 2591
+        },
+        "libero_object": {
+          "successful": 1952,
+          "total": 2518
+        },
+        "libero_spatial": {
+          "successful": 1956,
+          "total": 2402
+        }
+      },
+      "perturbation_type": {
+        "Background Textures": {
+          "successful": 410,
+          "total": 1076
+        },
+        "Camera Viewpoints": {
+          "successful": 1034,
+          "total": 1599
+        },
+        "Language Instructions": {
+          "successful": 1353,
+          "total": 1537
+        },
+        "Light Conditions": {
+          "successful": 1044,
+          "total": 1142
+        },
+        "Objects Layout": {
+          "successful": 1296,
+          "total": 1525
+        },
+        "Robot Initial States": {
+          "successful": 962,
+          "total": 1550
+        },
+        "Sensor Noise": {
+          "successful": 1010,
+          "total": 1601
+        }
+      }
+    },
+    "streaming": {
+      "successes": 7660,
+      "success_rate_percent": 76.37088733798605,
+      "suite": {
+        "libero_10": {
+          "successful": 1654,
+          "total": 2519
+        },
+        "libero_goal": {
+          "successful": 1804,
+          "total": 2591
+        },
+        "libero_object": {
+          "successful": 2119,
+          "total": 2518
+        },
+        "libero_spatial": {
+          "successful": 2083,
+          "total": 2402
+        }
+      },
+      "perturbation_type": {
+        "Background Textures": {
+          "successful": 520,
+          "total": 1076
+        },
+        "Camera Viewpoints": {
+          "successful": 1074,
+          "total": 1599
+        },
+        "Language Instructions": {
+          "successful": 1396,
+          "total": 1537
+        },
+        "Light Conditions": {
+          "successful": 1050,
+          "total": 1142
+        },
+        "Objects Layout": {
+          "successful": 1298,
+          "total": 1525
+        },
+        "Robot Initial States": {
+          "successful": 1186,
+          "total": 1550
+        },
+        "Sensor Noise": {
+          "successful": 1136,
+          "total": 1601
+        }
+      }
+    }
+  },
+  "paired": {
+    "(0, 0)": 1994,
+    "(0, 1)": 927,
+    "(1, 0)": 376,
+    "(1, 1)": 6733
+  }
+}

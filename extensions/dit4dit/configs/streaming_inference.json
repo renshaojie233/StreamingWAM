@@ -1,0 +1,176 @@
+{
+  "run_id": "dit4dit_streaming",
+  "run_root_dir": "runs",
+  "seed": 42,
+  "trackers": [
+    "jsonl"
+  ],
+  "is_debug": false,
+  "provenance": {
+    "official_revision": "66a6f3a12e2c8740157c1e478795952c040d31dd",
+    "official_checkpoint_sha256": "10cdc70029d84519942157ff741fe570a78f161be3fda6ff1e87286b4c7faa29",
+    "official_checkpoint_bytes": 21283256413
+  },
+  "framework": {
+    "name": "DiT4DiT",
+    "cosmos25": {
+      "base_model": "${oc.env:COSMOS_MODEL_PATH}",
+      "revision": null,
+      "local_files_only": true,
+      "torch_dtype": "bfloat16",
+      "device": "cpu",
+      "trainable": true,
+      "training": "joint",
+      "future_num_inference_steps": 1,
+      "future_loss_type": "flow_matching",
+      "extract_layer": 17,
+      "attn_implementation": "flash_attention_2",
+      "vl_hidden_dim": 2048,
+      "conditional_frame_timestep": 0.0001,
+      "flow_matching": {
+        "time_distribution": "logit_normal",
+        "high_sigma_ratio": 0.05,
+        "high_sigma_min": 0.98
+      }
+    },
+    "action_model": {
+      "action_model_type": "DiT-B",
+      "hidden_size": 2560,
+      "add_pos_embed": true,
+      "max_seq_len": 1024,
+      "action_dim": 8,
+      "state_dim": 16,
+      "past_action_window_size": 8,
+      "future_action_window_size": 7,
+      "action_horizon": 8,
+      "repeated_diffusion_steps": 8,
+      "noise_beta_alpha": 1.5,
+      "noise_beta_beta": 1.0,
+      "noise_s": 0.999,
+      "num_timestep_buckets": 1000,
+      "num_inference_timesteps": 4,
+      "num_target_vision_tokens": 32,
+      "streaming": true,
+      "streaming_prefix_steps": 8,
+      "streaming_execution_steps": 4,
+      "streaming_noise_levels": 32,
+      "streaming_warm_start_steps": 4,
+      "streaming_ladder_probability": 0.8,
+      "diffusion_model_cfg": {
+        "cross_attention_dim": 2048,
+        "dropout": 0.2,
+        "final_dropout": true,
+        "interleave_self_attention": true,
+        "norm_type": "ada_norm",
+        "num_layers": 16,
+        "output_dim": 2560,
+        "positional_embeddings": null
+      }
+    }
+  },
+  "datasets": {
+    "vla_data": {
+      "dataset_py": "lerobot_datasets",
+      "data_root_dir": "unused-for-evaluation",
+      "lerobot_version": "v3.0",
+      "data_mix": "libero_all",
+      "include_state": true,
+      "action_type": "joint_position",
+      "default_image_resolution": [
+        3,
+        224,
+        224
+      ],
+      "per_device_batch_size": 16,
+      "load_all_data_for_training": true,
+      "obs": [
+        "image_0"
+      ],
+      "image_size": [
+        224,
+        224
+      ],
+      "delete_pause_frame": false,
+      "streaming": true,
+      "video_delta_indices": [
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        2,
+        4,
+        6,
+        8
+      ],
+      "action_delta_indices": [
+        -8,
+        -7,
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "max_state_dim": 16,
+      "max_action_dim": 8,
+      "action_video_freq_ratio": 1,
+      "video_backend": "torchvision_av"
+    }
+  },
+  "trainer": {
+    "max_train_steps": 20000,
+    "num_warmup_steps": 1000,
+    "save_interval": 1000,
+    "learning_rate": {
+      "base": 1e-05,
+      "backbone_interface": 1e-05,
+      "action_model": 0.0001
+    },
+    "lr_preset": "official",
+    "min_lr": 5e-07,
+    "repeated_diffusion_steps": 4,
+    "gradient_clipping": 1.0,
+    "gradient_accumulation_steps": 1,
+    "num_workers": 4,
+    "logging_frequency": 10,
+    "enable_gradient_checkpointing": true,
+    "cache_frozen_text": true,
+    "gradient_validation_interval": 20,
+    "prefetch_factor": 2,
+    "state_save_interval": 1000,
+    "first_state_save_step": 50,
+    "keep_last_training_states": 2,
+    "keep_last_weights": 3,
+    "landmark_steps": [
+      5000,
+      10000,
+      20000
+    ],
+    "mixed_precision": "bf16",
+    "parameter_dtype": "bfloat16",
+    "loss_scale": {
+      "future_video": 1.0
+    },
+    "optimizer": {
+      "name": "AdamW",
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "eps": 1e-08,
+      "weight_decay": 1e-08
+    },
+    "pretrained_checkpoint": null
+  },
+  "output_dir": "runs/streaming"
+}

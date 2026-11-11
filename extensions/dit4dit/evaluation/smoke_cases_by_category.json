@@ -1,0 +1,30 @@
+{
+  "Background Textures": [
+    "libero_10",
+    0
+  ],
+  "Robot Initial States": [
+    "libero_10",
+    411
+  ],
+  "Camera Viewpoints": [
+    "libero_10",
+    822
+  ],
+  "Language Instructions": [
+    "libero_10",
+    1233
+  ],
+  "Sensor Noise": [
+    "libero_10",
+    1644
+  ],
+  "Objects Layout": [
+    "libero_10",
+    2056
+  ],
+  "Light Conditions": [
+    "libero_10",
+    2261
+  ]
+}

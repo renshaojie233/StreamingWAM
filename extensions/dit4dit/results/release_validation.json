@@ -1,0 +1,92 @@
+{
+  "date": "2026-11-12",
+  "scope": "Release smoke tests; the full 10,030-episode results are archived from the original runs, not rerun for packaging.",
+  "environment": {
+    "python": "3.10",
+    "torch": "2.7.1+cu128",
+    "precision": "bfloat16"
+  },
+  "cpu_contract_tests": {
+    "passed": 25
+  },
+  "existing_fastwam_unit_tests": {
+    "passed": 21
+  },
+  "strict_loading_and_inference": {
+    "joint": {
+      "method": "joint",
+      "strict_tensors": 1739,
+      "replans": 2,
+      "commands": 8,
+      "all_finite": true,
+      "peak_cuda_gib": 21.302031993865967,
+      "scope": "synthetic observation smoke test, not a benchmark evaluation"
+    },
+    "streaming": {
+      "method": "streaming",
+      "strict_tensors": 1739,
+      "replans": 2,
+      "commands": 8,
+      "all_finite": true,
+      "peak_cuda_gib": 21.45729684829712,
+      "scope": "synthetic observation smoke test, not a benchmark evaluation"
+    }
+  },
+  "training": {
+    "joint": {
+      "optimizer_updates": 1,
+      "world_size": 4,
+      "global_batch_size": 64,
+      "cosine_schedule_steps": 20000,
+      "completed_and_saved": true,
+      "action_loss": 0.002836579689756036,
+      "video_loss": 0.04728880152106285,
+      "total_loss": 0.05012538284063339
+    },
+    "streaming": {
+      "optimizer_updates": 1,
+      "world_size": 4,
+      "global_batch_size": 64,
+      "cosine_schedule_steps": 20000,
+      "completed_and_saved": true,
+      "action_loss": 0.0999070480465889,
+      "video_loss": 0.4279455542564392,
+      "total_loss": 0.5278525948524475
+    }
+  },
+  "simulator": {
+    "episodes_per_method": 1,
+    "episode_id": "libero_10_00000",
+    "joint": {
+      "steps": 700,
+      "success": false
+    },
+    "streaming": {
+      "steps": 326,
+      "success": true
+    },
+    "note": "Both public entrypoints completed without runtime errors. Outcomes match the corresponding archived case; action trajectories are not bitwise identical. This is not a new estimate of benchmark success."
+  },
+  "data_adapter": {
+    "fixture": "IPEC spatial episode 0",
+    "tested_frame_indices": [
+      0,
+      20,
+      60,
+      109
+    ],
+    "comparison": "Public v2.1 importer and preparation vs. original v3 training input",
+    "checks": {
+      "joint": {
+        "samples": 4,
+        "actions_states_masks_identical": true,
+        "max_rgb_abs_difference": 0.0
+      },
+      "streaming": {
+        "samples": 4,
+        "actions_states_masks_identical": true,
+        "max_rgb_abs_difference": 0.0
+      }
+    }
+  }
+}
