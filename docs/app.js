@@ -343,4 +343,9 @@ const autoplayObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.08, rootMargin: "120px 0px" });
 
-document.querySelectorAll("video:not(.perturbation-input-video)").forEach(video => autoplayObserver.observe(video));
+document.querySelectorAll("video:not(.perturbation-input-video):not(.reversal-baseline-input)").forEach(video => autoplayObserver.observe(video));
+
+// Pause hidden auxiliary recordings; start them only when expanded.
+document.querySelectorAll('.reversal-baseline-card details').forEach(detail=>{
+ detail.addEventListener('toggle',()=>detail.querySelectorAll('video').forEach(v=>{if(detail.open){v.play().catch(()=>{});}else{v.pause();}}));
+});
